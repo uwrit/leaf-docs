@@ -1,31 +1,36 @@
 # SAML2 Support
-Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. [Shibboleth](https://wiki.shibboleth.net/confluence/display/SP3/Home)). We rely on these implementations for integrating Leaf into your environment.
+Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. <a href="https://wiki.shibboleth.net/confluence/display/SP3/Home" target="_blank">Shibboleth</a>). We rely on these implementations for integrating Leaf into your environment.
 
 ## Identity Providers (IdP)
 Conceptually, Leaf does not depend concretely on any specific method of authentication, it requires the following structured data be written to the request headers:
-- a scoped identity of the form "\<identity\>@\<scope\>"
+
+- a scoped identity of the form "<identity\>@<scope\>"
 - a set of entitlements or group memberships in the form of a character delimited list
 
 Two well known IdP implementations that we've interacted with are:
+
 - [Active Directory Federation Services (ADFS)](#adfs)
 - [Shibboleth](#shibboleth)
 
 For example:
+
 - UW's Shibboleth IdP sends:
-  - The `eppn` attribute with a value of `johndoe@washington.edu`.
-  - The `gws_groups` attribute with a value of `urn:mace:washington.edu:groups:uw_iths_it; urn:mace:washington.edu:groups:uw_rit_leaf_admins; urn:mace:washington.edu:groups:uw_rit_leaf_users`
+    - The `eppn` attribute with a value of `johndoe@washington.edu`.
+    - The `gws_groups` attribute with a value of `urn:mace:washington.edu:groups:uw_iths_it; urn:mace:washington.edu:groups:uw_rit_leaf_admins; urn:mace:washington.edu:groups:uw_rit_leaf_users`
 
 - UW Medicine's ADFS IdP sends:
-  - The `sAMAccountName` attribute with a value of `johndoe@amc.uwmedicine.org`.
-  - The `amc_groups` attribute with a value of `am_leaf_users; am_leaf_admins; amSQL_RIT_Leaf_Admin`
+    - The `sAMAccountName` attribute with a value of `johndoe@amc.uwmedicine.org`.
+    - The `amc_groups` attribute with a value of `am_leaf_users; am_leaf_admins; amSQL_RIT_Leaf_Admin`
 
 ## Service Providers (SP)
 There are multiple implementations of the Service Provider role in the SAML2 protocol, we have only ever used Shibboleth and as such will refer to that in the following documentation.
-- [Shibboleth SP Installation Media](https://shibboleth.net/downloads/service-provider/latest)
-- [Shibboleth SP Installation Documentation](https://wiki.shibboleth.net/confluence/display/SP3/Installation)
+
+- <a href="https://shibboleth.net/downloads/service-provider/latest" target="_blank">Shibboleth SP Installation Media</a>
+- <a href="https://wiki.shibboleth.net/confluence/display/SP3/Installation" target="_blank">Shibboleth SP Installation Documentation</a>
 
 ## Route Protection Setup
 There are only two routes that _must_ be protected by the SAML2 Service Provider (SP), all other routes are protected by requiring a JWT that can only be generated from a SAML2 SP protected endpoint.
+
 - `/` --> react app.
 - `/api/config` --> initial API check endpoint.
 - `/api/user` --> token generation endpoint.

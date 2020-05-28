@@ -1,5 +1,5 @@
 # Configuring the Leaf App Server
-The application server hosts the [Leaf REST API](https://github.com/uwrit/leaf/tree/master/src/server), and serves as the intermediary between the [client app](https://github.com/uwrit/leaf/tree/master/src/ui-client) and [databases](https://github.com/uwrit/leaf/tree/master/src/db).
+The application server hosts the <a href="https://github.com/uwrit/leaf/tree/master/src/server" target="_blank">Leaf REST API</a>, and serves as the intermediary between the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a> and <a href="https://github.com/uwrit/leaf/tree/master/src/db" target="_blank">databases</a>.
 
 The API is written in C# and .NET Core, and can run in either Linux or Windows environments. Unless otherwise noted, examples below assume a CentOS7 server.
 
@@ -7,7 +7,7 @@ The API is written in C# and .NET Core, and can run in either Linux or Windows e
 ## Prerequisites
 
 CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
-https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current
+<a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>
 
 
 Currently installing .NET on CentOS/RHEL looks like this:
@@ -40,15 +40,15 @@ Once the source is downloaded you can proceed to build and configure an API inst
 
 
 ## Installation
-1) [Creating a JWT Signing Key](#creating-a-jwt-signing-key)
-2) [Setting Environment Variables](#setting-environment-variables)
-3) [Configuring the appsettings.json file](#configuring-the-appsettingsjson-file)
-4) [Building the API](#building-the-api)
-5) [Deploying the API as a Service](#deploying-the-api-as-a-service)
+1. [Creating a JWT Signing Key](#creating-a-jwt-signing-key)
+2. [Setting Environment Variables](#setting-environment-variables)
+3. [Configuring the appsettings.json file](#configuring-the-appsettingsjson-file)
+4. [Building the API](#building-the-api)
+5. [Deploying the API as a Service](#deploying-the-api-as-a-service)
 
 
 ## Creating a JWT Signing Key
-The Leaf client and server communicate by [JSON Web Tokens, or JWTs](https://jwt.io/introduction/) (pronounced "JAh-ts"). In a bash terminal, start by creating a JWT signing key. This allows the JWT recipient to verify the sender is who they say they are.
+The Leaf client and server communicate by <a href="https://jwt.io/introduction/" target="_blank">JSON Web Tokens, or JWTs</a> (pronounced "JAh-ts"). In a bash terminal, start by creating a JWT signing key. This allows the JWT recipient to verify the sender is who they say they are.
 
 Note that the output paths and password can be whatever you'd like, and you'll need to reference them in the environment variables in the next step.
 
@@ -70,26 +70,26 @@ Sensitive configuration data specifying data sources and passwords are stored in
 #### IIS
 In IIS they are defined as configuration items in your backing application in IIS itself.
 
-![IIS Environment Variables Navigation](https://github.com/uwrit/leaf/blob/master/docs/deploy/images/iis_environ.png "IIS Environment Variables Navigation")
+![IIS Environment Variables Navigation](../images/iis_environ.png "IIS Environment Variables Navigation")
 
-![IIS Environment Variable Entries](https://github.com/uwrit/leaf/blob/master/docs/deploy/images/iis_env_vars.png "IIS Environment Variable Entries")
+![IIS Environment Variable Entries](../images/iis_env_vars.png "IIS Environment Variable Entries")
 
 #### Apache
 In Apache they are defined as OS level environment variables for the user running the API service.
 
-![OS Environment Variables](https://github.com/uwrit/leaf/blob/master/docs/deploy/images/windows_env_vars.png "OS Environment Variables")
+![OS Environment Variables](../images/windows_env_vars.png "OS Environment Variables")
 
 Make sure the following variables are defined:
 
-- LEAF_JWT_CERT=<your_cert_path>/cert.pem
-- LEAF_JWT_KEY=<your_key_path>/leaf.pfx
-- LEAF_JWT_KEY_PW=<your_pass>
-- LEAF_APP_DB=<leaf_app_db_connection_string>
-- LEAF_CLIN_DB=<clinical_db_connection_string>
-- SERILOG_DIR=<your_logging_path>
-- LEAF_REDCAP_SUPERTOKEN=<your_token>
-- LEAF_SMTP_USR=<smpt_user> (optional)
-- LEAF_SMTP_PW=<smpt_password> (optional)
+- LEAF_JWT_CERT=<your_cert_path\>/cert.pem
+- LEAF_JWT_KEY=<your_key_path\>/leaf.pfx
+- LEAF_JWT_KEY_PW=<your_pass\>
+- LEAF_APP_DB=<leaf_app_db_connection_string\>
+- LEAF_CLIN_DB=<clinical_db_connection_string\>
+- SERILOG_DIR=<your_logging_path\>
+- LEAF_REDCAP_SUPERTOKEN=<your_token\>
+- LEAF_SMTP_USR=<smpt_user\> (optional)
+- LEAF_SMTP_PW=<smpt_password\> (optional)
 
 
 ### Linux
@@ -115,6 +115,7 @@ LEAF_SMTP_PW='<smtp_password>'
 It's recommended that you use full paths when referencing locations on the filesystem.
 
 Note:
+
 - LEAF_REDCAP_SUPERTOKEN is not needed if appsettings.json has the REDCap export variable set to 'false'.
 - The ASPNETCORE_URLS parameter determines what port and IP the API service listens on, and **is only needed for Linux installations**.
 - The connection string variables `LEAF_APP_DB` and `LEAF_CLIN_DB` should be of the form:
@@ -123,9 +124,10 @@ Server=<server>;Database=<dbname>;uid=sa;Password=<dbpassword>;
 ```
 
 ## Configuring the appsettings.json file
-The [appsettings.json file](https://github.com/uwrit/leaf/blob/master/src/server/API/appsettings.json) acts as the central configuration file for your Leaf instance. 
+The <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/appsettings.json" target="_blank">appsettings.json file</a> acts as the central configuration file for your Leaf instance. 
 
 Key tasks to complete when setting up a Leaf instance for the first time:
+
 - Set JWT/Issuer to match JWT issuer parameter set during JWT creation above
 - Define LogoutURI 
 - Set Authorization/Mechanism/SAML2/HeaderMapping/Entitlements variables to define the SAML2 header containing group membership, and the delimiter separating group names
@@ -136,81 +138,81 @@ Key tasks to complete when setting up a Leaf instance for the first time:
 Pre-build this file can be found under `src/server/API/` relative to the Leaf git repository root directory. After the API is built and deployed, it can be found and further customized at the top level of the API dll directory.
 
 - [Runtime](#runtime)
-  - [Mode](#mode): `"FULL"`
+    - [Mode](#mode): `"FULL"`
 - [Jwt](#jwt)
-  - [SigningKey](#signingkey): `"LEAF_JWT_KEY"`
-  - [Password](#password): `"LEAF_JWT_KEY_PW"`
-  - [Certificate](#certificate): `"LEAF_JWT_CERT"`
-  - [Issuer](#issuer): `"urn:leaf:issuer:leaf.<your_institution>.edu"`
+    - [SigningKey](#signingkey): `"LEAF_JWT_KEY"`
+    - [Password](#password): `"LEAF_JWT_KEY_PW"`
+    - [Certificate](#certificate): `"LEAF_JWT_CERT"`
+    - [Issuer](#issuer): `"urn:leaf:issuer:leaf.<your_institution>.edu"`
 - [Db](#db)
-  - [App](#app)
-    - [Connection](#connection): `"LEAF_APP_DB"`
-    - [DefaultTimeout](#defaulttimeout): `60`
-  - [Clin](#clin)
-    - [Connection](#connection-1): `"LEAF_CLIN_DB"`
-    - [DefaultTimeout](#defaulttimeout-1): `120`
+    - [App](#app)
+        - [Connection](#connection): `"LEAF_APP_DB"`
+        - [DefaultTimeout](#defaulttimeout): `60`
+    - [Clin](#clin)
+        - [Connection](#connection-1): `"LEAF_CLIN_DB"`
+        - [DefaultTimeout](#defaulttimeout-1): `120`
 - [Authentication](#authentication)
-  - [Mechanism](#mechanism): `"SAML2"`
-  - [SessionTimeoutMinutes](#sessiontimeoutminutes): `480`
-  - [InactivityTimeoutMinutes](#inactivitytimeoutminutes): `20`
-  - [LogoutURI](#logouturi): `"https://<your_logout_page>"`
-  - [SAML2](#saml2)
-    - [Headers](#headers)
-      - [ScopedIdentity](#scopedidentity): `"eppn"`
+    - [Mechanism](#mechanism): `"SAML2"`
+    - [SessionTimeoutMinutes](#sessiontimeoutminutes): `480`
+    - [InactivityTimeoutMinutes](#inactivitytimeoutminutes): `20`
+    - [LogoutURI](#logouturi): `"https://<your_logout_page>"`
+    - [SAML2](#saml2)
+        - [Headers](#headers)
+            - [ScopedIdentity](#scopedidentity): `"eppn"`
 - [Authorization](#authorization)
-  - [Mechanism](#mechanism-1): `"SAML2"`
-  - [SAML2](#saml2-1)
-    - [HeadersMapping](#headersmapping)
-      - [Entitlements](#entitlements)
-        - [Name](#name): `"gws_groups"`
-        - [Delimiter](#delimeter):`";"`
-    - [RoleMapping](#rolemapping) 
-      - [User](#user): `"urn:mace:uw:groups:uw_rit_leaf_users"`
-      - [Super](#super): `"urn:mace:uw:groups:uw_rit_leaf_supers"`
-      - [Identified](#identified): `"urn:mace:uw:groups:uw_rit_leaf_phis"`
-      - [Admin](#admin): `"urn:mace:uw:groups:uw_rit_leaf_admins"`
-      - [Federated](#federated): `"urn:mace:uw:groups:uw_rit_leaf_federated"`
+    - [Mechanism](#mechanism-1): `"SAML2"`
+    - [SAML2](#saml2-1)
+        - [HeadersMapping](#headersmapping)
+            - [Entitlements](#entitlements)
+                - [Name](#name): `"gws_groups"`
+                - [Delimiter](#delimeter):`";"`
+        - [RoleMapping](#rolemapping) 
+            - [User](#user): `"urn:mace:uw:groups:uw_rit_leaf_users"`
+            - [Super](#super): `"urn:mace:uw:groups:uw_rit_leaf_supers"`
+            - [Identified](#identified): `"urn:mace:uw:groups:uw_rit_leaf_phis"`
+            - [Admin](#admin): `"urn:mace:uw:groups:uw_rit_leaf_admins"`
+            - [Federated](#federated): `"urn:mace:uw:groups:uw_rit_leaf_federated"`
 - [Compiler](#compiler)
-  - [Alias](#alias): `"@"`
-  - [SetPerson](#setperson): `"dbo.person_table`"
-  - [SetEncounter](#setencounter): `"dbo.encounter_table"`
-  - [FieldPersonId](#fieldpersonid): `"person_id"`
-  - [FieldEncounterId](#fieldencounterid): `"encounter_id"`
-  - [FieldEncounterAdmitDate](#fieldencounteradmitdate): `"encounter_admit_date"`
-  - [FieldEncounterDischargeDate](#fieldencounterdischargedate): `"encounter_discharge_date"`
+    - [Alias](#alias): `"@"`
+    - [SetPerson](#setperson): `"dbo.person_table`"
+    - [SetEncounter](#setencounter): `"dbo.encounter_table"`
+    - [FieldPersonId](#fieldpersonid): `"person_id"`
+    - [FieldEncounterId](#fieldencounterid): `"encounter_id"`
+    - [FieldEncounterAdmitDate](#fieldencounteradmitdate): `"encounter_admit_date"`
+    - [FieldEncounterDischargeDate](#fieldencounterdischargedate): `"encounter_discharge_date"`
 - [Cohort](#cohort)
-  - [SetCohort](#setcohort): `"app.Cohort"`
-  - [FieldCohortPersonId](#fieldcohortpersonid): `"PersonId"`
-  - [RowLimit](#rowlimit): `200000`
-  - [ExportLimit](#exportlimit): `5000`
+    - [SetCohort](#setcohort): `"app.Cohort"`
+    - [FieldCohortPersonId](#fieldcohortpersonid): `"PersonId"`
+    - [RowLimit](#rowlimit): `200000`
+    - [ExportLimit](#exportlimit): `5000`
 - [Export](#export)
-  - [REDCap](#redcap)
-    - [Enabled](#enabled): `false`
-    - [ApiURI](#apiuri): `"https://<your_redcap_instance>.org/api"`
-    - [BatchSize](#batchsize): `10`
-    - [RowLimit](#rowlimit): `50000`
-    - [Scope](#scope): `"<your_scope>.edu"`
-    - [SuperToken](#supertoken): `"LEAF_REDCAP_SUPERTOKEN"`
+    - [REDCap](#redcap)
+        - [Enabled](#enabled): `false`
+        - [ApiURI](#apiuri): `"https://<your_redcap_instance>.org/api"`
+        - [BatchSize](#batchsize): `10`
+        - [RowLimit](#rowlimit): `50000`
+        - [Scope](#scope): `"<your_scope>.edu"`
+        - [SuperToken](#supertoken): `"LEAF_REDCAP_SUPERTOKEN"`
 - [Client](#client)
-  - [Map](#map)
-    - [Enabled](#enabled-1): `true`
-    - [TileURI](#tileuri): `"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"`
-  - [Help](#help)
-    - [Enabled](#enabled): `true`
-    - [Email](#email): `"<your_support_email>.edu"`
-    - [URI](#uri): `"https://<your_support_page>"`
+    - [Map](#map)
+        - [Enabled](#enabled-1): `true`
+        - [TileURI](#tileuri): `"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"`
+    - [Help](#help)
+        - [Enabled](#enabled): `true`
+        - [Email](#email): `"<your_support_email>.edu"`
+        - [URI](#uri): `"https://<your_support_page>"`
 - [Notification](#notification)
-  - [Enabled](#enabled-2): `false`
-  - [Email](#email)
-    - [Server](#server): `"my.server.edu"`
-    - [UseSSL](#usessl): `true`
-    - [Sender](#sender)
-      - [Address](#address): `sender@u.edu`
-    - [Receiver](#receiver)
-      - [Address](#address-1): `receiver@u.edu`
-    - [Credentials](#credentials)
-      - [Username](#username): `LEAF_SMTP_USR` **optional**
-      - [Password](#password-1): `LEAF_SMTP_PW` **optional**
+    - [Enabled](#enabled-2): `false`
+    - [Email](#email)
+        - [Server](#server): `"my.server.edu"`
+        - [UseSSL](#usessl): `true`
+        - [Sender](#sender)
+            - [Address](#address): `sender@u.edu`
+        - [Receiver](#receiver)
+            - [Address](#address-1): `receiver@u.edu`
+        - [Credentials](#credentials)
+            - [Username](#username): `LEAF_SMTP_USR` **optional**
+            - [Password](#password-1): `LEAF_SMTP_PW` **optional**
 
 ## Runtime
 Contains a mode field, indicating `FULL` or `GATEWAY`. Running Gateway mode is useful when participating in a mesh in an observer role, where the gateway instance has no data of it's own. 
@@ -257,6 +259,7 @@ Default timeout length in seconds for clinical queries. Depending on a variety o
 ```
 ### Mechanism
 Either `SAML2` or `UNSECURED`.
+
 - Choose `SAML2` in all non-development environments.
 - Choose `UNSECURED` only in development settings.
 ### SessionTimeoutMinutes
@@ -264,7 +267,7 @@ This should be functionally equivalent to the Service Provider's configured `Ses
 ### InactivityTimeoutMinutes
 This should be functionally equivalent to the Service Provider's configured `Sessions.timeout` value. 3600 seconds would translate to 60 minutes.
 ### LogoutURI
-This value is highly dependent on your specific Shibboleth configuration. Please read the [official documentation](https://wiki.shibboleth.net/confluence/display/SP3/Logout), additionally [NC State's documentation](https://docs.shib.ncsu.edu/docs/logout.html) provides excellent examples to follow.
+This value is highly dependent on your specific Shibboleth configuration. Please read the <a href="https://wiki.shibboleth.net/confluence/display/SP3/Logout" target="_blank">official documentation</a>, additionally <a href="https://docs.shib.ncsu.edu/docs/logout.html" target="_blank">NC State's documentation</a> provides excellent examples to follow.
 ### SAML2
 Configures the SAML2 authentication integration layer.
 #### Headers
@@ -294,6 +297,7 @@ Configures how the scoped identity header key will look.
 ```
 ### Mechanism
 Either `SAML2`, `ACTIVEDIRECTORY`, or `UNSECURED`.
+
 - Choose `SAML2` if a user's group memberships will arrive from the IdP.
 - Choose `ACTIVEDIRECTORY` if Leaf should go source group membership directly from an Active Directory instance.
 - `UNSECURED` is only to be used in development settings.`
@@ -380,7 +384,7 @@ The maximum number of individual patients that Leaf will return to the client on
 ## Export
 Properties relating to the export of data from Leaf to other applications.
 ### REDCap
-Properties relating to the export of data to a [REDCap](https://www.project-redcap.org/) instance. REDCap export is completely optional.
+Properties relating to the export of data to a <a href="https://www.project-redcap.org/" target="_blank">REDCap</a> instance. REDCap export is completely optional.
 #### Enabled
 Boolean value indicated whether or not REDCap export should be enabled. This must be `true` or `false`.
 #### ApiURI
@@ -398,15 +402,15 @@ Environment Variable which stores the REDCap Super Token which is used for proje
 Configuration properties which are sent to the Leaf client.
 ### Map
 Properties relating to the `Map` screen in the Leaf client.
-![Map](https://github.com/uwrit/leaf/blob/master/docs/deploy/images/map_example.png "Map")
+![Map](../images/map_example.png "Map")
 #### Enabled
 Boolean value indicating whether to show a `Map` tab on the left of the screen. This must be `true` or `false`. If false, no tab will be shown and maps cannot be viewed.
 #### TileURI
-URI for the `tile layer` from which to request dynamic images and generate maps for, such as `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`. Leaf uses [Leaflet.js](https://leafletjs.com/) and [React-Leaflet](https://react-leaflet.js.org/) for map generation. A list of Leaflet tile layer providers can be found here https://leaflet-extras.github.io/leaflet-providers/preview/.
+URI for the `tile layer` from which to request dynamic images and generate maps for, such as `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`. Leaf uses <a href="https://leafletjs.com/" target="_blank">Leaflet.js</a> and <a href="https://react-leaflet.js.org/">React-Leaflet</a> for map generation. A list of Leaflet tile layer providers can be found here <a href="https://leaflet-extras.github.io/leaflet-providers/preview/" target="_blank">https://leaflet-extras.github.io/leaflet-providers/preview/</a>.
 
 ### Help
 Properties relating to the `Help` floating button which appears in the lower-left of the screen. If enabled, the help button must have values in either the [Email](#email) or [URI](#uri) properties, or both.
-![Help](https://github.com/uwrit/leaf/blob/master/docs/deploy/images/help.gif "Help")
+![Help](../images/help.gif "Help")
 #### Enabled 
 Boolean value indicating whether to show the `Help` button. This must be `true` or `false`. If false, nothing will be shown.
 #### Email
@@ -533,11 +537,11 @@ systemctl start leaf_api.service
 ### Defining a Windows Service
 
 Review Microsoft's official instructions for guidance on defining a Windows service with Powershell:
-https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-6
+<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-6" target="_blank">https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service?view=powershell-6</a>
 
 
 
 ## Reviewing API Logs
 Provided that the permissions are correct for your API Service account user, logs will be located in the folder defined via the SERILOG_DIR variable in the service's leaf_api.service.conf file created earlier.
 
-Logs are also logged to /var/log/messages.
+Logs are also logged to `/var/log/messages`.

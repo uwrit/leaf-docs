@@ -1,23 +1,10 @@
-site_name: Leaf Documentation
+site_name: Leaf
 
 theme:
     name: material
-
-#nav:
-#    - Home  : index.md
-#    - Admin : admin 
-#    - Deploy:
-#        - ABOUT : deploy
-#        - APP   : deploy/app
-#        - DB    : deploy/db
-#        - FED   : deploy/fed
-#        - SAML2 : deploy/saml2
-#        - WEB   :
-#            - APACHE: deploy/web/apache 
-#            - CLIENT: deploy/web/client
-#            - IIS   : deploy/web/iis
-
-
-
-
-
+    palette:
+        primary: teal
+        accent: pink
+        # scheme: slate
+    features:
+        - tabs

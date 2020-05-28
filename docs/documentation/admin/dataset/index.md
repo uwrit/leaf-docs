@@ -3,34 +3,38 @@
 - [Basic Demographics](#basic-demographics)
 - [Adding New Datasets](#adding-new-datasets)
 - [Dataset Templates Reference](#dataset-templates-reference)
-  - [Observation](#observation)
-  - [Encounter](#encounter)
-  - [Basic Demographics](#basic-demographics-1)
-  - [Condition](#condition)
-  - [Procedure](#procedure)
-  - [Immunization](#immunization)
-  - [Allergy](#allergy)
-  - [MedicationRequest](#medicationrequest)
-  - [MedicationAdministration](#medicationadministration)
+    - [Observation](#observation)
+    - [Encounter](#encounter)
+    - [Basic Demographics](#basic-demographics-1)
+    - [Condition](#condition)
+    - [Procedure](#procedure)
+    - [Immunization](#immunization)
+    - [Allergy](#allergy)
+    - [MedicationRequest](#medicationrequest)
+    - [MedicationAdministration](#medicationadministration)
 
 ## Introduction
 At a high level, Leaf aims to do two things:
 
-1) Identify cohorts of patients (using [Concepts](https://github.com/uwrit/leaf/blob/master/docs/admin/concept/README.md)).
-2) Extract data for those patients.
+1. Identify cohorts of patients (using [Concepts](../concept)).
+2. Extract data for those patients.
 
 After users identify a Cohort in (1), they can next do (2), which we'll explain here. In Leaf, extracted data for a cohort are called "datasets", which is short-hand for `Patient List Datasets`. This refers to the row-level patient data you can see on the `Patient List` screen.
 
-Each dataset is based on templates, or denormalized tabular representations of [FHIR resources](https://www.hl7.org/fhir/resourcelist.html). In order to add datasets, administrators can define SQL queries whose column names and types match a given template. 
+Each dataset is based on templates, or denormalized tabular representations of <a href="https://www.hl7.org/fhir/resourcelist.html" target="_blank">FHIR resources</a>. In order to add datasets, administrators can define SQL queries whose column names and types match a given template. 
 
-**Note that we also have an existing issue to add dynamic datasets which would allow admins to define completely custom datasets with arbitrary columns https://github.com/uwrit/leaf/issues/95. If you think these would be helpful to you please comment and add your thoughts.**
+**Note that we also have an existing issue to add dynamic datasets which would allow admins to define completely custom datasets with arbitrary columns <a href="https://github.com/uwrit/leaf/issues/95" target="_blank">https://github.com/uwrit/leaf/issues/95</a>. If you think these would be helpful to you please comment and add your thoughts.**
 
+
+__------__
+COTINUE HERE
+--______--
 ### Basic Demographics
-<p align="center"><img src="https://github.com/uwrit/leaf/blob/master/docs/admin/images/dataset_intro.gif"/></p>
+<p align="center"><img src="../images/dataset_intro.gif"/></p>
 
 The core dataset Leaf uses is `Basic Demographics`. The output of this query is used to both populate the initial `Patient List` screen, as well as populate the bar charts on the `Visualize` screen.
 
-The fields in `Basic Demographics` represent a denormalized combination of the FHIR [Person](https://www.hl7.org/fhir/person.html) and [Patient](https://www.hl7.org/fhir/patient.html) resources.
+The fields in `Basic Demographics` represent a denormalized combination of the FHIR <a href="https://www.hl7.org/fhir/person.html" target="_blank">Person</a> and <a href="https://www.hl7.org/fhir/patient.html" target="_blank">Patient</a> resources.
 
 The expected columns are:
 
@@ -56,7 +60,7 @@ The expected columns are:
 ### Key Points
 - **All columns in `Basic Demongraphics` are required** - Leaf will automatically date-shift, calculate ages, and remove the HIPAA identified columns (`mrn` and `name`) depending on if the user is in `Identified` or `De-identified` mode.
 
-- **The Patient Identifier column must be called *personId*** - While Leaf Concepts are flexible regarding the [column name for patient identifiers](https://github.com/uwrit/leaf/blob/master/docs/deploy/app/README.md#fieldpersonid), datasets are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf datasets when multiple Leaf instances are federated, among other reasons.
+- **The Patient Identifier column must be called *personId*** - While Leaf Concepts are flexible regarding the [column name for patient identifiers](../../deploy/app/#fieldpersonid), datasets are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf datasets when multiple Leaf instances are federated, among other reasons.
 
 - **It's okay if you don't have data for every column** - Though every column must be returned in the SQL statement, it's fine to hard-code it as 'Unknown', etc. For example, `religion = 'Unknown'`.
 
@@ -67,90 +71,86 @@ The expected columns are:
 ### Defining the Basic Demographics Query
 Currently the Basic Demographics query (and other datasets) must be added via SQL directly to the database, though we intend to create functionality in the `Admin` screen to make this easier in the future.
 
-1) Define a query in SQL that returns the columns defined above. Here is how we configure the [CMS SynPuf OMOP dataset](https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html) demographics query, for example:
+1. Define a query in SQL that returns the columns defined above. Here is how we configure the <a href="https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html" target="_blank">CMS SynPuf OMOP dataset</a> demographics query, for example:
 
-```sql
-SELECT 
-    personId = CAST(p.person_id AS NVARCHAR)
-  , addressPostalCode = l.zip
-  , addressState = p.location_state
-  , birthDate = p.birth_datetime
-  , deceasedDateTime = p.death_date
-  , ethnicity = p.ethnicity
-  , gender = CASE WHEN p.gender = 'F' THEN 'female' WHEN p.gender = 'M' THEN 'male' ELSE 'other' END
-  , [language] = 'Unknown'
-  , maritalStatus = 'Unknown'
-  , marriedBoolean = CAST(0 AS BIT)
-  , hispanicBoolean = CAST(CASE WHEN p.ethnicity_code = 38003563 THEN 1 ELSE 0 END AS BIT)
-  , deceasedBoolean = CAST(CASE WHEN p.death_date IS NULL THEN 0 ELSE 1 END AS BIT)
-  , [name] = 'Unknown Unknown'
-  , mrn = 'Unknown'
-  , race = p.race
-  , religion = 'Unknown'
-FROM v_person p 
-     LEFT JOIN [location] l ON p.location_id = l.location_id
-```
+        SELECT 
+            personId = CAST(p.person_id AS NVARCHAR)
+          , addressPostalCode = l.zip
+          , addressState = p.location_state
+          , birthDate = p.birth_datetime
+          , deceasedDateTime = p.death_date
+          , ethnicity = p.ethnicity
+          , gender = CASE WHEN p.gender = 'F' THEN 'female' WHEN p.gender = 'M' THEN 'male' ELSE 'other' END
+          , [language] = 'Unknown'
+          , maritalStatus = 'Unknown'
+          , marriedBoolean = CAST(0 AS BIT)
+          , hispanicBoolean = CAST(CASE WHEN p.ethnicity_code = 38003563 THEN 1 ELSE 0 END AS BIT)
+          , deceasedBoolean = CAST(CASE WHEN p.death_date IS NULL THEN 0 ELSE 1 END AS BIT)
+          , [name] = 'Unknown Unknown'
+          , mrn = 'Unknown'
+          , race = p.race
+          , religion = 'Unknown'
+        FROM v_person p 
+            LEFT JOIN [location] l ON p.location_id = l.location_id
 
-2) INSERT the query into the `app.DemographicQuery` table.
+2. INSERT the query into the `app.DemographicQuery` table.
 
-Using the above example:
+    Using the above example:
 
-```sql
-DECLARE @shape INT = 3
-DECLARE @query NVARCHAR(MAX) = 
-'SELECT 
-    personId = CAST(p.person_id AS NVARCHAR)
-  , addressPostalCode = l.zip
-  , addressState = p.location_state
-  , birthDate = p.birth_datetime
-  , deceasedDateTime = p.death_date
-  , ethnicity = p.ethnicity
-  , gender = CASE WHEN p.gender = ''F'' THEN ''female'' 
-                  WHEN p.gender = ''M'' THEN ''male'' 
-                  ELSE ''other'' 
-             END
-  , [language] = ''Unknown''
-  , maritalStatus = ''Unknown''
-  , marriedBoolean = CAST(0 AS BIT)
-  , hispanicBoolean = CAST(CASE WHEN p.ethnicity_code = 38003563 THEN 1 ELSE 0 END AS BIT)
-  , deceasedBoolean = CAST(CASE WHEN p.death_date IS NULL THEN 0 ELSE 1 END AS BIT)
-  , [name] = ''Unknown Unknown''
-  , mrn = ''Unknown'' 
-  , race = p.race
-  , religion = ''Unknown''
-FROM v_person p 
-     LEFT JOIN [location] l ON p.location_id = l.location_id'
+        DECLARE @shape INT = 3
+        DECLARE @query NVARCHAR(MAX) = 
+        'SELECT 
+            personId = CAST(p.person_id AS NVARCHAR)
+          , addressPostalCode = l.zip
+          , addressState = p.location_state
+          , birthDate = p.birth_datetime
+          , deceasedDateTime = p.death_date
+          , ethnicity = p.ethnicity
+          , gender = CASE WHEN p.gender = ''F'' THEN ''female'' 
+                          WHEN p.gender = ''M'' THEN ''male'' 
+                          ELSE ''other'' 
+                    END
+          , [language] = ''Unknown''
+          , maritalStatus = ''Unknown''
+          , marriedBoolean = CAST(0 AS BIT)
+          , hispanicBoolean = CAST(CASE WHEN p.ethnicity_code = 38003563 THEN 1 ELSE 0 END AS BIT)
+          , deceasedBoolean = CAST(CASE WHEN p.death_date IS NULL THEN 0 ELSE 1 END AS BIT)
+          , [name] = ''Unknown Unknown''
+          , mrn = ''Unknown'' 
+          , race = p.race
+          , religion = ''Unknown''
+        FROM v_person p 
+            LEFT JOIN [location] l ON p.location_id = l.location_id'
 
-INSERT INTO [app].[DemographicQuery] ([Lock], [SqlStatement], [Shape], [LastChanged], [ChangedBy]) 
-VALUES 
-(   
-    'X'
-  , @query
-  , @shape
-  , GETDATE()
-  , '<my_user_name>'
-)
-```
+        INSERT INTO [app].[DemographicQuery] ([Lock], [SqlStatement], [Shape], [LastChanged], [ChangedBy]) 
+        VALUES 
+        (   
+            'X'
+          , @query
+          , @shape
+          , GETDATE()
+          , '<my_user_name>'
+        )
 
 Note that the `Shape` field in Leaf happens to be value `3`, so it needs to be hard-coded here.
 
 ## Adding New Datasets
 If you've successfully added the `Basic Demographics` dataset and can see data returned in the `Patient List` screen in the Leaf user interface, you're off to a great start. Inevitably though you'll likely want to allow users to add more datasets beyond demographics.
 
-To do so, we'll need to add rows in the [app.DatasetQuery](https://github.com/uwrit/leaf/blob/master/src/db/obj/app.DatasetQuery.Table.sql) table in the Leaf application database.
+To do so, we'll need to add rows in the <a href="https://github.com/uwrit/leaf/blob/master/src/db/obj/app.DatasetQuery.Table.sql" target="_blank">app.DatasetQuery</a> table in the Leaf application database.
 
-Let's start with an example. In this case, we'll add a [Platelet](https://en.wikipedia.org/wiki/Platelet) dataset which will represent platelet count laboratory tests.
+Let's start with an example. In this case, we'll add a <a href="https://en.wikipedia.org/wiki/Platelet" target="_blank">Platelet</a> dataset which will represent platelet count laboratory tests.
 
 ### Create a Dataset Category
 To begin, we need to decide how best to visually organize the platelets dataset, specifically whether to place it under a category or not. Visually this would look like:
 
 **Under a 'Labs' Category**
-<p align="center"><img src="https://github.com/uwrit/leaf/blob/master/docs/admin/images/dataset_category.png"/></p>
+<p align="center"><img src="../images/dataset_category.png"/></p>
 
 **Uncategorized**
-<p align="center"><img src="https://github.com/uwrit/leaf/blob/master/docs/admin/images/dataset_nocategory.png"/></p>
+<p align="center"><img src="../images/dataset_nocategory.png"/></p>
 
-In most cases, we recommend categorizing datasets to provide context to users, particularly as your datasets grow in number. To add a category, simply insert a row into the [app.DatasetQueryCategory](https://github.com/uwrit/leaf/blob/master/src/db/obj/app.DatasetQueryCategory.Table.sql) table. You'll use the `Id` created as a foreign key to the `app.DatasetQuery` `CategoryId` field.
+In most cases, we recommend categorizing datasets to provide context to users, particularly as your datasets grow in number. To add a category, simply insert a row into the <a href="https://github.com/uwrit/leaf/blob/master/src/db/obj/app.DatasetQueryCategory.Table.sql" target="_blank">app.DatasetQueryCategory</a> table. You'll use the `Id` created as a foreign key to the `app.DatasetQuery` `CategoryId` field.
 
 ```sql
 INSERT INTO [app].[DatasetQueryCategory] (Category, Created)
@@ -168,7 +168,7 @@ Output:
 ### Determine the Template and Query
 Next, we'll determine which dataset template is the best fit for this new dataset by checking the [Dataset Templates Reference](#dataset-templates-reference) below. In FHIR labs are generally represented as [Observations](#observation), so let's use that.
 
-For demonstrative purposes we'll use data from the [MIMIC Critical Care Database](https://mimic.physionet.org/), but the methods here can be applied to other data models as well.
+For demonstrative purposes we'll use data from the <a href="https://mimic.physionet.org/" target="_blank">MIMIC Critical Care Database</a>, but the methods here can be applied to other data models as well.
 
 Let's suppose we have a SQL table or view representing labs (including platelets) called `dbo.v_LABEVENTS` that looks like this:
 
@@ -237,19 +237,19 @@ SELECT
 ### Test
 Finally, let's test to see if the dataset works. In the Leaf client app, run a query for a cohort which you know to have platelet lab values. In the `Patient List`, select the new dataset.
 
-<p align="center"><img src="https://github.com/uwrit/leaf/blob/master/docs/admin/images/dataset_add.gif"/></p>
+<p align="center"><img src="../images/dataset_add.gif"/></p>
 
 If you're able to navigate to the `Patient List` and add the new dataset, congratulations! Leaf automatically determines that this is a numeric dataset because the `valueQuantity` field is populated, and computes statistics for each patient.
 
 >If you run into errors, be sure to check the Leaf logs.
 
 ## Dataset Templates Reference
-As mentioned in the [Introduction](#introduction), datasets are denormalized, tabular representations of [FHIR resources](https://www.hl7.org/fhir/resourcelist.html).
+As mentioned in the [Introduction](#introduction), datasets are denormalized, tabular representations of <a href="https://www.hl7.org/fhir/resourcelist.html" target="_blank">FHIR resources</a>.
 
 > Note: SQL Columns of type `numeric` listed below can be `INT`, `FLOAT`, `MONEY`, `NUMERIC`, `REAL`, `SMALLINT`, `SMALLMONEY`, or `DECIMAL`.
 
 ## Observation
-*Dataset Shape **1*** - A representation of the [FHIR Observation Resource](https://www.hl7.org/fhir/observation.html).
+*Dataset Shape* **1** - A representation of the <a href="https://www.hl7.org/fhir/observation.html" target="_blank">FHIR Observation Resource</a>.
 
 The FHIR documention suggests using this resource for:
 > - Vital signs such as body weight, blood pressure, and temperature
@@ -262,7 +262,7 @@ The FHIR documention suggests using this resource for:
 > - Social history like tobacco use, family support, or cognitive status
 > - Core characteristics like pregnancy status, or a death assertion
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Observation.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Observation.cs" target="_blank">source</a>):
 
 | Name               | Type      | Required | Is PHI |
 | -----------------  | --------- | -------- | ------ |
@@ -279,12 +279,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | valueUnit          | nvarchar  |          |        |
 
 ## Encounter
-*Dataset Shape **2*** - A representation of the [FHIR Encounter Resource](https://www.hl7.org/fhir/encounter.html).
+*Dataset Shape* **2** - A representation of the <a href="https://www.hl7.org/fhir/encounter.html" target="_blank">FHIR Encounter Resource</a>.
 
 The FHIR documention describes this as:
 > A patient encounter is characterized by the setting in which it takes place. Amongst them are ambulatory, emergency, home health, inpatient and virtual encounters. An Encounter encompasses the lifecycle from pre-admission, the actual encounter (for ambulatory encounters), and admission, stay and discharge (for inpatient encounters). During the encounter the patient may move from practitioner to practitioner and location to location. 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Encounter.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Encounter.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -298,11 +298,11 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | status               | nvarchar  |          |        |
 
 ## Basic Demographics
-*Dataset Shape **3*** - A representation of a combination of the [Person](https://www.hl7.org/fhir/person.html) and [Patient](https://www.hl7.org/fhir/patient.html) FHIR resources.
+*Dataset Shape* **3** - A representation of a combination of the <a href="https://www.hl7.org/fhir/person.html" target="_blank">Person</a> and <a href="https://www.hl7.org/fhir/patient.html" target="_blank">Patient</a> FHIR resources.
 
 See the [Basic Demographics](#basic-demographics) section above for additional info.
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/PatientDemographic.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/PatientDemographic.cs" target="_blank">source</a>):
 
 | Name              | Type      | Required | Is PHI |
 | ----------------- | --------- | -------- | ------ |
@@ -324,12 +324,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | religion          | nvarchar  | X        |        |
 
 ## Condition
-*Dataset Shape **4*** - A representation of the [FHIR Condition Resource](https://www.hl7.org/fhir/condition.html).
+*Dataset Shape* **4** - A representation of the <a href="https://www.hl7.org/fhir/condition.html" target="_blank">FHIR Condition Resource</a>.
 
 The FHIR documention describes this as (emphasis added):
 > This resource is used to record detailed information about a **condition, problem, diagnosis**, or other event, situation, issue, or clinical concept that has risen to a level of concern. The condition could be a point in time diagnosis in context of an encounter, it could be an item on the practitioner’s Problem List, or it could be a concern that doesn’t exist on the practitioner’s Problem List. Often times, a condition is about a clinician's assessment and assertion of a particular aspect of a patient's state of health. It can be used to record information about a disease/illness identified from application of clinical reasoning over the pathologic and pathophysiologic findings (diagnosis), or identification of health issues/situations that a practitioner considers harmful, potentially harmful and may be investigated and managed (problem), or other health issue/situation that may require ongoing monitoring and/or management (health issue/concern). 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Condition.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Condition.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -344,12 +344,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | text                 | nvarchar  | X        |        |
 
 ## Procedure
-*Dataset Shape **5*** - A representation of the [FHIR Procedure Resource](https://www.hl7.org/fhir/procedure.html).
+*Dataset Shape* **5** - A representation of the <a href="https://www.hl7.org/fhir/procedure.html" target="_blank">FHIR Procedure Resource</a>.
 
 The FHIR documention describes this as:
 > This resource is used to record the details of current and historical procedures performed on or for a patient. A procedure is an activity that is performed on, with, or for a patient as part of the provision of care. Examples include surgical procedures, diagnostic procedures, endoscopic procedures, biopsies, counseling, physiotherapy, personal support services, adult day care services, non-emergency transportation, home modification, exercise, etc. Procedures may be performed by a healthcare professional, a service provider, a friend or relative or in some cases by the patient themselves. 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Procedure.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Procedure.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -362,12 +362,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | text                 | nvarchar  | X        |        |
 
 ## Immunization
-*Dataset Shape **6*** - A representation of the [FHIR Immunization Resource](https://www.hl7.org/fhir/immunization.html).
+*Dataset Shape* **6** - A representation of the <a href="https://www.hl7.org/fhir/immunization.html" target="_blank">FHIR Immunization Resource</a>.
 
 The FHIR documention describes this as:
 > The Immunization resource is intended to cover the recording of current and historical administration of vaccines to patients across all healthcare disciplines in all care settings and all regions. This includes immunization of both humans and animals but does not include the administration of non-vaccine agents, even those that may have or claim to have immunological effects. While the terms "immunization" and "vaccination" are not clinically identical, for the purposes of the FHIR resources, the terms are used synonymously. 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Immunization.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Immunization.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -382,12 +382,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | vaccineCode          | nvarchar  | X        |        |
 
 ## Allergy
-*Dataset Shape **7*** - A representation of the [FHIR AllergyIntolerance Resource](https://www.hl7.org/fhir/allergyintolerance.html).
+*Dataset Shape* **7** - A representation of the <a href="https://www.hl7.org/fhir/allergyintolerance.html" target="_blank">FHIR AllergyIntolerance Resource</a>.
 
 The FHIR documention describes this as:
 > A record of a clinical assessment of an allergy or intolerance; a propensity, or a potential risk to an individual, to have an adverse reaction on future exposure to the specified substance, or class of substance. 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Allergy.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/Allergy.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -401,12 +401,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | text                 | nvarchar  | X        |        |
 
 ## MedicationRequest
-*Dataset Shape **8*** - A representation of the [FHIR MedicationRequest Resource](https://www.hl7.org/fhir/medicationrequest.html).
+*Dataset Shape* **8** - A representation of the <a href="https://www.hl7.org/fhir/medicationrequest.html" target="_blank">FHIR MedicationRequest Resource</a>.
 
 The FHIR documention describes this as (emphasis added):
 > This resource covers **all type of orders for medications for a patient**. This includes inpatient medication orders as well as community orders (whether filled by the prescriber or by a pharmacy). It also includes orders for over-the-counter medications (e.g. Aspirin), total parenteral nutrition and diet/ vitamin supplements. It may be used to support the order of medication-related devices. It is not intended for use in prescribing particular diets, or for ordering non-medication-related items (eyeglasses, supplies, etc.). In addition, the MedicationRequest may be used to report orders/request from external systems that have been reported for informational purposes and are not authoritative and are not expected to be acted upon (e.g. dispensed or administered). 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/MedicationRequest.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/MedicationRequest.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
@@ -422,12 +422,12 @@ SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model
 | unit                 | nvarchar  |          |        |
 
 ## MedicationAdministration
-*Dataset Shape **9*** - A representation of the [FHIR MedicationAdministration Resource](https://www.hl7.org/fhir/medicationadministration.html).
+*Dataset Shape* **9** - A representation of the <a href="https://www.hl7.org/fhir/medicationadministration.html" target="_blank">FHIR MedicationAdministration Resource</a>.
 
 The FHIR documention describes this as:
 > This resource covers the administration of all medications and vaccines. Please refer to the Immunization Resource/Profile for the treatment of vaccines. It will principally be used within care settings (including inpatient) to record the capture of medication administrations, including self-administrations of oral medications, injections, intra-venous adjustments, etc. It can also be used in outpatient settings to record allergy shots and other non-immunization administrations. In some cases, it might be used for home-health reporting, such as recording self-administered or even device-administered insulin. 
 
-SQL Columns ([source](https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/MedicationAdministration.cs)):
+SQL Columns (<a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Cohort/MedicationAdministration.cs" target="_blank">source</a>):
 
 | Name                 | Type      | Required | Is PHI |
 | -----------------    | --------- | -------- | ------ |
