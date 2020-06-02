@@ -1,10 +1,26 @@
 site_name: Leaf
 
 theme:
-    name: material
+    language: en
+    font:
+        text: Roboto
+        code: Roboto Mono
+    favicon: images/leaf.svg
+    logo: images/leaf.svg
+    icon:
+    name: null
+    custom_dir: material
     palette:
         primary: teal
         accent: pink
         # scheme: slate
     features:
         - tabs
+
+repo_name: Leaf
+repo_url: https://github.com/uwrit/leaf
+
+extra:
+    social:
+      - icon: fontawesome/brands/github-alt
+        link: https://github.com/uwrit/leaf
