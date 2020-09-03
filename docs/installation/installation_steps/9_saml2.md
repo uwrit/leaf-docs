@@ -34,11 +34,15 @@ There are multiple implementations of the Service Provider role in the SAML2 pro
 ## Route Protection Setup
 There are only two routes that _must_ be protected by the SAML2 Service Provider (SP), all other routes are protected by requiring a JWT that can only be generated from a SAML2 SP protected endpoint.
 
-- `/` --> react app.
-- `/api/config` --> initial API check endpoint.
-- `/api/user` --> token generation endpoint.
+- `/`           --> React client app.
+- `/api/config` --> Initial API check endpoint.
+- `/api/user`   --> Token generation endpoint.
 
 In a non-federated deployment, you can also elect to protect the entire API surface.
+
+**Caution**: If you are running Leaf's React application at the root of an IIS Server (e.g. `leaf.uwmedicine.org` instead of `leaf.uwmedicine.org/leaf`), **make sure to make `leaf.uwmedicine.org/leafApi` unprotected also.**
+
+Protecting the root of the React app `leaf.uwmedicine.org` in Shibboleth will automatically make all sub paths protected. If exceptions are only made for requests with the `/api` path (except for `/api/config` and `/api/user/`, noted above), once the URL Rewrite rule changes the request to the `/leafApi` path, Shibboleth will intercept this request and not allow the React App to call the API. This will break the application.
 
 ## Web Servers
 ### IIS
