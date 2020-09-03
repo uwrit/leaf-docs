@@ -2,8 +2,8 @@
 
 `brew install mkdocs`
 
-`git clone git@github.com:uwrit/leaf_docs.git`
+`git clone git@github.com:uwrit/leaf-docs.git`
 
-`cd leaf_docs`
+`cd leaf-docs`
 
 `mkdocs serve`
