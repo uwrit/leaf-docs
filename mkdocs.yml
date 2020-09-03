@@ -1,5 +1,4 @@
 site_name: Leaf
-
 theme:
     language: en
     font:
@@ -19,7 +18,8 @@ theme:
 
 repo_name: Leaf
 repo_url: https://github.com/uwrit/leaf
-
+extra_css:
+    - stylesheets/extra.css
 extra:
     social:
       - icon: fontawesome/brands/github-alt
