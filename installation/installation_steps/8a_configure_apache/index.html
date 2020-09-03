@@ -833,13 +833,13 @@
 </ol>
 <h2 id="deploying-the-api-as-a-service">Deploying the API as a Service</h2>
 <p><img alt="Infra" src="../../images/infra_app_focus.png" title="Architecure-Focus-Example" /> </p>
-<p><strong>On the app server</strong>:</p>
 <p>We'll start by deploying the Leaf API as a service using <code>systemctl</code>. A few things to note:</p>
 <ul>
 <li>Once built, the API service should be run with a service account that is not an administrative user.</li>
-<li>
-<p>The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.</p>
-</li>
+<li>The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.</li>
+</ul>
+<p><strong>On the app server</strong>:</p>
+<ol>
 <li>
 <p>Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.</p>
 <pre><code>$ useradd -r api_svc_account
@@ -879,7 +879,7 @@ $ systemctl daemon-reload
 $ systemctl start leaf_api.service
 </code></pre>
 </li>
-</ul>
+</ol>
 <h2 id="hosting-leaf-with-apache">Hosting Leaf with Apache</h2>
 <p><img alt="Infra" src="../../images/infra_web_focus.png" title="Architecure-Focus-Example" /> </p>
 <p><strong>On the web server</strong>:</p>

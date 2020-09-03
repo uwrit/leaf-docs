@@ -1034,7 +1034,7 @@ FROM dbo.visit_occurrence AS o
 </tr>
 </tbody>
 </table>
-<p>Pretty straightforward so far. After creating the views in the database, let's start by configuring Leaf's <a href="../../deploy/app/#compiler">SQL compiler configuration</a>, which is stored in your compiled API under <code>/api/appsettings.json</code>:</p>
+<p>Pretty straightforward so far. After creating the views in the database, let's start by configuring Leaf's SQL compiler, which is stored in your compiled API under <code>/leafapi/api/appsettings.json</code>:</p>
 <p align="center"><img src="../images/compiler.gif"/></p>
 
 <p>Let's break it down:</p>
@@ -1076,10 +1076,7 @@ FROM dbo.visit_occurrence AS o
 <p>Under <code>Date Field</code>, fill in <code>@.visit_start_date</code>, which you'll recall is the first date field on the <code>v_visit_occurrence</code> view. Don't forget to prepend the alias placeholder <code>@.</code> before the field name.</p>
 </li>
 <li>
-<p>Click <code>Save</code> at the top. Now we are ready to make a few Concepts that use our <code>v_person</code> and <code>v_visit_occurrence</code> views. </p>
-</li>
-<li>
-<p>Click <code>Back to Concept Editor</code> in the upper-right.</p>
+<p>Click <code>Save</code> at the top. Now we are ready to make a few Concepts that use our <code>v_person</code> and <code>v_visit_occurrence</code> views.</p>
 </li>
 </ol>
 <h2 id="creating-concepts">Creating Concepts</h2>
@@ -1094,7 +1091,7 @@ Encounters
 ├── Outpatient
 </code></pre>
 
-<p>Click <code>Back to Concept Editor</code>, then <code>+Create New Concept</code>.</p>
+<p>Go to <code>Admin</code> -&gt; <code>Concepts</code>, then click <code>+Create New Concept</code>.</p>
 <h3 id="demographics">Demographics</h3>
 <p><p align="center"><img src="../images/concept_demographics.gif"/></p></p>
 <ol>

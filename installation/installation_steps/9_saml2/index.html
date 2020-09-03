@@ -965,10 +965,10 @@
 <p><img alt="Infra" src="../../images/infra_saml2_focus.png" title="Architecure-Focus-Example" /> </p>
 <p>Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. <a href="https://wiki.shibboleth.net/confluence/display/SP3/Home" target="_blank">Shibboleth</a>). We rely on these implementations for integrating Leaf into your environment.</p>
 <h2 id="identity-providers-idp">Identity Providers (IdP)</h2>
-<p>Conceptually, Leaf does not depend concretely on any specific method of authentication, it requires the following structured data be written to the request headers:</p>
+<p>Conceptually, Leaf does not depend concretely on any specific method of authentication. Instead, it only requires the following structured data be written to the request headers:</p>
 <ul>
-<li>a scoped identity of the form "&lt;identity>@&lt;scope>"</li>
-<li>a set of entitlements or group memberships in the form of a character delimited list</li>
+<li>A scoped identity of the form "&lt;identity>@&lt;scope>".</li>
+<li>A set of entitlements or group memberships in the form of a character delimited list.</li>
 </ul>
 <p>Two well known IdP implementations that we've interacted with are:</p>
 <ul>
@@ -993,7 +993,7 @@
 </li>
 </ul>
 <h2 id="service-providers-sp">Service Providers (SP)</h2>
-<p>There are multiple implementations of the Service Provider role in the SAML2 protocol, we have only ever used Shibboleth and as such will refer to that in the following documentation.</p>
+<p>There are multiple implementations of the Service Provider role in the SAML2 protocol, but as we have only ever used Shibboleth and as such will refer to that in the following documentation.</p>
 <ul>
 <li><a href="https://shibboleth.net/downloads/service-provider/latest" target="_blank">Shibboleth SP Installation Media</a></li>
 <li><a href="https://wiki.shibboleth.net/confluence/display/SP3/Installation" target="_blank">Shibboleth SP Installation Documentation</a></li>
@@ -1010,7 +1010,7 @@
 <p>Protecting the root of the React app <code>leaf.uwmedicine.org</code> in Shibboleth will automatically make all sub paths protected. If exceptions are only made for requests with the <code>/api</code> path (except for <code>/api/config</code> and <code>/api/user/</code>, noted above), once the URL Rewrite rule changes the request to the <code>/leafApi</code> path, Shibboleth will intercept this request and not allow the React App to call the API. This will break the application.</p>
 <h2 id="web-servers">Web Servers</h2>
 <h3 id="iis">IIS</h3>
-<p>IIS requires a specific ISAPI element within the InProcess element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS InProcess element looks like:</p>
+<p>IIS requires a specific <code>ISAPI</code> element within the <code>InProcess</code> element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS <code>InProcess</code> element looks like:</p>
 <pre><code class="xml">&lt;InProcess&gt;
     ...additional configuration
     &lt;ISAPI normalizeRequest=&quot;true&quot; safeHeaderNames=&quot;true&quot; useHeaders=&quot;true&quot;&gt;
@@ -1022,7 +1022,7 @@
 <h3 id="apache">Apache</h3>
 <p>There is no extra Shibboleth Service Provider configuration required to interoperate with Apache.</p>
 <h3 id="adfs">ADFS</h3>
-<p>Shibboleth Service Provider 3 can be configured to work with ADFS. However, it requires a couple extensions bundled with the installation. The extensions are loaded into the OutOfProcess and InProcess elements via the Extensions element. A prototypical ADFS configuration looks like:</p>
+<p>Shibboleth Service Provider 3 can be configured to work with ADFS. However, it requires a couple extensions bundled with the installation. The extensions are loaded into the <code>OutOfProcess</code> and <code>InProcess</code> elements via the <code>Extensions</code> element. A prototypical ADFS configuration looks like:</p>
 <pre><code class="xml">&lt;OutOfProcess tranLogFormat=&quot;%u|%s|%IDP|%i|%ac|%t|%attr|%n|%b|%E|%S|%SS|%L|%UA|%a&quot;&gt;
     &lt;Extensions&gt;
         &lt;Library path=&quot;adfs.so&quot; fatal=&quot;true&quot;/&gt;

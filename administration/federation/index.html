@@ -910,14 +910,14 @@
 </blockquote>
 <p><img alt="Multi Instance" src="../images/multi_instance_no_header.png" title="Multi Instance" /></p>
 <h3 id="building-blocks">Building Blocks</h3>
-<p>Leaf achieves safe federation by leveraging existing web technology to establish cryptographic trust between instances. This mechanism is virtually identical to the way that SAML2 federated authentication establishes trust and is built on JSON Web Tokens (JWT). The core building block of federated communication is a uni-directional channel; composing two uni-directional channels together provides the bi-directional query functionality of mutually federated instances. Federation is opt-in and requires that two instances be in agreement about their relationship. A single endpoint can be configured in either, or both of the following states.</p>
+<p>Leaf achieves safe federation by leveraging existing web technology to establish cryptographic trust between instances. This mechanism is virtually identical to the way that SAML2 federated authentication establishes trust and is built on JSON Web Tokens (JWT). The core building block of federated communication is a uni-directional channel; composing two uni-directional channels together provides the bi-directional query functionality of mutually federated instances. Federation is opt-in and requires that two instances be in agreement about their relationship. A single endpoint can be configured in either, or both, of the following states:</p>
 <h4 id="responder">Responder</h4>
 <p>A <code>Responder</code> endpoint is an instance of Leaf's API that will answer query requests, provided that it has configured your instance as an <code>Interrogator</code>.</p>
 <h4 id="interrogator">Interrogator</h4>
-<p>An <code>Interrogator</code> endpoint is an instance of Leaf's UI and API that will be allowed to send query requests to your API instance. The federated <code>Responder</code> in turn instance must have your instance configured as a <code>Responder</code> for requests to come through.</p>
+<p>An <code>Interrogator</code> endpoint is an instance of Leaf's API that will be allowed to send query requests to your API instance. The federated <code>Responder</code> in turn must have your instance configured as a <code>Responder</code> for requests to come through.</p>
 <h3 id="cross-pollinating-api-instance-certificates">Cross-pollinating API instance certificates</h3>
 <ol>
-<li>Log into a Leaf admin account and navigate to Leaf's admin panel for Network and Identity.</li>
+<li>Log into a Leaf admin account and navigate to <code>Admin</code> -&gt; <code>Network and Identity</code>.</li>
 <li>Click <code>+ Add New Networked Leaf Instance</code>.</li>
 <li>Enter the name and URI for the instance you wish to federate with.</li>
 <li>Click <code>Load Certificate Information</code>.</li>
