@@ -5,10 +5,10 @@
 Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. <a href="https://wiki.shibboleth.net/confluence/display/SP3/Home" target="_blank">Shibboleth</a>). We rely on these implementations for integrating Leaf into your environment.
 
 ## Identity Providers (IdP)
-Conceptually, Leaf does not depend concretely on any specific method of authentication, it requires the following structured data be written to the request headers:
+Conceptually, Leaf does not depend concretely on any specific method of authentication. Instead, it only requires the following structured data be written to the request headers:
 
-- a scoped identity of the form "<identity\>@<scope\>"
-- a set of entitlements or group memberships in the form of a character delimited list
+- A scoped identity of the form "<identity\>@<scope\>".
+- A set of entitlements or group memberships in the form of a character delimited list.
 
 Two well known IdP implementations that we've interacted with are:
 
@@ -26,7 +26,7 @@ For example:
     - The `amc_groups` attribute with a value of `am_leaf_users; am_leaf_admins; amSQL_RIT_Leaf_Admin`
 
 ## Service Providers (SP)
-There are multiple implementations of the Service Provider role in the SAML2 protocol, we have only ever used Shibboleth and as such will refer to that in the following documentation.
+There are multiple implementations of the Service Provider role in the SAML2 protocol, but as we have only ever used Shibboleth and as such will refer to that in the following documentation.
 
 - <a href="https://shibboleth.net/downloads/service-provider/latest" target="_blank">Shibboleth SP Installation Media</a>
 - <a href="https://wiki.shibboleth.net/confluence/display/SP3/Installation" target="_blank">Shibboleth SP Installation Documentation</a>
@@ -46,7 +46,7 @@ Protecting the root of the React app `leaf.uwmedicine.org` in Shibboleth will au
 
 ## Web Servers
 ### IIS
-IIS requires a specific ISAPI element within the InProcess element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS InProcess element looks like:
+IIS requires a specific `ISAPI` element within the `InProcess` element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS `InProcess` element looks like:
 ```xml
 <InProcess>
     ...additional configuration
@@ -60,7 +60,7 @@ IIS requires a specific ISAPI element within the InProcess element. Additionally
 There is no extra Shibboleth Service Provider configuration required to interoperate with Apache.
 
 ### ADFS
-Shibboleth Service Provider 3 can be configured to work with ADFS. However, it requires a couple extensions bundled with the installation. The extensions are loaded into the OutOfProcess and InProcess elements via the Extensions element. A prototypical ADFS configuration looks like:
+Shibboleth Service Provider 3 can be configured to work with ADFS. However, it requires a couple extensions bundled with the installation. The extensions are loaded into the `OutOfProcess` and `InProcess` elements via the `Extensions` element. A prototypical ADFS configuration looks like:
 ```xml
 <OutOfProcess tranLogFormat="%u|%s|%IDP|%i|%ac|%t|%attr|%n|%b|%E|%S|%SS|%L|%UA|%a">
     <Extensions>

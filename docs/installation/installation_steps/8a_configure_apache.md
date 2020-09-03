@@ -9,12 +9,12 @@ In general, Leaf works quite well when deployed with Apache. In this section, we
 
 ![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
 
-**On the app server**:
-
 We'll start by deploying the Leaf API as a service using `systemctl`. A few things to note:
 
 - Once built, the API service should be run with a service account that is not an administrative user.
 - The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.
+
+**On the app server**:
 
 1. Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.
 
