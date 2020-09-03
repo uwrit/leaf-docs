@@ -26,7 +26,7 @@ For example:
     - The `amc_groups` attribute with a value of `am_leaf_users; am_leaf_admins; amSQL_RIT_Leaf_Admin`
 
 ## Service Providers (SP)
-There are multiple implementations of the Service Provider role in the SAML2 protocol, but as we have only ever used Shibboleth and as such will refer to that in the following documentation.
+There are multiple implementations of the Service Provider role in the SAML2 protocol, but as we have only ever used Shibboleth, we will refer to that specifically in the following documentation.
 
 - <a href="https://shibboleth.net/downloads/service-provider/latest" target="_blank">Shibboleth SP Installation Media</a>
 - <a href="https://wiki.shibboleth.net/confluence/display/SP3/Installation" target="_blank">Shibboleth SP Installation Documentation</a>

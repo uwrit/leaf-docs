@@ -56,15 +56,17 @@ We'll start by deploying the Leaf API as a service using `systemctl`. A few thin
 
 ![Infra](../images/infra_web_focus.png "Architecure-Focus-Example") 
 
-**On the web server**:
-
 Great, at this point the Leaf database and API should be up and running.
 
-The following is an example snippet of an `httpd.conf` file to host a single node in a Leaf deployment. 
+1. **From the app server**, copy the `/build` directory made in [Step 5 - Build the Leaf UI](../5_compile_client) to `/data/www/` **on the web server**. This will copy the Leaf Client production files over for Apache to host.
 
-Currently each leaf client webapp must be hosted at the top level of the DocumentRoot of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same DocumentRoot, however each would need it's own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).
+2. **On the web server**, define an `httpd.conf` file to host a single node in a Leaf deployment. 
 
-In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.  
+    > Each Leaf client webapp must be hosted at the top level of the `DocumentRoot` of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same `DocumentRoot`, however each would need its own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).
+
+    In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.
+
+httpd.conf
 
 ```xml
 <VirtualHost *:443>

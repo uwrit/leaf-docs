@@ -46,7 +46,7 @@ The expected columns are:
 ### Key Points
 - **All columns in `Basic Demongraphics` are required** - Leaf will automatically date-shift, calculate ages, and remove the HIPAA identified columns (`mrn` and `name`) depending on if the user is in `Identified` or `De-identified` mode.
 
-- **The Patient Identifier column must be called *personId*** - While Leaf Concepts are flexible regarding the [column name for patient identifiers](../../deploy/app/#fieldpersonid), datasets are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf datasets when multiple Leaf instances are federated, among other reasons.
+- **The Patient Identifier column must be called *personId*** - While Leaf Concepts are flexible regarding the column name for patient identifiers, `Datasets` are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf `Datasets` when multiple Leaf instances are federated, among other reasons.
 
 - **It's okay if you don't have data for every column** - Though every column must be returned in the SQL statement, it's fine to hard-code it as 'Unknown', etc. For example, `religion = 'Unknown'`.
 
@@ -73,7 +73,7 @@ If you've successfully added the `Basic Demographics` dataset and can see data r
 Let's start with an example. In this case, we'll add a <a href="https://en.wikipedia.org/wiki/Platelet" target="_blank">Platelet</a> dataset which will represent platelet count laboratory tests.
 
 ### Determine the Template and Query
-First, we'll determine which dataset template is the best fit for this new dataset by checking the [Dataset Templates Reference](#dataset-templates-reference) below. In FHIR labs are generally represented as [Observations](#observation), but as **we recommend using Dynamic datasets unless federating with other Leaf instances**, we'll do so here. 
+First, we need to decide whether we're using a `Dataset` template or dynamic query. For templates, in FHIR labs are generally represented as [Observations](#observation). However as **we recommend using Dynamic datasets unless federating with other Leaf instances**, we'll use a **dynamic** dataset here here. 
 
 For demonstrative purposes we'll use data from the <a href="https://mimic.physionet.org/" target="_blank">MIMIC Critical Care Database</a>, but the methods here can be applied to other data models as well.
 
@@ -118,7 +118,17 @@ Next, we'll add out dataset using the `Admin` -> `Datasets` screen.
 
 2. In Leaf, go to `Admin` -> `Datasets`. Click `create a new one` on the right to add a `Dataset`.
 
-3. Copy/paste or type out your SQL statement. Make sure the green arrows on the left light up to confirm you're returning all expected columns.
+3. Set the `Name` as "Platelet Count".
+
+4. Create a new Category, "Labs", and use that as the Category.
+
+5. Set the `Dataset Template` as "Dynamic".
+
+6. Copy/paste or type out your SQL statement.
+
+7. Under `Expected Columns`, Leaf will do it's best to guess the types of your columns based on their names. Validate that the column types match those in the SQL database, and **check `Deidentify` for any columns you'd like users not to view if in de-identified mode**.
+
+8. Under `Dynamic Properties`, set the `Date Column` as "effectiveDate", `String Value Column` as "valueString", and `Numeric Value Column` as "valueQuantity". Leaf will use these columns when computing statistics and generating a sparkline for the `Dataset`.
 
 ### Test
 Finally, let's test to see if the dataset works. In the Leaf client app, run a query for a cohort which you know to have platelet lab values. In the `Patient List`, select the new dataset.

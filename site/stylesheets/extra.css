@@ -1,0 +1,29 @@
+/* Header Nav */
+.md-header-nav.md-grid {
+    height: 53px;
+}
+
+/* Logo */
+.md-header-nav__button.md-logo img {
+    height: 70px;
+    margin: -22px 0 0 -20px;
+    pointer-events: none;
+    width: 70px;   
+}
+
+/* Logo title */
+.md-header-nav__title {
+    font-size: 1.2rem;
+    font-weight: 100;
+    margin: 4px 0 0 -38px;
+}
+
+/* Edit button */
+.md-content__button.md-icon {
+    display: none;
+}
+
+/* Installation - Image size */
+img[title="Single Instance Combined"] {
+    height: 310px;
+}
