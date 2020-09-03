@@ -10,3 +10,7 @@ In this section, we'll walk through:
 2. [Datasets, for viewing row-level cohort data](./datasets)
 
     <p align="center"><img src="images/dataset_add.gif"/></p>
+
+2. [Networking Multiple Leaf Instances](./federation)
+
+    <p align="center"><img src="images/federated.gif"/></p>

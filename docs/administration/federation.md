@@ -14,10 +14,6 @@ A `Responder` endpoint is an instance of Leaf's API that will answer query reque
 #### Interrogator
 An `Interrogator` endpoint is an instance of Leaf's UI and API that will be allowed to send query requests to your API instance. The federated `Responder` in turn instance must have your instance configured as a `Responder` for requests to come through.
 
-### Getting started
-1. [Cross-pollinating API instance certificates](#cross-pollinating-api-instance-certificates)
-2. [Examples](#examples)
-
 ### Cross-pollinating API instance certificates
 1. Log into a Leaf admin account and navigate to Leaf's admin panel for Network and Identity.
 2. Click `+ Add New Networked Leaf Instance`.
@@ -31,22 +27,22 @@ An `Interrogator` endpoint is an instance of Leaf's UI and API that will be allo
 #### Bi-directional Federation
 In this (most common) example, two nodes A and B wish to query each other. This configuration requires that A registers B as a `Responder` and `Interrogator`, and B registers A as a `Responder` and `Interrogator`. The following screenshots illustrate A and B's admin panel screen, respectively.
 
-<div>Instance A's screen</div>
+<div>Instance A's screen:</div>
 
 ![Mutual Federation A](../images/fed_mutual_a.png "Mutual Federation A")
 
-<div>Instance B's screen</div>
+<div>Instance B's screen:</div>
 
 ![Mutual Federation B](../images/fed_mutual_b.png "Mutual Federation B")
 
 #### Uni-directional Federation
 In this example, there are two nodes X and Y where X would like to additionally query Y for data but Y has no need to query X. X registers Y as a `Responder`, and Y must register X as an `Interrogator`. This type of configuration can be composed with `Gateway` functionality in cases where an instance wishes to act as an observer only and has no data of its own to offer. The following screenshots illustrate X and Y's admin panel screen, respectively.
 
-<div>Instance X's screen</div>
+<div>Instance X's screen:</div>
 
 ![Single Federation X](../images/fed_uni_x.png "Single Federation X")
 
-<div>Instance Y's screen</div>
+<div>Instance Y's screen:</div>
 
 ![Single Federation Y](../images/fed_uni_y.png "Single Federation Y")
 
