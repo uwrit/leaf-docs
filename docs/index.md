@@ -23,7 +23,7 @@
 * **Open:** Curious how Leaf works, how you can help, or how you can use Leaf to help researchers at your <a href="https://ncats.nih.gov/ctsa">CTSA</a>? [Let us know!](contributing.md) Leaf is an open-source project *by CTSAs, for CTSAs*.
 
 ## Getting Started
-* [Installation](installation/#architecture)
+* [Installation](installation)
 * [How Leaf can help accomplish research](about/#how-can-leaf-help-with-research)
 * See a demo of Leaf in action <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a>
 * Learn more about Leaf's role in clinical informatics and background in the manuscript [Leaf: an open-source, model-agnostic, data-driven web application for cohort discovery and translational biomedical research](https://academic.oup.com/jamia/advance-article/doi/10.1093/jamia/ocz165/5583724)

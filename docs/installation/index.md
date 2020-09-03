@@ -1,12 +1,12 @@
 # Architecture
 Leaf is designed to be deployed in a standard <a href="https://en.wikipedia.org/wiki/Multitier_architecture" target="_blank">three-tier architecture</a> with two deployment models, depending on your environment:
 
-**Option 1: 3-tier architecture with Linux and Apache**
+`Option 1`: **3-tier architecture with Linux and Apache**
 ![Single Instance Split](images/single_instance_split_server.png "Single Instance Split") 
 
 or alternatively:
 
-**Option 2: Combined 2-tier architecture with Windows and IIS**
+`Option 2`: **Combined 2-tier architecture with Windows and IIS**
 ![Single Instance Combined](images/single_instance_combined_server.png "Single Instance Combined") 
 
 ## Components

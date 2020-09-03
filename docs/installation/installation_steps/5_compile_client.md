@@ -41,15 +41,15 @@ var
 │   │   ├── keys                           # JWT signing key
 │   │   ├── api                            # Compiled API
 │   │   ├── leaf_download                  # Downloaded source files 
-|   |   |   ├── leaf 
-|   |   |   |   ├── src 
-|   |   |   |   |   ├── ui-client 
-|   |   |   |   |   |   ├── build          # Built Client
-|   |   |   |   |   |   |   ├── static     #########################
-|   |   |   |   |   |   |   ├── images     # 
-|   |   |   |   |   |   |   ├── index.html # Production Client files
-|   |   |   |   |   |   |   ├── manifest   #
-|   |   |   |   |   |   |   ├── ...        #########################
+│   │   │   ├── leaf 
+│   │   │   │   ├── src 
+│   │   │   │   │   ├── ui-client 
+│   │   │   │   │   │   ├── build          # Built Client
+│   │   │   │   │   │   │   ├── static     #########################
+│   │   │   │   │   │   │   ├── images     # 
+│   │   │   │   │   │   │   ├── index.html # Production Client files
+│   │   │   │   │   │   │   ├── manifest   #
+│   │   │   │   │   │   │   ├── ...        #########################
 ├── log 
 │   ├── leaf                               # Log files
 ```

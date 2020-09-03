@@ -19,7 +19,7 @@ $ dotnet publish -c Release -o /var/opt/leafapi/api
 
 To build on Windows/MacOS building for RHEL/Cent:
 ```bash
-$ dotnet publish -c Release -o <output_dir> -r rhel.7-x64 --self-contained false /p:MicrosoftNETPlatformLibrary=Microsoft.NETCore.App
+$ dotnet publish -c Release -o /var/opt/leafapi/api -r rhel.7-x64 --self-contained false /p:MicrosoftNETPlatformLibrary=Microsoft.NETCore.App
 ```
 
 ### Windows
@@ -27,11 +27,11 @@ Windows fully supports both self-contained builds as well as runtime dependent b
 
 Self-contained:
 ```bash
-$ dotnet publish -c Release -r win-x64 -o <output_dir>
+$ dotnet publish -c Release -r win-x64 -o /var/opt/leafapi/api
 ```
 Runtime dependent:
 ```bash
-$ dotnet publish -c Release -o <output_dir>
+$ dotnet publish -c Release -o /var/opt/leafapi/api
 ```
 
 ## Wrapping up
@@ -44,11 +44,11 @@ var
 │   ├── leafapi
 │   │   ├── keys                 # JWT signing key
 │   │   ├── api                  # Compiled API
-|   |   |   ├── runtimes         ########################
-|   |   |   ├── API.deps         #
-|   |   |   ├── API.dll          # Production build files
-|   |   |   ├── appsettings.json #
-|   |   |   ├── ...              ########################
+│   │   │   ├── runtimes         ########################
+│   │   │   ├── API.deps         #
+│   │   │   ├── API.dll          # Production build files
+│   │   │   ├── appsettings.json #
+│   │   │   ├── ...              ########################
 │   │   ├── leaf_download        # Downloaded source files from GitHub
 ├── log
 │   ├── leaf                     # Log files
