@@ -1,16 +1,4 @@
 # The Building Blocks of Leaf: Concepts
-- [Introduction](#introduction)
-- [Configuring the SQL compiler](#configuring-the-sql-compiler)
-- [Creating SQL Sets](#creating-sql-sets)
-- [Creating Concepts](#creating-concepts)
-    - [Demographics](#demographics)
-    - [Road test](#road-test)
-    - [Encounters](#encounters)
-- [Making Concepts Searchable](#making-concepts-searchable)
-- [Final Thoughts](#final-thoughts)
-
-
-## Introduction
 Leaf is a SQL writing and execution engine. While it is designed to be fun and intuitive for users, ultimately Leaf's most important job is to reliably and flexibly construct SQL queries using a few simple but powerful configuration rules. 
 
 Let's start with an example. We'll use an [OMOP](https://www.ohdsi.org/data-standardization/the-common-data-model/) v5 database for this example, though these steps can be applied to any particular data model. We'll focus on using the `person` and `visit_occurrence` tables via views in our OMOP database.
@@ -28,9 +16,10 @@ Every Leaf instance assumes that there is a single, consistent field that repres
 
 Before starting, let's create two SQL views called `v_person` and `v_visit_occurrence` to make the `person` and `visit_occurrence` tables simpler to query. This example is specific to OMOP but the approach works for other models as well. Note that pointing Leaf at views is completely *optional* and demonstrated here for convenience and illustrative purposes.
 
-Our `v_person` view is defined like this:
+Our `v_person` view is defined as:
 
 ```sql
+CREATE VIEW dbo.v_person AS
 SELECT
     p.person_id
   , p.birth_datetime
@@ -50,9 +39,10 @@ FROM dbo.person AS p
 | A         | 1990-1-1       | F      | Black or African American  | Not Hispanic or Latino | NY
 | B         | 1945-2-2       | M      | Asian or Pacific Islander  | Not Hispanic or Latino | OR
 
-The `v_visit_occurrence` view is defined like this:
+The `v_visit_occurrence` view is defined as:
 
 ```sql
+CREATE VIEW dbo.v_visit_occurrence AS
 SELECT 
     o.person_id
   , o.visit_occurrence_id
@@ -70,38 +60,28 @@ FROM dbo.visit_occurrence AS o
 | A         | 456                 | 2015-05-28       | 2015-06-07     | site1        | IP              |
 | B         | 789                 | 2014-09-01       | 2014-09-01     | site2        | ED              |
 
-Pretty simple. After creating the views in the database, let's start by configuring Leaf's [SQL compiler configuration](../../deploy/app/#compiler), which is stored in `/src/server/API/appsettings.json`:
+Pretty straightforward so far. After creating the views in the database, let's start by configuring Leaf's [SQL compiler configuration](../../deploy/app/#compiler), which is stored in your compiled API under `/api/appsettings.json`:
 
-<p align="center"><img src="../images/configure_json.gif"/></p>
+<p align="center"><img src="../images/compiler.gif"/></p>
 
 Let's break it down:
 
 * **Alias** acts as a indicator to Leaf to insert an alias in a SQL statement wherever this character(s) is found (more on that in a bit). We'll set this to `@` for simplicity and readability, and because it is commonly used in many Leaf configurations.
 
-* **SetPerson** tells Leaf the name of the table that contains one row per patient, typically demographic information. In this example we'll use the `v_person` view we just created. Note that we prepend `dbo.`, which stands for "database object" and is used in SQL Server to denote a `schema` and must precede the table/view name in SQL queries.
-
-* **SetEncounter** is the name of the primary table for encounter information, with one row per encounter. We'll use the `v_visit_occurrence` view.
-
 * **FieldPersonId** is the name of the SQL field that appears in all tables or views we'd like to query and represents unique identifiers for patients. The field `person_id` contains identifiers for patients and appears in all tables which link to a patient, so we'll choose that.
 
 * **FieldEncounterId** is the name of the field that represents visit identifiers, so we'll use `visit_occurrence_id`.
 
-* **FieldEncounterAdmitDate** and **FieldEncounterDischargeDate** are (perhaps unsurprisingly) the names of fields indicating encounter admission and discharge date times. `visit_start_date` and `visit_end_date` fit the bill, so we'll use those.
-
-Great - we've now provided the most important information to help Leaf understand the basic structure of our clinical database. Note that these values are expected to be consistent and configured only once.
+Great - we've now provided the most important information to help Leaf understand the basic structure of our clinical database. Note that these values are expected to be consistent and configured only once. **Also, if you change them, make sure you restart the Leaf API in order for the changes to take effect.**
 
 Next, we'll move on to creating Concepts, the building blocks of Leaf queries.
 
 ## Creating SQL Sets
 We want to allow users to query Concepts using our two new views, `v_person` and `v_visit_occurrence`. To do so, let's create a Leaf `SQL Set` for each. Open up the Leaf client in your web browser.
 
-> This step assumes you've already followed the [Leaf deployment guide](../../deploy) and set up appropriate web, application, and database servers. If you haven't, start there first.
-
 <p align="center"><img src="../images/login.gif"/></p>
 
-1. Select `Research` -> `No` -> `De-identified`.
-
-2. Click `Admin` on the left sidebar.
+1. Click `Admin` -> `Concepts` on the left sidebar.
 > If you don't see the `Admin` tab, make sure you have configured your [admin group correctly](../../deploy/app).
 
 3. Click `Start by creating a Concept SQL Set`. `SQL Sets` are the SQL tables, views, or subqueries that are the foundation of Concepts and provide their `FROM` clauses.
@@ -109,7 +89,7 @@ We want to allow users to query Concepts using our two new views, `v_person` and
 
 4. You should see a single white box near the top. Under `SQL FROM`, enter `dbo.v_person`.
 
-5. Next, create another `SQL Set`. Click `+ Create New SQL Set` and fill in `dbo.v_visit_occurrence` under `SQL FROM`. Also, check the `Has Encounters` box. This indicates that Leaf should expect to find the `EncounterId` field and a date field on this table.
+5. Next, create another `SQL Set`. Click `+ Create New SQL Set` and fill in `dbo.v_visit_occurrence` under `SQL FROM`. Also, check the `Has Encounters` box. This indicates that Leaf should expect to find an Encounter identifier and date fields on this table.
 
 6. Under `Date Field`, fill in `@.visit_start_date`, which you'll recall is the first date field on the `v_visit_occurrence` view. Don't forget to prepend the alias placeholder `@.` before the field name.
 
@@ -233,21 +213,26 @@ Leaf's Concept search is a powerful feature which will automatically parse and t
 
 Leaf search works by using a relatively simple [inverted index](https://en.wikipedia.org/wiki/Inverted_index) and [forward index](https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index) search engine in pure SQL.
 
+In SQL Server:
+```sql
+EXEC app.sp_UpdateSearchIndexTables
+```
+
 **Note: Be sure to run this stored procedure after any edits or additions to your Concept tree to ensure that users can search the latest text for your Concepts.**
 
 ## Final thoughts
 If you were able to successfully make the Concepts in this tutorial, congratulations! Hopefully this was helpful and intuitive enough for you to get started making your clinical database accessible and intuitive for your users as well. 
 
-Concepts can be extremely flexible and we've only scratched the surface of their functionality. If you'd like to learn more or have questions, head over to the [Concept Reference](reference.md) page or jump to a section below:
+Concepts can be extremely flexible and we've only scratched the surface of their functionality. If you'd like to learn more or have questions, head over to the [Concept Reference](../concept_reference) page or jump to a section below:
 
-- [Name, Subtext, and Full Text](reference/#name-subtext-and-full-text)
-- [Tooltips](reference/#tooltips)
-- [Patient Count](reference/#patient-count)
-- [Numeric Filters](reference/#numeric-filters)
-- [Adding Dropdowns](reference/#adding-dropdowns)
-- [Restricting Access](reference/#restricting-access)
-- [Universal IDs](reference/#universal-ids)
-- [Creating Concepts by SQL Scripts](reference/#creating-concepts-by-sql-scripts)
+- [Name, Subtext, and Full Text](../concept_reference/#name-subtext-and-full-text)
+- [Tooltips](../concept_reference/#tooltips)
+- [Patient Count](../concept_reference/#patient-count)
+- [Numeric Filters](../concept_reference/#numeric-filters)
+- [Adding Dropdowns](../concept_reference/#adding-dropdowns)
+- [Restricting Access](../concept_reference/#restricting-access)
+- [Universal IDs](../concept_reference/#universal-ids)
+- [Creating Concepts by SQL Scripts](../concept_reference/#creating-concepts-by-sql-scripts)
 
 As you were creating Concepts for your database, you may have found yourself thinking that it requires a change in perspective in how you as a developer would query a clinical database versus how best to represent Concepts to users. 
 

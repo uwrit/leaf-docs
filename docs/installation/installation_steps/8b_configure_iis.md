@@ -1,4 +1,7 @@
-# 6b - Configure Leaf with IIS
+# 8b - Configure Leaf with IIS
+
+![Infra](../images/infra_iis_focus.png "Architecure-Focus-Example") 
+
 The following IIS guide assumes you are using a combined web & app single server to both host the Leaf API and handle user traffic.
 
 **On the web/app server**:
@@ -50,8 +53,8 @@ The following IIS guide assumes you are using a combined web & app single server
             ...additional configuration
         </system.webServer>
 
-10. If you have yet created the environment variables for IIS (as described in [Step 3 - Set Environment Variables](../3_env)), do so now.
+10. If you have not yet created the environment variables for IIS (as described in [Step 7 - Set Environment Variables](../7_env)), do so now.
 
 
 <br>
-Next: [Step 7 - Configure Authentication with SAML2](../7_saml2)
+Next: [Step 9 - Configure Authentication with SAML2](../9_saml2)

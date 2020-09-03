@@ -1,35 +1,27 @@
 # Concept Reference
-- [Name, Subtext, and Full Text](#name-subtext-and-full-text)
-- [Tooltips](#tooltips)
-- [Patient Count](#patient-count)
-- [Numeric Filters](#numeric-filters)
-- [Adding Dropdowns](#adding-dropdowns)
-- [Restricting Access](#restricting-access)
-- [Universal IDs](#universal-ids)
-- [Creating Concepts by SQL Scripts](#creating-concepts-by-sql-scripts)
 
 ## Name, Subtext, and Full Text
 Textual descriptions of Concepts are critical to making information about them clear to users. Leaf Concepts have three primary fields for describing information about them:
 (*Concept fields referenced here are stored in the `app.Concept` database table unless otherwise noted*)
 
-<p align="center"><img src="../../images/concept_name.png"/></p>
+<p align="center"><img src="../images/concept_name.png"/></p>
 
 - `Name` - The primary text shown for the Concept within the tree. Try to keep this brief, leveraging parent Concepts above it to provide context and provenance where possible. This is stored in the database as `UiDisplayName`. 
 - `Subtext` - The smaller, lighter text shown to the right of the `Name`. This is optional, and we have found this works well for adding information such as how far back data in the Concept go. This is stored in the database as `UiDisplaySubtext`.
 
-<p align="center"><img src="../../images/concept_fulltext.png"/></p>
+<p align="center"><img src="../images/concept_fulltext.png"/></p>
 
 - `Full Text` - The text shown when a user drags the Concept over to create a query. We suggest making this a bit more verbose than `Name`, and approximating a sentence. This is stored in the database as `UiDisplayText`.
 
 ## Tooltips
 Tooltips are a bit of a misnomer, as they are actually shown when the user clicks `Learn More` while hovering over a Concept, rather than just by hovering alone. 
 
-<p align="center"><img src="../../images/concept_tooltip.png"/></p>
+<p align="center"><img src="../images/concept_tooltip.png"/></p>
 
 `Tooltip` text can be used to provide detailed information to users about the data the Concept represents, but may be too long to put in the `Name` or `Subtext`. The text can be seen in the above example in the `Sources: Epic Clarity...` information. This is stored in the database as `UiDisplayTooltip`.
 
 ## Patient Count
-<p align="center"><img src="../../images/concept_patientcount.png"/></p>
+<p align="center"><img src="../images/concept_patientcount.png"/></p>
 
 The `Patient Count` field shows a small green person indicating the number of unique patients the user would *expect* to find if she were to run a query with this Concept only and with no date restrictions, etc. 
 
@@ -53,7 +45,7 @@ This is stored in the database as `UiDisplayPatientCount`.
 ## Numeric Filters
 Use numeric filters to allow users to query based on a numeric value in your database.
 
-<p align="center"><img src="../../images/concept_numeric1.gif"/></p>
+<p align="center"><img src="../images/concept_numeric1.gif"/></p>
 
 1. Create a new Concept and set `Configuration` -> `Is Numeric` to `true`.
 
@@ -65,7 +57,7 @@ Use numeric filters to allow users to query based on a numeric value in your dat
 
 5. Under `SQL`, set the `Numeric Field or expression` to the numeric column or expression that you'd like to query.
 
-<p align="center"><img src="../../images/concept_numeric2.gif"/></p>
+<p align="center"><img src="../images/concept_numeric2.gif"/></p>
 
 ## Adding Dropdowns
 Dropdowns (also known as Concept *specializations*) allow users to optionally specify additional logic about a Concept to include in a query.
@@ -80,37 +72,37 @@ For example, imagine we have a `dbo.diagnosis` table that looks like this:
 
 We would probably create a Concept tree with a root `Diagnoses` Concept using the ICD10 hierarchy to allow users to run queries to find patients with certain diagnosis codes, such as type 2 diabetes mellitus.
 
-<p align="center"><img src="../../images/concept_dropdown1.png"/></p>
+<p align="center"><img src="../images/concept_dropdown1.png"/></p>
 
 ### Problem 1
 **What if users wanted to specify that the diagnosis must come from a specific source, such as `billing` or `radiology`?**
 
 One approach to solve this would be to create child Concepts under **every** diagnosis Concept, with each child representing a diagnosis from a particular source:
 
-<p align="center"><img src="../../images/concept_dropdown3.png"/></p>
+<p align="center"><img src="../images/concept_dropdown3.png"/></p>
 
 This works to a certain extent, though with every additional diagnosis source, we've doubled the number of diagnosis Concepts. Given that there are roughly 68,000 ICD-10 diagnosis codes as of this writing (not including their parent Concepts which represent ranges of codes), adding child Concepts for just the three example sources above, `billing`, `radiology`, and `charges` will add over 200,000 Concepts to our tree. Just as importantly, this solution may not necessarily be intuitive for users.
 
 ### Problem 2
 **What if we then wanted to also allow users to specify whether the diagnosis was `primary` or `secondary`?**
 
-<p align="center"><img src="../../images/concept_dropdown4.png"/></p>
+<p align="center"><img src="../images/concept_dropdown4.png"/></p>
 
 We could simply add these as additional child Concepts, though users wouldn't be able to find patients who had this as the `primary` diagnosis **and** from `billing`.
 
 Alternatively, we could create `primary` and `secondary` child Concepts under **every** `billing`, `radiology`, and `charges` Concept:
 
-<p align="center"><img src="../../images/concept_dropdown5.png"/></p>
+<p align="center"><img src="../images/concept_dropdown5.png"/></p>
 
 Yikes. This creates a Cartesian product of all diagnosis sources and primary/secondary types **for every diagnosis Concept**. This is likely to be both confusing for users and wasteful in visual space (in the UI) and database storage.
 
 ### Dropdowns to the Rescue
-<p align="center"><img src="../../images/concept_dropdown6.gif"/></p>
+<p align="center"><img src="../images/concept_dropdown6.gif"/></p>
 
 Dropdowns allow users to make the Concept logic more granular if they choose to, and do so in a visually intuitive way.
 
 ### Creating Dropdowns
-<p align="center"><img src="../../images/concept_dropdown7.gif"/></p>
+<p align="center"><img src="../images/concept_dropdown7.gif"/></p>
 
 1. Go to the `Admin` tab and click on any Concept. Under `SQL`, click `Table, View, or Subquery` -> `Manage SQL Sets`.
 
@@ -125,7 +117,7 @@ Dropdowns allow users to make the Concept logic more granular if they choose to,
 Because dropdowns are tied to `SQL Sets`, every Concept that uses that `SQL Set` is able to enable the dropdown as well, allowing dropdowns to be easily reused across many Concepts.
 
 ### Enabling Dropdowns for a Concept
-<p align="center"><img src="../../images/concept_dropdown8.gif"/></p>
+<p align="center"><img src="../images/concept_dropdown8.gif"/></p>
 
 1. After creating the dropdowns, in the `Admin` screen click the Concept you'd like to enable dropdowns for.
 
@@ -141,7 +133,7 @@ Users will now see the dropdown options when they drag over the Concept.
 ## Restricting Access
 Certain Concepts may represent sensitive data which you need to restrict access to, such as financial data.
 
-<p align="center"><img src="../../images/concept_constraint.gif"/></p>
+<p align="center"><img src="../images/concept_constraint.gif"/></p>
 
 To restrict access to certain users or groups:
 
@@ -190,14 +182,14 @@ urn:leaf:concept:diagnosis:coding=icd10+code=O13.9
 
 Note that these are simply examples, and you are free to define `UniversalIds` as you'd like. Perhaps the most important point though is to be sure that the `UniversalId` naming conventions for your Leaf instance and any other Leaf instances match exactly.
 
-<p align="center"><img src="../../images/concept_universalid.png"/></p>
+<p align="center"><img src="../images/concept_universalid.png"/></p>
 
 You can find `UniversalIds` in the `Admin` panel under `Identifiers` -> `UniversalId`. 
 
 > You don't need to preface `UniversalIds` with "urn:leaf:concept:" yourself, as Leaf will handle that for you.
 
 ### Univeral IDs in dropdowns
-<p align="center"><img src="../../images/concept_specialization_universalid.gif"/></p>
+<p align="center"><img src="../images/concept_specialization_universalid.gif"/></p>
 
 Note that [dropdown options](#dropdowns-to-the-rescue) also use `UniversalIds` using the naming convention "urn:leaf:specialization:". If you are federating queries across multiple instances, **make sure dropdowns similarly have `UniversalIds` defined**.
 
@@ -208,7 +200,7 @@ Good news: That's okay!
 
 **Leaf expects that not all clinical databases will be identical, and you shouldn't need to hide Concepts from your users simply because other institutions don't have the same data.**
 
-<p align="center"><img src="../../images/concept_no_universalid.png"/></p>
+<p align="center"><img src="../images/concept_no_universalid.png"/></p>
 
 If a user uses one or more Concepts that are "local only" and don't have `UniversalIds`, Leaf will let them know which institutions weren't able to run the query.
 

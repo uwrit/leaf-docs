@@ -1,5 +1,10 @@
-# 1 - Configure App Server
+# 2 - Configure App Server
+
+![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
+
 The application server hosts the <a href="https://github.com/uwrit/leaf/tree/master/src/server" target="_blank">Leaf API</a>, and serves as the intermediary between the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a> and <a href="https://github.com/uwrit/leaf/tree/master/src/db" target="_blank">databases</a>. The API is written in C# and .NET Core, and can run in either Linux or Windows environments. 
+
+Note that the Leaf app database created in [Step 1 - Create App Database](../1_app_db) **must be query-able from this server**, so check to make sure any necessary firewall exceptions are in place.
 
 We'll be using the following directory layout for organizing the API deployment:  
 
@@ -9,7 +14,7 @@ var
 │   ├── leafapi
 │   │   ├── keys           # JWT signing key
 │   │   ├── api            # Compiled API
-│   │   ├── leaf_download  # Downloaded source files from GitHub
+│   │   ├── leaf_download  # Downloaded source files
 ├── log
 │   ├── leaf               # Log files
 ```
@@ -40,4 +45,4 @@ Ensure that IIS8+ is installed on the intended app server. See instructions at <
 
 
 <br>
-Next: [Step 2 - Create a JWT Signing Key](../2_jwt)
+Next: [Step 3 - Create a JWT Signing Key](../3_jwt)

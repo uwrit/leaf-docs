@@ -1,28 +1,29 @@
-# 6a - Configure Leaf with Apache
+# 8a - Configure Leaf with Apache
+
 In general, Leaf works quite well when deployed with Apache. In this section, we'll:
 
 1. Deploy the Leaf API on the app server.
 2. Host the Leaf client using Apache on the web server.
 
 ## Deploying the API as a Service
+
+![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
+
+**On the app server**:
+
 We'll start by deploying the Leaf API as a service using `systemctl`. A few things to note:
 
 - Once built, the API service should be run with a service account that is not an administrative user.
 - The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.
 
-**On the app server**:
-
 1. Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.
 
-        ```bash
-        useradd -r api_svc_account
-        chown /var/log/leaf/
-        chown -R /var/opt/leaf/
-        ```
+        $ useradd -r api_svc_account
+        $ chown /var/log/leaf/
+        $ chown -R /var/opt/leaf/
 
 2. Create a service file for the API instance. The WorkingDirectory must be the directory where API.dll resides.
 
-        ```bash
         ## /var/opt/leafapi/services/leaf_api.service
 
         [Unit]
@@ -39,32 +40,31 @@ We'll start by deploying the Leaf API as a service using `systemctl`. A few thin
 
         [Install]
         WantedBy=multi-user.target
-        ```
 
 3. Last, link your service file with systemd, and make it aware of the service:
 
-        ```bash
         # Create a symbolic link into the systemd directory
-        ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+        $ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
 
         # Make the systemd aware of the service
-        systemctl daemon-reload
-        ```
+        $ systemctl daemon-reload
 
-        To start the service:
-
-        ```bash
-        systemctl start leaf_api.service
-        ```
+        # Start the service
+        $ systemctl start leaf_api.service
 
 ## Hosting Leaf with Apache
-Great, at this point the Leaf app server 
 
-The following is an example snippet of an httpd.conf file to host a single node in a Leaf deployment. 
+![Infra](../images/infra_web_focus.png "Architecure-Focus-Example") 
 
-Currently each leaf client webapp must be hosted at the top level of the DocumentRoot of an apache VirtualHost. Multiple nodes could be hosted on a single apache instance pointing at that same DocumentRoot, however each would need it's own VirtualHost and unique dns name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).
+**On the web server**:
 
-In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own apache groups via the AuthGroupFile directive and then require those groups.  
+Great, at this point the Leaf database and API should be up and running.
+
+The following is an example snippet of an `httpd.conf` file to host a single node in a Leaf deployment. 
+
+Currently each leaf client webapp must be hosted at the top level of the DocumentRoot of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same DocumentRoot, however each would need it's own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).
+
+In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.  
 
 ```xml
 <VirtualHost *:443>
@@ -166,4 +166,4 @@ $ restorecon -R -v /data/www
 ```
 
 <br>
-Next: [Step 7 - Configure Authentication with SAML2](../7_saml2)
+Next: [Step 9 - Configure Authentication with SAML2](../9_saml2)

@@ -1,11 +1,14 @@
-# 5 - Configure the appsettings file
-The <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/appsettings.json" target="_blank">appsettings.json file</a> acts as the central configuration file for your Leaf instance. 
+# 6 - Configure the appsettings file
 
-In the Leaf source code this file can be found under [src/server/API/](https://github.com/uwrit/leaf/tree/master/src/server/API) relative to the Leaf git repository root directory. After the [API is built and deployed](../5_compile), it can be found and further customized at the top level of the API.dll directory.
+![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
 
-When the API is deployed, it begins by reading the appsettings.json file within the compiled API.dll directory to determine how to authenticate users, how to display the Leaf user interface, how to compile SQL statements, and more. 
+The <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/appsettings.json" target="_blank">appsettings.json file</a> acts as the central configuration file for your Leaf instance. When the API is run, it begins by reading the `appsettings.json` file within the compiled API.dll directory to determine how to authenticate users, how to display the Leaf user interface, how to compile SQL statements, and more. 
 
-**On the web server, edit the `/var/opt/leafapi/api/appsettings.json` file to suit your usage needs** based on the parameters described below.
+In the Leaf source code this file can be found under [src/server/API/](https://github.com/uwrit/leaf/tree/master/src/server/API) relative to the Leaf git repository root directory. 
+
+As we already [compiled the API in Step 4](../4_compile_api), though, it can now be found and further customized at the top level of the API.dll directory.
+
+**On the app server, edit the `/var/opt/leafapi/api/appsettings.json` file to suit your usage needs** based on the parameters described below.
 
 ---
 
@@ -16,14 +19,14 @@ When the API is deployed, it begins by reading the appsettings.json file within 
     - **SigningKey**: `LEAF_JWT_KEY` - Name of the JWT signing key environment variable.
     - **Password**: `LEAF_JWT_KEY_PW` - Name of the JWT signing key **password** environment variable. 
     - **Certificate**: `LEAF_JWT_CERT` - Name of the environment variable which points to the `pem` file. 
-    - **Issuer**: Fully-qualified unique name for this Leaf instance (which *issues* authorized JWT tokens to users). This should match the `/CN=` value used in [Step 2 - Create a JWT Signing Key](../2_jwt). We recomended using a pattern such as `urn:leaf:issuer:leaf.<your_institution>.edu`.
+    - **Issuer**: Fully-qualified unique name for this Leaf instance (which *issues* authorized JWT tokens to users). This should match the `/CN=` value used in [Step 3 - Create a JWT Signing Key](../3_jwt). We recomended using a pattern such as `urn:leaf:issuer:leaf.<your_institution>.edu`.
 
 - **Db**
     - **App**
-        - **Connection**: Name of the Leaf app database connection string environment variable. This should always be `LEAF_APP_DB`.
+        - **Connection**: `LEAF_APP_DB` - Name of the Leaf app database connection string environment variable.
         - **DefaultTimeout**: Number of seconds allowed before a Leaf app database query times out.
     - **Clin**
-        - **Connection**:  Name of the Leaf app database connection string environment variable. This should always be `LEAF_CLIN_DB`.
+        - **Connection**: `LEAF_CLIN_DB` - Name of the Leaf app database connection string environment variable.
         - **DefaultTimeout**: Number of seconds allowed before a clinical database query times out.
 
 - **Authentication**
@@ -155,7 +158,4 @@ When the API is deployed, it begins by reading the appsettings.json file within 
 ---
 
 <br>
-The next step will depend on whether you are using Apache or IIS for deploying Leaf:
-
-- [Step 6a - Configure Apache with Leaf](../6a_configure_apache), or
-- [Step 6b - Configure IIS with Leaf](../6b_configure_iis)
+Next: [Step 7 - Set Environment Variables](../7_env)

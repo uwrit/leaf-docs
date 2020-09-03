@@ -22,3 +22,8 @@
 .md-content__button.md-icon {
     display: none;
 }
+
+/* Installation - Image size */
+img[title="Single Instance Combined"] {
+    height: 310px;
+}

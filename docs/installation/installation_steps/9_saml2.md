@@ -1,4 +1,7 @@
-# 7 - Configure Authentication with SAML2
+# 9 - Configure Authentication with SAML2
+
+![Infra](../images/infra_saml2_focus.png "Architecure-Focus-Example") 
+
 Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. <a href="https://wiki.shibboleth.net/confluence/display/SP3/Home" target="_blank">Shibboleth</a>). We rely on these implementations for integrating Leaf into your environment.
 
 ## Identity Providers (IdP)
@@ -255,3 +258,12 @@ shibboleth2.xml
 
 </SPConfig>
 ```
+
+---
+
+<br>
+If you've made it this far, awesome! You've successfully configured Leaf to run in your environment.
+
+We promise the next steps are more fun. Next we'll configure Leaf to run queries on your clinical database.
+
+Next: [Leaf Administration](/administration)

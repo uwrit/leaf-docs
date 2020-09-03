@@ -1,4 +1,7 @@
-# 3 - Set Environment Variables
+# 7 - Set Environment Variables
+
+![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
+
 Leaf uses environment variables to store sensitive information, such as connection strings, which are loaded when the API is launched. Regardless of the OS and configuration, as a best practice we recommend using environment variables specific to the user account running the Leaf API (rather than global environment variables)
 
 **Leaf environment variables with example values**:
@@ -8,7 +11,7 @@ Leaf uses environment variables to store sensitive information, such as connecti
 LEAF_JWT_CERT   = /var/opt/leafapi/.keys/cert.pem
 LEAF_JWT_KEY    = /var/opt/leafapi/.keys/leaf.pfx
 LEAF_JWT_KEY_PW = <your_pass>
-LEAF_APP_DB     = <leaf_app_db_connection_string>
+LEAF_APP_DB     = <leaf_app_db_connection_string> # App DB created in Step 1
 LEAF_CLIN_DB    = <clinical_db_connection_string>
 SERILOG_DIR     = /var/log/leaf/
 
@@ -40,7 +43,10 @@ In IIS environment variables are typically defined as configuration items in you
 
 ![IIS Environment Variable Entries](../images/iis_env_vars.png "IIS Environment Variable Entries")
 
-As IIS deployment is handled in [Step 6b - Configure IIS with Leaf](../6b_configure_iis), you can wait to set environment variables until IIS configuration is complete.
+As IIS deployment is handled in [Step 8b - Configure IIS with Leaf](../8b_configure_iis), you can wait to set environment variables until IIS configuration is complete.
 
 <br>
-Next: [Step 4 - Compile and Deploy the Leaf API](../4_compile)
+The next step will depend on whether you are using Apache or IIS for deploying Leaf:
+
+- [Step 8a - Configure Apache with Leaf](../8a_configure_apache), or
+- [Step 8b - Configure IIS with Leaf](../8b_configure_iis)
