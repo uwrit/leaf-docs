@@ -882,11 +882,20 @@ $ systemctl start leaf_api.service
 </ol>
 <h2 id="hosting-leaf-with-apache">Hosting Leaf with Apache</h2>
 <p><img alt="Infra" src="../../images/infra_web_focus.png" title="Architecure-Focus-Example" /> </p>
-<p><strong>On the web server</strong>:</p>
 <p>Great, at this point the Leaf database and API should be up and running.</p>
-<p>The following is an example snippet of an <code>httpd.conf</code> file to host a single node in a Leaf deployment. </p>
-<p>Currently each leaf client webapp must be hosted at the top level of the DocumentRoot of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same DocumentRoot, however each would need it's own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).</p>
-<p>In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.  </p>
+<ol>
+<li>
+<p><strong>From the app server</strong>, copy the <code>/build</code> directory made in <a href="../5_compile_client">Step 5 - Build the Leaf UI</a> to <code>/data/www/</code> <strong>on the web server</strong>. This will copy the Leaf Client production files over for Apache to host.</p>
+</li>
+<li>
+<p><strong>On the web server</strong>, define an <code>httpd.conf</code> file to host a single node in a Leaf deployment. </p>
+<blockquote>
+<p>Each Leaf client webapp must be hosted at the top level of the <code>DocumentRoot</code> of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same <code>DocumentRoot</code>, however each would need its own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).</p>
+</blockquote>
+<p>In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.</p>
+</li>
+</ol>
+<p>httpd.conf</p>
 <pre><code class="xml">&lt;VirtualHost *:443&gt;
 
     ServerName leaf.{subdomain}.{domain}.{tld}

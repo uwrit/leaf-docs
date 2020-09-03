@@ -990,7 +990,7 @@
 <p><strong>All columns in <code>Basic Demongraphics</code> are required</strong> - Leaf will automatically date-shift, calculate ages, and remove the HIPAA identified columns (<code>mrn</code> and <code>name</code>) depending on if the user is in <code>Identified</code> or <code>De-identified</code> mode.</p>
 </li>
 <li>
-<p><strong>The Patient Identifier column must be called <em>personId</em></strong> - While Leaf Concepts are flexible regarding the <a href="../../deploy/app/#fieldpersonid">column name for patient identifiers</a>, datasets are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf datasets when multiple Leaf instances are federated, among other reasons.</p>
+<p><strong>The Patient Identifier column must be called <em>personId</em></strong> - While Leaf Concepts are flexible regarding the column name for patient identifiers, <code>Datasets</code> are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf <code>Datasets</code> when multiple Leaf instances are federated, among other reasons.</p>
 </li>
 <li>
 <p><strong>It's okay if you don't have data for every column</strong> - Though every column must be returned in the SQL statement, it's fine to hard-code it as 'Unknown', etc. For example, <code>religion = 'Unknown'</code>.</p>
@@ -1024,7 +1024,7 @@
 <p>If you've successfully added the <code>Basic Demographics</code> dataset and can see data returned in the <code>Patient List</code> screen in the Leaf user interface, you're off to a great start. Inevitably though you'll likely want to allow users to add more datasets beyond demographics.</p>
 <p>Let's start with an example. In this case, we'll add a <a href="https://en.wikipedia.org/wiki/Platelet" target="_blank">Platelet</a> dataset which will represent platelet count laboratory tests.</p>
 <h3 id="determine-the-template-and-query">Determine the Template and Query</h3>
-<p>First, we'll determine which dataset template is the best fit for this new dataset by checking the <a href="#dataset-templates-reference">Dataset Templates Reference</a> below. In FHIR labs are generally represented as <a href="#observation">Observations</a>, but as <strong>we recommend using Dynamic datasets unless federating with other Leaf instances</strong>, we'll do so here. </p>
+<p>First, we need to decide whether we're using a <code>Dataset</code> template or dynamic query. For templates, in FHIR labs are generally represented as <a href="#observation">Observations</a>. However as <strong>we recommend using Dynamic datasets unless federating with other Leaf instances</strong>, we'll use a <strong>dynamic</strong> dataset here here. </p>
 <p>For demonstrative purposes we'll use data from the <a href="https://mimic.physionet.org/" target="_blank">MIMIC Critical Care Database</a>, but the methods here can be applied to other data models as well.</p>
 <p>Let's suppose we have a SQL table or view representing labs (including platelets) called <code>dbo.v_LABEVENTS</code> that looks like this in our SQL database:</p>
 <table>
@@ -1146,7 +1146,22 @@ WHERE LABEL = 'Platelet Count'
 <p>In Leaf, go to <code>Admin</code> -&gt; <code>Datasets</code>. Click <code>create a new one</code> on the right to add a <code>Dataset</code>.</p>
 </li>
 <li>
-<p>Copy/paste or type out your SQL statement. Make sure the green arrows on the left light up to confirm you're returning all expected columns.</p>
+<p>Set the <code>Name</code> as "Platelet Count".</p>
+</li>
+<li>
+<p>Create a new Category, "Labs", and use that as the Category.</p>
+</li>
+<li>
+<p>Set the <code>Dataset Template</code> as "Dynamic".</p>
+</li>
+<li>
+<p>Copy/paste or type out your SQL statement.</p>
+</li>
+<li>
+<p>Under <code>Expected Columns</code>, Leaf will do it's best to guess the types of your columns based on their names. Validate that the column types match those in the SQL database, and <strong>check <code>Deidentify</code> for any columns you'd like users not to view if in de-identified mode</strong>.</p>
+</li>
+<li>
+<p>Under <code>Dynamic Properties</code>, set the <code>Date Column</code> as "effectiveDate", <code>String Value Column</code> as "valueString", and <code>Numeric Value Column</code> as "valueQuantity". Leaf will use these columns when computing statistics and generating a sparkline for the <code>Dataset</code>.</p>
 </li>
 </ol>
 <h3 id="test">Test</h3>
