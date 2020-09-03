@@ -84,9 +84,9 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
         - **ApiURI**: URI for the REDCap instance you wish to export to. This should be of the form: `https://<your_redcap_instance>.org/api/`
         - **BatchSize**: Number of rows per batch which Leaf will use to export data to REDCap. We recommend `10`.
         - **RowLimit**: Maximum number of rows of data which Leaf will export to REDCap.
-        - **Scope**: Scope value to add to the end of a user name when granting them ownership of a new REDCap project. 
+        - **Scope**: Scoped value to add to the end of a user name when granting them ownership of a new REDCap project. 
         
-            For example, if user `james007` is using Leaf and the scope is `mi6.uk.gov`, Leaf will set the project owner as `james007@mi6.uk.gov`.
+            For example, if user `james007` is using Leaf and the `Scope` is `mi6.uk.gov`, Leaf will set the project owner as `james007@mi6.uk.gov`.
 
         - **SuperToken**: `LEAF_REDCAP_SUPERTOKEN` - Name of the REDCap Super Token environment variable.
 

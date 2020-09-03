@@ -4,7 +4,7 @@
 
 <a><img src="images/leaf.svg" width="120px" align="left" hspace="10" vspace="6"></a>
 
-**Leaf** is a powerful, fun, lightweight web application for querying clinical data. Leaf helps query clinical databases of nearly any data model for cohort estimation and data extraction. Leaf seamlessly integrates with clinical databases and existing enterprise authentication systems to unleash the potential of translational biomedical research.
+**Leaf** is a powerful, fun, lightweight web application for querying clinical data. Leaf helps query clinical databases of nearly any data model for cohort estimation and data extraction, and seamlessly integrates with clinical databases and existing enterprise authentication systems to unleash the potential of translational biomedical research.
 
 ##
 <span style="display:block">

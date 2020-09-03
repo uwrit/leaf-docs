@@ -60,7 +60,7 @@ FROM dbo.visit_occurrence AS o
 | A         | 456                 | 2015-05-28       | 2015-06-07     | site1        | IP              |
 | B         | 789                 | 2014-09-01       | 2014-09-01     | site2        | ED              |
 
-Pretty straightforward so far. After creating the views in the database, let's start by configuring Leaf's [SQL compiler configuration](../../deploy/app/#compiler), which is stored in your compiled API under `/api/appsettings.json`:
+Pretty straightforward so far. After creating the views in the database, let's start by configuring Leaf's SQL compiler, which is stored in your compiled API under `/leafapi/api/appsettings.json`:
 
 <p align="center"><img src="../images/compiler.gif"/></p>
 
@@ -93,9 +93,7 @@ We want to allow users to query Concepts using our two new views, `v_person` and
 
 6. Under `Date Field`, fill in `@.visit_start_date`, which you'll recall is the first date field on the `v_visit_occurrence` view. Don't forget to prepend the alias placeholder `@.` before the field name.
 
-7. Click `Save` at the top. Now we are ready to make a few Concepts that use our `v_person` and `v_visit_occurrence` views. 
-
-8. Click `Back to Concept Editor` in the upper-right.
+7. Click `Save` at the top. Now we are ready to make a few Concepts that use our `v_person` and `v_visit_occurrence` views.
 
 ## Creating Concepts
 We've successfully created `SQL Sets` for our views, so we can now create Concepts that users can interact with.
@@ -112,7 +110,7 @@ Encounters
 ├── Outpatient
 ```
 
-Click `Back to Concept Editor`, then `+Create New Concept`.
+Go to `Admin` -> `Concepts`, then click `+Create New Concept`.
 
 ### Demographics
 <p align="center"><img src="../images/concept_demographics.gif"/></p>
