@@ -55,6 +55,5 @@ The following IIS guide assumes you are using a combined web & app single server
 
 10. If you have not yet created the environment variables for IIS (as described in [Step 7 - Set Environment Variables](../7_env)), do so now.
 
-
 <br>
 Next: [Step 9 - Configure Authentication with SAML2](../9_saml2)
