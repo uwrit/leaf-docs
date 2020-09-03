@@ -1,4 +1,4 @@
-# SAML2 Support
+# 7 - Configure Authentication with SAML2
 Leaf delegates support of SAML2 authentication and authorization mechanisms to the various battle-tested and well supported implementations from the open source community (e.g. <a href="https://wiki.shibboleth.net/confluence/display/SP3/Home" target="_blank">Shibboleth</a>). We rely on these implementations for integrating Leaf into your environment.
 
 ## Identity Providers (IdP)

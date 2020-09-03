@@ -1,12 +1,4 @@
-# Leaf
-
-**Leaf** is a powerful, fun, lightweight web application for querying clinical data. Leaf helps query clinical databases of nearly any data model for cohort estimation and data extraction. Leaf seamlessly integrates with clinical databases and existing enterprise authentication systems to unleash the potential of translational biomedical research.
-
-## Resources
-- [How can Leaf help with research?](#how-can-leaf-help-with-research)
-- [Where Leaf is used](#where-leaf-is-used)
-
-## How can Leaf help with research?
+# How can Leaf help biomedical research?
 Clinical databases are often the starting point for gathering data for nearly any kind biomedical research, whether in assessing feasibility of <a href="https://en.wikipedia.org/wiki/Clinical_trial" target="_blank">clinical trials</a>, prep to research, <a href="https://en.wikipedia.org/wiki/Retrospective_cohort_study" target="_blank">retrospective research</a>, or <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank">data science</a> and <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">machine learning</a>. It's also often the case that academic medical centers have many more brilliant researchers, clinicians, and trainees eager to test hypotheses and *use* data than there are informaticians able to *extract* it.
 
 **Leaf is a simple drag-and-drop web application that queries clinical databases, so users can focus on accomplishing research, not waiting for data.**
@@ -36,6 +28,3 @@ While Leaf can't solve every clinical data problem, it has enabled and helped hu
 * <a>Demographic, clinical and immunologic correlates among a cohort of 50 cocaine users demonstrating anti-neutrophil cytoplasmic antibodies (currently in review)</a>
 * <a href="https://acrabstracts.org/abstract/the-interferon-gamma-release-assay-is-a-novel-predictor-of-disease-activity-in-systemic-lupus-erythematosus/">The Interferon Gamma Release Assay Is a Novel Predictor of Disease Activity in Systemic Lupus Erythematosus</a>
 * <a href="https://acrabstracts.org/abstract/pharmacist-managed-titration-of-urate-lowering-therapy-to-streamline-gout-management/">A Pharmacist Managed Titration of urate-lowering therapy to streamline gout management</a>
-
-## Where Leaf is used
-A production Leaf instance is hosted at <a href="https://www.uwmedicine.org/" target="_blank">UW Medicine</a> at the <a href="https://www.washington.edu/" target="_blank">University of Washington</a> in Seattle, USA. The <a href="https://www.iths.org/" target="_blank">Institute of Translational Health Sciences</a>, also at the University of Washington and a key partner of our team, has a page about Leaf here <a href="https://www.iths.org/investigators/services/bmi/leaf" target="_blank">https://www.iths.org/investigators/services/bmi/leaf</a> if you are interested.

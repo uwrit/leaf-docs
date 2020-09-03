@@ -1,4 +1,4 @@
-# Building and deploying the Leaf client application
+# 5 - Compile the Leaf Client
 The Leaf client application is written in <a href="https://reactjs.org/" target="_blank">React</a> and <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> using <a href="https://www.npmjs.com/" target="_blank">Node Package Manager, or NPM</a> and <a href="https://github.com/facebook/create-react-app" target="_blank">Create React App</a>, a bootstrapping library maintained by Facebook. 
 
 * [Installing dependencies](#installing-dependencies)

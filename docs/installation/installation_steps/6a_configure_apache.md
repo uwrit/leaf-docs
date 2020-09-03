@@ -1,4 +1,64 @@
-# Configuring Leaf Client with Apache
+# 6a - Configure Leaf with Apache
+In general, Leaf works quite well when deployed with Apache. In this section, we'll:
+
+1. Deploy the Leaf API on the app server.
+2. Host the Leaf client using Apache on the web server.
+
+## Deploying the API as a Service
+We'll start by deploying the Leaf API as a service using `systemctl`. A few things to note:
+
+- Once built, the API service should be run with a service account that is not an administrative user.
+- The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.
+
+**On the app server**:
+
+1. Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.
+
+        ```bash
+        useradd -r api_svc_account
+        chown /var/log/leaf/
+        chown -R /var/opt/leaf/
+        ```
+
+2. Create a service file for the API instance. The WorkingDirectory must be the directory where API.dll resides.
+
+        ```bash
+        ## /var/opt/leafapi/services/leaf_api.service
+
+        [Unit]
+        Description=Leaf API Service
+
+        [Service]
+        EnvironmentFile=/var/opt/leafapi/services/leaf_api.service.conf
+        User=api_svc_account
+        Type=idle
+        TimeoutStartSec=300
+        TimeoutStopSec=30
+        WorkingDirectory=/var/opt/leafapi/api/
+        ExecStart=/usr/bin/dotnet API.dll 
+
+        [Install]
+        WantedBy=multi-user.target
+        ```
+
+3. Last, link your service file with systemd, and make it aware of the service:
+
+        ```bash
+        # Create a symbolic link into the systemd directory
+        ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+
+        # Make the systemd aware of the service
+        systemctl daemon-reload
+        ```
+
+        To start the service:
+
+        ```bash
+        systemctl start leaf_api.service
+        ```
+
+## Hosting Leaf with Apache
+Great, at this point the Leaf app server 
 
 The following is an example snippet of an httpd.conf file to host a single node in a Leaf deployment. 
 
@@ -88,20 +148,22 @@ By default with SELinux enabled httpd connections to other apps not located on l
 
 To enable httpd connections to non-standard ports: 
 
-```
-setsebool -P httpd_can_network_connect on
+```bash
+$ setsebool -P httpd_can_network_connect on
 ```
 
 Depending on which ports you use for your API service you may need enable other booleans (ie httpd_can_network_connect_db, httpd_use_openstack). To see the complete list of variables on your system and their present status:
 
-```
-getsebool -a  | grep httpd
+```bash
+$ getsebool -a  | grep httpd
 ```
 
 If you decide to use non-standard directory to host your webapp you will also need to re-label the files in that directory so that httpd can properly access the webapp files. Using the location in the example above:
 
-```
-semanage fcontext -a -t httpd_sys_content_t "/data/www(/.*)?"
-restorecon -R -v /data/www
+```bash
+$ semanage fcontext -a -t httpd_sys_content_t "/data/www(/.*)?"
+$ restorecon -R -v /data/www
 ```
 
+<br>
+Next: [Step 7 - Configure Authentication with SAML2](../7_saml2)

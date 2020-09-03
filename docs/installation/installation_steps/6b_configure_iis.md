@@ -1,7 +1,8 @@
-# IIS
-- [Single Combined IIS/API Server](#single-combined-iis/api-server)
+# 6b - Configure Leaf with IIS
+The following IIS guide assumes you are using a combined web & app single server to both host the Leaf API and handle user traffic.
 
-## Single Combined IIS/API Server
+**On the web/app server**:
+
 1. Install the [.NET Core Hosting Bundle](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2)
 2. Install [IIS URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite)
 3. Install [Shibboleth Service Provider 3](https://wiki.shibboleth.net/confluence/display/SP3/Install+on+Windows#InstallonWindows-Installation)
@@ -17,12 +18,12 @@
 7. Create an application behind the site to host the API.
 <p align="center"><img src="../../images/iis_api.png" /></p>
 
-    - Note: Do NOT name the API application "api", this will cause the rewrite rule to apply recursively until the request fails. At UW we name the backing application "leafapi".
+    - Note: **Do NOT name the API application "api"**, as this will cause the rewrite rule to apply recursively until the request fails. At UW we name the backing application "leafapi".
    
 8. Create a URL rewrite rule on the site with the following template.
 <p align="center"><img src="../../images/iis_url_rewrite.png" /></p>
 
-    - Note: Be sure the `Append query string` box is checked. If not, API calls for Concept search will fail.
+    - Note: **Be sure the `Append query string` box is checked**. If not, API calls for Concept search will fail.
 
     **web.config**
 
@@ -32,7 +33,7 @@
                 <rules>
                     <rule name="add {applicationName}">
                         <match url="^(api/.*)" />
-                        <action type="Rewrite" url="{applicationName}/{R:0}" appendQueryString="false" logRewrittenUrl="true" />
+                        <action type="Rewrite" url="{applicationName}/{R:0}" appendQueryString="true" logRewrittenUrl="true" />
                     </rule>
                 </rules>
             </rewrite>
@@ -49,5 +50,8 @@
             ...additional configuration
         </system.webServer>
 
-10. Configure Shibboleth SP3 for the site and api.
-    - See [SAML2](../../saml2) configuration documentation.
+10. If you have yet created the environment variables for IIS (as described in [Step 3 - Set Environment Variables](../3_env)), do so now.
+
+
+<br>
+Next: [Step 7 - Configure Authentication with SAML2](../7_saml2)
