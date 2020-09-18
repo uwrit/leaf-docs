@@ -793,7 +793,7 @@
 <p>In general, we recommend using <code>CTE</code>, though if you are finding that one particularly expensive panel's query slows down or times out the entire CTE query, <code>PARALLEL</code> may be a good option.</p>
 </li>
 <li>
-<p><strong>MaxParallelThreads</strong>: Maximum number of allowed concurrent queries to execute if the <code>PARALLEL</code> <code>QueryStrategy</code>.Defaults to <code>5</code> if this value is absent.</p>
+<p><strong>MaxParallelThreads</strong>: Maximum number of allowed concurrent queries to execute if the <code>PARALLEL</code> <code>QueryStrategy</code>. Defaults to <code>5</code> if this value is absent.</p>
 </li>
 </ul>
 </li>
@@ -870,8 +870,6 @@
 <li>
 <p><strong>Cohort</strong></p>
 <ul>
-<li><strong>SetCohort</strong>: <code>app.Cohort</code> - Name of the Leaf application database table which stores cached patient identifiers. Do not change this value.</li>
-<li><strong>FieldCohortPersonId</strong>: <code>PersonId</code> - Name of the field in the Leaf application database table which represents patient identifiers. Do not change this value.</li>
 <li><strong>RowLimit</strong>: Maximum allowed number of unique patients which Leaf will cache for a given query. If a user's query exceeds this number, Leaf will not generate Visualization or Patient List screen data.</li>
 <li><strong>ExportLimit</strong>: Maximum allowed number of unique patients which Leaf will export to REDCap.</li>
 </ul>
