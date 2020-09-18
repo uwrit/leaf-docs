@@ -41,7 +41,7 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
 
                 In general, we recommend using `CTE`, though if you are finding that one particularly expensive panel's query slows down or times out the entire CTE query, `PARALLEL` may be a good option.
 
-            - **MaxParallelThreads**: Maximum number of allowed concurrent queries to execute if the `PARALLEL` `QueryStrategy`.Defaults to `5` if this value is absent.
+            - **MaxParallelThreads**: Maximum number of allowed concurrent queries to execute if the `PARALLEL` `QueryStrategy`. Defaults to `5` if this value is absent.
 
 - **Authentication**
     - **Mechanism**: `SAML2 | UNSECURED` - Only `SAML2` is currently supported for production. Use `UNSECURED` for development.
@@ -87,8 +87,6 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
     - **FieldEncounterId**: SQL field that must be present on every SQL object Leaf will query which has a one-to-many relationship to patients, such that patients can have many over time. This field uniquely identifies for encounters, and is usually a value such as `visit_occurrence_id`, `ENCOUNTER_NUM`, or `EncounterId`.
 
 - **Cohort**
-    - **SetCohort**: `app.Cohort` - Name of the Leaf application database table which stores cached patient identifiers. Do not change this value.
-    - **FieldCohortPersonId**: `PersonId` - Name of the field in the Leaf application database table which represents patient identifiers. Do not change this value.
     - **RowLimit**: Maximum allowed number of unique patients which Leaf will cache for a given query. If a user's query exceeds this number, Leaf will not generate Visualization or Patient List screen data.
     - **ExportLimit**: Maximum allowed number of unique patients which Leaf will export to REDCap.
 
