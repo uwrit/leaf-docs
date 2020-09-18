@@ -28,6 +28,20 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
     - **Clin**
         - **Connection**: `LEAF_CLIN_DB` - Name of the Leaf app database connection string environment variable.
         - **DefaultTimeout**: Number of seconds allowed before a clinical database query times out.
+        - **Cohort**: 
+            - **QueryStrategy**: `CTE | PARALLEL` - `CTE` queries wrap individual Leaf panel SQL within a single larger CTE query, and leverage the SQL engine to find the intersect. `PARALLEL` queries are performed concurrently by the Leaf API, which then map/reduces the results to find the intersect.
+
+                Given the following example query:
+
+                ![CTEvsParallelUI](../images/cte_vs_parallel_ui.png "CTEvsParallelUI")
+
+                Leaf would generate SQL similar to (formatted for readability):
+
+                ![CTEvsParallel](../images/cte_vs_parallel_query.png "CTEvsParallel")
+
+                In general, we recommend using `CTE`, though if you are finding that one particularly expensive panel's query slows down or times out the entire CTE query, `PARALLEL` may be a good option.
+
+            - **MaxParallelThreads**: Maximum number of allowed concurrent queries to execute if the `PARALLEL` `QueryStrategy`.Defaults to `5` if this value is absent.
 
 - **Authentication**
     - **Mechanism**: `SAML2 | UNSECURED` - Only `SAML2` is currently supported for production. Use `UNSECURED` for development.
@@ -88,7 +102,16 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
         
             For example, if user `james007` is using Leaf and the `Scope` is `mi6.uk.gov`, Leaf will set the project owner as `james007@mi6.uk.gov`.
 
+        - **IncludeScopeInUsername**: By default, when Leaf concludes a REDCap export, it gives REDCap a project owner of the form:
+
+            `<current_leaf_username>` + `@` + `<scope_defined_above>`
+
+            To use only `<current_leaf_username>` as the username, set this value to `false`. 
+
         - **SuperToken**: `LEAF_REDCAP_SUPERTOKEN` - Name of the REDCap Super Token environment variable.
+
+    - **CSV**
+         - **Enabled**: `true | false` - Value which indicates whether CSV export is enabled.
 
 - **Import**
     - **REDCap**
