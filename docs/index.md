@@ -24,6 +24,6 @@
 
 ## Getting Started
 * [Installation](installation)
-* [How Leaf can help accomplish research](about/#how-can-leaf-help-with-research)
+* [How Leaf can help accomplish research](leaf_help_research)
 * See a demo of Leaf in action <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a>
 * Learn more about Leaf's role in clinical informatics and background in the manuscript [Leaf: an open-source, model-agnostic, data-driven web application for cohort discovery and translational biomedical research](https://academic.oup.com/jamia/advance-article/doi/10.1093/jamia/ocz165/5583724)
