@@ -781,6 +781,22 @@
 <li><strong>Clin</strong><ul>
 <li><strong>Connection</strong>: <code>LEAF_CLIN_DB</code> - Name of the Leaf app database connection string environment variable.</li>
 <li><strong>DefaultTimeout</strong>: Number of seconds allowed before a clinical database query times out.</li>
+<li>
+<p><strong>Cohort</strong>: </p>
+<ul>
+<li>
+<p><strong>QueryStrategy</strong>: <code>CTE | PARALLEL</code> - <code>CTE</code> queries wrap individual Leaf panel SQL within a single larger CTE query, and leverage the SQL engine to find the intersect. <code>PARALLEL</code> queries are performed concurrently by the Leaf API, which then map/reduces the results to find the intersect.</p>
+<p>Given the following example query:</p>
+<p><img alt="CTEvsParallelUI" src="../../images/cte_vs_parallel_ui.png" title="CTEvsParallelUI" /></p>
+<p>Leaf would generate SQL similar to (formatted for readability):</p>
+<p><img alt="CTEvsParallel" src="../../images/cte_vs_parallel_query.png" title="CTEvsParallel" /></p>
+<p>In general, we recommend using <code>CTE</code>, though if you are finding that one particularly expensive panel's query slows down or times out the entire CTE query, <code>PARALLEL</code> may be a good option.</p>
+</li>
+<li>
+<p><strong>MaxParallelThreads</strong>: Maximum number of allowed concurrent queries to execute if the <code>PARALLEL</code> <code>QueryStrategy</code>.Defaults to <code>5</code> if this value is absent.</p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -875,8 +891,19 @@
 <p>For example, if user <code>james007</code> is using Leaf and the <code>Scope</code> is <code>mi6.uk.gov</code>, Leaf will set the project owner as <code>james007@mi6.uk.gov</code>.</p>
 </li>
 <li>
+<p><strong>IncludeScopeInUsername</strong>: By default, when Leaf concludes a REDCap export, it gives REDCap a project owner of the form:</p>
+<p><code>&lt;current_leaf_username&gt;</code> + <code>@</code> + <code>&lt;scope_defined_above&gt;</code></p>
+<p>To use only <code>&lt;current_leaf_username&gt;</code> as the username, set this value to <code>false</code>. </p>
+</li>
+<li>
 <p><strong>SuperToken</strong>: <code>LEAF_REDCAP_SUPERTOKEN</code> - Name of the REDCap Super Token environment variable.</p>
 </li>
+</ul>
+</li>
+<li>
+<p><strong>CSV</strong></p>
+<ul>
+<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether CSV export is enabled.</li>
 </ul>
 </li>
 </ul>
