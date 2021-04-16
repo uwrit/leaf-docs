@@ -11,7 +11,7 @@ theme:
   #custom_dir: material
   palette:
       primary: teal
-      accent: pink
+      accent: blue #pink
   features:
       - navigation.tabs
       - navigation.sections

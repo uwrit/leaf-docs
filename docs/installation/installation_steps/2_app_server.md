@@ -29,19 +29,18 @@ $ git clone git@github.com:uwrit/leaf.git
 
 ## Prerequisites
 
-### Linux
-CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
-<a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.
+=== "Linux"
+    CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
+    <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.
 
+    At the time of this writing, installing .NET on CentOS/RHEL looks like this:
+    ```bash
+    $ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
+    $ yum install -y dotnet-sdk-3.1
+    ```
 
-At the time of this writing, installing .NET on CentOS/RHEL looks like this:
-```bash
-$ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-$ yum install -y dotnet-sdk-3.1
-```
-
-### Windows
-Ensure that IIS8+ is installed on the intended app server. See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012" target="_blank">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a>.
+=== "Windows"
+    Ensure that IIS8+ is installed on the intended app server. See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012" target="_blank">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a>.
 
 
 <br>

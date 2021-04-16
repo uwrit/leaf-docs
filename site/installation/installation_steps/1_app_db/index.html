@@ -891,7 +891,10 @@
 <p class="admonition-title">Info</p>
 <p>Details on why the databases need to be on the same server can be found on the <a href="../../../faqs_and_troubleshooting/installation_questions/#why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server">FAQs and Troubleshooting page</a></p>
 </div>
-<p>We recommend also creating a Leaf-specific user account and password for the API to use later, though this isn't a requirement.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We recommend also <strong>creating a Leaf-specific service account and password</strong> for the API to use later, though this isn't a requirement.</p>
+</div>
 </li>
 <li>
 <p>Populate the database <code>tables</code>, <code>stored procedures</code>, and <code>functions</code> using the <a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.Schema.sql" target="_blank">LeafDB.Schema.sql</a> script.</p>

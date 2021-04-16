@@ -1036,8 +1036,14 @@
 <li><code>/api/user</code>   --&gt; Token generation endpoint.</li>
 </ul>
 <p>In a non-federated deployment, you can also elect to protect the entire API surface.</p>
-<p><strong>Caution</strong>: If you are running Leaf's React application at the root of an IIS Server (e.g. <code>leaf.uwmedicine.org</code> instead of <code>leaf.uwmedicine.org/leaf</code>), <strong>make sure to make <code>leaf.uwmedicine.org/leafApi</code> unprotected also.</strong></p>
-<p>Protecting the root of the React app <code>leaf.uwmedicine.org</code> in Shibboleth will automatically make all sub paths protected. If exceptions are only made for requests with the <code>/api</code> path (except for <code>/api/config</code> and <code>/api/user/</code>, noted above), once the URL Rewrite rule changes the request to the <code>/leafApi</code> path, Shibboleth will intercept this request and not allow the React App to call the API. This will break the application.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are running Leaf's React application at the root of an IIS Server (e.g. <code>leaf.uwmedicine.org</code> instead of <code>leaf.uwmedicine.org/leaf</code>), <strong>make sure to leave</strong> <code>leaf.uwmedicine.org/leafApi</code> <strong>unprotected also</strong></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Protecting the root of the React app (e.g., <code>leaf.uwmedicine.org</code>) in Shibboleth will automatically make all sub-paths protected. <strong>If exceptions are only made for requests with the</strong> <code>/api</code> <strong>path</strong> (except for <code>/api/config</code> and <code>/api/user/</code>, noted above), once the IIS URL Rewrite rule changes the request to the <code>/leafApi</code> path, Shibboleth will intercept this request and not allow the React App to call the API - <strong>this will break the application</strong></p>
+</div>
 <h2 id="web-servers">Web Servers<a class="headerlink" href="#web-servers" title="Permanent link">¶</a></h2>
 <h3 id="iis">IIS<a class="headerlink" href="#iis" title="Permanent link">¶</a></h3>
 <p>IIS requires a specific <code>ISAPI</code> element within the <code>InProcess</code> element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS <code>InProcess</code> element looks like:
@@ -1070,7 +1076,7 @@
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¶</a></h2>
 <h3 id="iisadfs">IIS/ADFS<a class="headerlink" href="#iisadfs" title="Permanent link">¶</a></h3>
 <p>Configure Shibboleth SP3 with IIS and ADFS 3.0.</p>
-<p>shibboleth2.xml
+<p><code>shibboleth2.xml</code>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;SPConfig</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">xmlns:conf=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">clockSkew=</span><span class="s">&quot;180&quot;</span><span class="nt">&gt;</span>
@@ -1158,7 +1164,7 @@
 
 <span class="nt">&lt;/SPConfig&gt;</span>
 </code></pre></div></p>
-<p>attribute-map.xml
+<p><code>attribute-map.xml</code>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;Attributes</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:2.0:attribute-map&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&quot;</span> <span class="na">id=</span><span class="s">&quot;nameID&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;http://schemas.microsoft.com/ws/2008/06/identity/claims/role&quot;</span> <span class="na">id=</span><span class="s">&quot;groups&quot;</span> <span class="nt">/&gt;</span>
@@ -1167,7 +1173,7 @@
 The above example could be highly variable depending on your ADFS IdP set up, and how your relying party's claims are configured.</p>
 <h3 id="apacheshibboleth">Apache/Shibboleth<a class="headerlink" href="#apacheshibboleth" title="Permanent link">¶</a></h3>
 <p>Configure Shibboleth SP3 with Apache and Shibboleth IdP. This example uses InCommon Federation metadata, but would only allow authentication by the specified IdP.</p>
-<p>shibboleth2.xml
+<p><code>shibboleth2.xml</code>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;SPConfig</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">xmlns:conf=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">clockSkew=</span><span class="s">&quot;180&quot;</span><span class="nt">&gt;</span>
@@ -1244,7 +1250,6 @@ The above example could be highly variable depending on your ADFS IdP set up, an
 <span class="nt">&lt;/SPConfig&gt;</span>
 </code></pre></div></p>
 <hr />
-<p><br></p>
 <div class="admonition success">
 <p class="admonition-title">If you've made it this far, awesome! You've successfully configured Leaf to run in your environment.</p>
 </div>

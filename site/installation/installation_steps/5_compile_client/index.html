@@ -913,7 +913,10 @@
 <p><img alt="Infra" src="../../images/infra_app_focus.png" title="Architecure-Focus-Example" /> </p>
 <p>The Leaf client application is written in <a href="https://reactjs.org/" target="_blank">React</a> and <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> using <a href="https://www.npmjs.com/" target="_blank">Node Package Manager (NPM)</a> and <a href="https://github.com/facebook/create-react-app" target="_blank">Create React App</a>, a bootstrapping library maintained by Facebook. </p>
 <p>Like the Leaf API, Leaf Client as available on GitHub is not yet built for production.</p>
-<p>As an alternative to compiling the client yourself, you may also download the latest pre-built Leaf client from the <a href="https://github.com/uwrit/leaf/releases">Leaf Releases page on GitHub</a>. If you download the pre-built version, you can skip ahead to <a href="../6_appsettings">6 - Configure the appsettings file</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Like the Leaf API, as an alternative to compiling the client code yourself, you may also download the latest pre-built Leaf client from the <a href="https://github.com/uwrit/leaf/releases">Leaf Releases page on GitHub</a>. If you download the pre-built version, you can skip ahead to <a href="../6_appsettings">6 - Configure the appsettings file</a>.</p>
+</div>
 <p>In case you're wondering why we're building the Leaf client on the <strong><em>app</em></strong> server (rather than the <strong><em>web</em></strong> server), it's because we've downloaded the Leaf source code on the app server, so for now that's where we'll start. Later, if using a separate web server, we'll copy the production client build code to the web server.</p>
 <ol>
 <li>

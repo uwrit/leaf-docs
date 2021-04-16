@@ -7,11 +7,17 @@
 **Leaf** is a powerful, fun, lightweight web application for querying clinical data. Leaf helps query clinical databases of nearly any data model for cohort estimation and data extraction, and seamlessly integrates with existing enterprise authentication systems to unleash the potential of translational biomedical research.
 
 <span style="display:block">
-   <img src="images/uw.png" width="150px" />
+    <a href="https://www.uwmedicine.org/" target="_blank">
+        <img src="../../images/uw.png" width="150px" />
+    </a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img src="images/iths.png" width="280px" />
+   <a href="https://www.iths.org/investigators/services/bmi/leaf/" target="_blank">
+        <img src="../../images/iths.png" width="280px" />
+    </a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img src="images/cd2h.png" width="180px" />
+   <a href="https://cd2h.org/" target="_blank"> 
+        <img src="../../images/cd2h.png" width="180px" />
+    </a>
 </span>
 
 ## Why Leaf?

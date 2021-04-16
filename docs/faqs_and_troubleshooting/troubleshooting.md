@@ -13,13 +13,13 @@
 
     1. **Check that your API is up-and-running** - the Leaf client will only give you vague, indirect information about where the failure lies (note that this is *by design* and largely for security reasons). There are a number of ways to check if your API is running, including `systemctl status` or `apachectl status` (if on Linux), the IIS user interface or Event Viewer (if on Windows), or `docker ps -a` / `podman ps -a` (if using containers). Choose the best method appropriate for your deployment.
 
-        Perhaps most simply, **check the Leaf API logs**. These will tell you immediately whether the Leaf API successfully started, and/or any errors it has run into along with way. Remember that **Leaf API files are stored in the directory you set as your [SERILOG_DIR](../installation/installation_steps/7_env/)**. This can be as simple as:
+        Perhaps most simply, **check the Leaf API logs**. These will tell you immediately whether the Leaf API successfully started, and/or any errors it has run into along with way. Remember that **Leaf API files are stored in the directory you set as your [SERILOG_DIR](../installation/installation_steps/7_env.md)**. This can be as simple as:
 
         ```sh
         $ tail -10 /$SERILOG_DIR/leaf-api-<todays_date>.log
         ```
 
-        **If the API is not running**, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for `"Error":"System.Data.SqlClient.SqlException"`). These cases are nearly always due to incorrect SQL passwords or usernames configured in your [environment variables](../installation/installation_steps/7_env/).
+        **If the API is not running**, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for `"Error":"System.Data.SqlClient.SqlException"`). These cases are nearly always due to incorrect SQL passwords or usernames configured in your [environment variables](../installation/installation_steps/7_env.md).
 
     2. **Check that your browser can communicate with the API** - If the API appears to be up, in a separate browser tab, go to `https://<your_leaf_url>/api/config`. 
 
@@ -53,7 +53,7 @@
 
 ### API Error: "Value cannot be null. (Parameter 'path1')"
 ??? tldr "Answer"
-    This occurs if the API is unable to read your [environment variables](../installation/installation_steps/7_env/) correctly. Check to make sure those are configured and visible to the API.
+    This occurs if the API is unable to read your [environment variables](../../../installation/installation_steps/7_env) correctly. Check to make sure those are configured and visible to the API.
 
 ### API Error: "nameID header not found, no scoped identity available"
 ??? tldr "Answer"

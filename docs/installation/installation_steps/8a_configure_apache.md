@@ -9,48 +9,55 @@ In general, Leaf works quite well when deployed with Apache. In this section, we
 
 ![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
 
-We'll start by deploying the Leaf API as a service using `systemctl`. A few things to note:
+We'll start by deploying the Leaf API as a service using `systemctl`.
 
-- Once built, the API service should be run with a service account that is not an administrative user.
-- The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.
+!!! info "Once built, the API service should be run with a service account that is not an administrative user"
+
+!!! info "The API host firewall will need to allow inbound communication on the chosen port to the Apache web server"
 
 **On the app server**:
 
 1. Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.
 
-        $ useradd -r api_svc_account
-        $ chown /var/log/leaf/
-        $ chown -R /var/opt/leaf/
+    ```sh
+    $ useradd -r api_svc_account
+    $ chown /var/log/leaf/
+    $ chown -R /var/opt/leaf/
+    ```
 
-2. Create a service file for the API instance. The WorkingDirectory must be the directory where API.dll resides.
+2. Create a service file for the API instance. The `WorkingDirectory` must be the directory where `API.dll` resides.
 
-        ## /var/opt/leafapi/services/leaf_api.service
+    **`/var/opt/leafapi/services/leaf_api.service`**
 
-        [Unit]
-        Description=Leaf API Service
+    ```
+    [Unit]
+    Description=Leaf API Service
 
-        [Service]
-        EnvironmentFile=/var/opt/leafapi/services/leaf_api.service.conf
-        User=api_svc_account
-        Type=idle
-        TimeoutStartSec=300
-        TimeoutStopSec=30
-        WorkingDirectory=/var/opt/leafapi/api/
-        ExecStart=/usr/bin/dotnet API.dll 
+    [Service]
+    EnvironmentFile=/var/opt/leafapi/services/leaf_api.service.conf
+    User=api_svc_account
+    Type=idle
+    TimeoutStartSec=300
+    TimeoutStopSec=30
+    WorkingDirectory=/var/opt/leafapi/api/
+    ExecStart=/usr/bin/dotnet API.dll 
 
-        [Install]
-        WantedBy=multi-user.target
+    [Install]
+    WantedBy=multi-user.target
+    ```
 
-3. Last, link your service file with systemd, and make it aware of the service:
+3. Last, link your service file with `systemd` and make it aware of the service:
 
-        # Create a symbolic link into the systemd directory
-        $ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+    ```sh
+    # Create a symbolic link into the systemd directory
+    $ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
 
-        # Make the systemd aware of the service
-        $ systemctl daemon-reload
+    # Make the systemd aware of the service
+    $ systemctl daemon-reload
 
-        # Start the service
-        $ systemctl start leaf_api.service
+    # Start the service
+    $ systemctl start leaf_api.service
+    ```
 
 ## Hosting Leaf with Apache
 
@@ -62,11 +69,12 @@ Great, at this point the Leaf database and API should be up and running.
 
 2. **On the web server**, define an `httpd.conf` file to host a single node in a Leaf deployment. 
 
-    > Each Leaf client webapp must be hosted at the top level of the `DocumentRoot` of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same `DocumentRoot`, however each would need its own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).
+    !!! info 
+        Each Leaf client webapp must be hosted at the top level of the `DocumentRoot` of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same `DocumentRoot`, however each would need its own VirtualHost and unique DNS name defined (e.g., site1.leaf.school.edu, site2.leaf.school.edu).
 
     In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.
 
-httpd.conf
+**`httpd.conf`**
 
 ```xml
 <VirtualHost *:443>

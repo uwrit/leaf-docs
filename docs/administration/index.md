@@ -9,6 +9,8 @@ In this section, we'll walk through:
 
 2. [Datasets, for viewing row-level cohort data](./datasets)
 
+    !!! info "See also the [Datasets Reference Guide](dataset_template_reference.md)"
+
     <p align="center"><img src="images/dataset_add.gif"/></p>
 
 2. [Networking Multiple Leaf Instances](./federation)

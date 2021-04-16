@@ -9,7 +9,7 @@
         <img src="../../images/iths.png" width="280px" />
     </a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <a href="https://ctsa.ncats.nih.gov/cd2h/" target="_blank"> 
+   <a href="https://cd2h.org/" target="_blank"> 
         <img src="../../images/cd2h.png" width="180px" />
     </a>
 </span>

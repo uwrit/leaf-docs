@@ -4,7 +4,7 @@ One powerful feature of Leaf is the ability to federate user queries to multiple
 !!! info 
     Networking with other Leaf instances is **100% opt-in** functionality. Deploying locally and querying only your institution's data is perfectly fine.
 
-![Multi Instance](../images/multi_instance_no_header.png "Multi Instance")
+<p align="center"><img src="../images/multi_instance_no_header.png"/></p>
 
 ### Building Blocks
 Leaf achieves safe federation by leveraging existing web technology to establish cryptographic trust between instances. This mechanism is virtually identical to the way that SAML2 federated authentication establishes trust and is built on JSON Web Tokens (JWT). The core building block of federated communication is a uni-directional channel; composing two uni-directional channels together provides the bi-directional query functionality of mutually federated instances. Federation is opt-in and requires that two instances be in agreement about their relationship. A single endpoint can be configured in either, or both, of the following states:
@@ -28,22 +28,22 @@ An `Interrogator` endpoint is an instance of Leaf's API that will be allowed to 
 #### Bi-directional Federation
 In this (most common) example, two nodes A and B wish to query each other. This configuration requires that A registers B as a `Responder` and `Interrogator`, and B registers A as a `Responder` and `Interrogator`. The following screenshots illustrate A and B's admin panel screen, respectively.
 
-<div>Instance A's screen:</div>
+=== "Instance A's networking configuration"
 
-![Mutual Federation A](../images/fed_mutual_a.png "Mutual Federation A")
+    <p align="center"><img src="../images/fed_mutual_a.png"/></p>
 
-<div>Instance B's screen:</div>
+=== "Instance B's networking configuration"
 
-![Mutual Federation B](../images/fed_mutual_b.png "Mutual Federation B")
+    <p align="center"><img src="../images/fed_mutual_b.png"/></p>
+
 
 #### Uni-directional Federation
 In this example, there are two nodes X and Y where X would like to additionally query Y for data but Y has no need to query X. X registers Y as a `Responder`, and Y must register X as an `Interrogator`. This type of configuration can be composed with `Gateway` functionality in cases where an instance wishes to act as an observer only and has no data of its own to offer. The following screenshots illustrate X and Y's admin panel screen, respectively.
 
-<div>Instance X's screen:</div>
+=== "Instance X's networking configuration"
 
-![Single Federation X](../images/fed_uni_x.png "Single Federation X")
+    <p align="center"><img src="../images/fed_uni_x.png"/></p>
 
-<div>Instance Y's screen:</div>
+=== "Instance Y's networking configuration"
 
-![Single Federation Y](../images/fed_uni_y.png "Single Federation Y")
-
+    <p align="center"><img src="../images/fed_uni_y.png"/></p>
