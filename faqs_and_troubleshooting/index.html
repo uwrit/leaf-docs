@@ -957,13 +957,7 @@
 <p>Absolutely! Leaf can take time to install and wanting to "<em>kick the tires</em>" is understandable. Here are two options, depending on your preference:</p>
 <ol>
 <li>
-<p><strong>If you would like to run Leaf on your local computer</strong> or server and are able to run containers using Docker, the <a href="https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh">containerize_leaf.sh script</a> can be a useful time saver. The script functions similarly to a <code>docker-compose.yml</code> file and:</p>
-<ul>
-<li>Deploys the Leaf API and SQL Server in a Docker container</li>
-<li>Creates a <code>TestDB</code> with dummy clinical data you can query or build upon</li>
-</ul>
-<p>This allows you quickly run Leaf and decide whether it is right for you. Note that before running the script, you should <a href="../installation/installation_steps/3_jwt/">create a JWT signing key</a> and <a href="../installation/installation_steps/7_env/">set your environment variables</a> as you would with a "normal" Leaf deployment. </p>
-<p>Afterward, to start the Leaf web client, run <code>npm start</code> from the <code>/leaf/src/ui-client</code> directory.</p>
+<p><strong>If you would like to run Leaf on your local computer</strong>, check the <a href="../../development_and_testing/testing">Testing Leaf page</a> for instructions.</p>
 </li>
 <li>
 <p><strong>If you'd prefer jump in and try Leaf with synthetic data</strong>, please contact us at <a href="mailto:leafsupport@uw.edu">leafsupport@uw.edu</a>, as we have several Leaf instances with synthetic data used for demonstration purposes and hosted at the University of Washington. While <em>we'd like</em> to have these available on the internet without making you jump through hoops, for various security reasons we ask that you just reach out to us and let us know you're interested, after which we'll grant you access.</p>
