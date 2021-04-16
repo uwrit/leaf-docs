@@ -78,8 +78,8 @@ Two well known IdP implementations that we've interacted with are:
         "SAML2": {
         "HeadersMapping": {
             "Entitlements": {
-            "Name": "uwGroups",
-            "Delimiter": ";"
+                "Name": "uwGroups",
+                "Delimiter": ";"
             }
         },
         "RolesMapping": {

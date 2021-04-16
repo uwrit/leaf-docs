@@ -7,9 +7,7 @@ The Leaf client application is written in <a href="https://reactjs.org/" target=
 Like the Leaf API, Leaf Client as available on GitHub is not yet built for production.
 
 !!! info
-    Like the Leaf API, as an alternative to compiling the client code yourself, you may also download the latest pre-built Leaf client from the [Leaf Releases page on GitHub](https://github.com/uwrit/leaf/releases). If you download the pre-built version, you can skip ahead to [6 - Configure the appsettings file](../6_appsettings).
-
-In case you're wondering why we're building the Leaf client on the ***app*** server (rather than the ***web*** server), it's because we've downloaded the Leaf source code on the app server, so for now that's where we'll start. Later, if using a separate web server, we'll copy the production client build code to the web server.
+    As an alternative to compiling the client code yourself, you may also download the latest pre-built Leaf client from the [Leaf Releases page on GitHub](https://github.com/uwrit/leaf/releases). If you download the pre-built version, you can skip ahead to [6 - Configure the appsettings file](../6_appsettings).
 
 1. **Install dependencies**
 
@@ -30,6 +28,9 @@ In case you're wondering why we're building the Leaf client on the ***app*** ser
     The final step is to copy the `/build` folder contents to a directory on the web server that Apache/IIS can serve to users. As we haven't configured Apache or IIS at this point, however, for now just take note of the location of the `/build` folder. 
 
     For more information on building and deploying React apps, see the <a href="https://facebook.github.io/create-react-app/docs/deployment" target="_blank">Create React App deployment page</a>.
+
+!!! info
+    In case you're wondering why we're building the Leaf client on the ***app*** server (rather than the ***web*** server), it's because we've downloaded the Leaf source code on the app server, so for now that's where we'll start. Later, if using a separate web server, we'll copy the production client build code to the web server.
 
 ## Wrapping up
 

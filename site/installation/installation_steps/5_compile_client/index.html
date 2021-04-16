@@ -915,9 +915,8 @@
 <p>Like the Leaf API, Leaf Client as available on GitHub is not yet built for production.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Like the Leaf API, as an alternative to compiling the client code yourself, you may also download the latest pre-built Leaf client from the <a href="https://github.com/uwrit/leaf/releases">Leaf Releases page on GitHub</a>. If you download the pre-built version, you can skip ahead to <a href="../6_appsettings">6 - Configure the appsettings file</a>.</p>
+<p>As an alternative to compiling the client code yourself, you may also download the latest pre-built Leaf client from the <a href="https://github.com/uwrit/leaf/releases">Leaf Releases page on GitHub</a>. If you download the pre-built version, you can skip ahead to <a href="../6_appsettings">6 - Configure the appsettings file</a>.</p>
 </div>
-<p>In case you're wondering why we're building the Leaf client on the <strong><em>app</em></strong> server (rather than the <strong><em>web</em></strong> server), it's because we've downloaded the Leaf source code on the app server, so for now that's where we'll start. Later, if using a separate web server, we'll copy the production client build code to the web server.</p>
 <ol>
 <li>
 <p><strong>Install dependencies</strong></p>
@@ -939,6 +938,10 @@ $ npm install
 <p>For more information on building and deploying React apps, see the <a href="https://facebook.github.io/create-react-app/docs/deployment" target="_blank">Create React App deployment page</a>.</p>
 </li>
 </ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In case you're wondering why we're building the Leaf client on the <strong><em>app</em></strong> server (rather than the <strong><em>web</em></strong> server), it's because we've downloaded the Leaf source code on the app server, so for now that's where we'll start. Later, if using a separate web server, we'll copy the production client build code to the web server.</p>
+</div>
 <h2 id="wrapping-up">Wrapping up<a class="headerlink" href="#wrapping-up" title="Permanent link">¶</a></h2>
 <p>At this point, your Leaf directory on the app server should look similar to this:</p>
 <div class="highlight"><pre><span></span><code>var
