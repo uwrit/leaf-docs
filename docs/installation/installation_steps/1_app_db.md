@@ -11,7 +11,8 @@
     !!! info
         Details on why the databases need to be on the same server can be found on the [FAQs and Troubleshooting page](../../../faqs_and_troubleshooting/installation_questions/#why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server)
 
-    We recommend also creating a Leaf-specific user account and password for the API to use later, though this isn't a requirement.
+    !!! tip
+        We recommend also **creating a Leaf-specific service account and password** for the API to use later, though this isn't a requirement.
 
 2. Populate the database `tables`, `stored procedures`, and `functions` using the <a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.Schema.sql" target="_blank">LeafDB.Schema.sql</a> script.
 

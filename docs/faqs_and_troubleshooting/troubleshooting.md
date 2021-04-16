@@ -1,6 +1,6 @@
 # Troubleshooting
-### At startup the Leaf client returns an error
-!!! tldr "Answer"
+### Leaf client startup error: "Contact your Leaf administrator"
+??? tldr "Answer"
     When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:
     
     <p align="center"><img src="../images/err_server_not_found.png"/></p>
@@ -30,7 +30,7 @@
         * **If the error was a 40x**, then the API call *likely did not* reach the API, in which case your API is not listening or available as you'd expect it to be. In this case, check your [Apache](../installation/installation_steps/8a_configure_apache.md) or [IIS](../installation/installation_steps/8b_configure_iis.md) configuration to make sure everything is configured correctly. Note that each of these ([as well as Shibboleth](https://wiki.shibboleth.net/confluence/display/SP3/Logging)) include logging of their own which may be helpful.
 
 ### API Error: "Do not run UNSECURED authentication in non-development environments!"
-!!! tldr "Answer"
+??? tldr "Answer"
     In a bit of well-intentioned caution, [Leaf assumes you will always want to authenticate your users](https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446). The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. 
     
     While that's a precaution, we understand it can also be unhelpful if you're simply evaluating Leaf with synthetic/de-identified data, or only for a small number of users.
@@ -44,7 +44,7 @@
     The **`-c Debug`** parameter compiles the Leaf API but relaxes the above requirement.
 
 ### API Error: "Unable to start Kestrel.","Exception" : "System.Net.Sockets.SocketException (13) : Permission denied"
-!!! tldr "Answer"
+??? tldr "Answer"
     If you are deploying in a Linux environment, be sure the `ASPNETCORE_URLS` environment variable is set:
 
     ```sh
@@ -52,11 +52,11 @@
     ```
 
 ### API Error: "Value cannot be null. (Parameter 'path1')"
-!!! tldr "Answer"
+??? tldr "Answer"
     This occurs if the API is unable to read your [environment variables](../installation/installation_steps/7_env/) correctly. Check to make sure those are configured and visible to the API.
 
 ### API Error: "nameID header not found, no scoped identity available"
-!!! tldr "Answer"
+??? tldr "Answer"
     This error occurs if ***Shibboleth attributes*** aren't correctly mapped to ***user attributes***, and thus aren't sent in headers to the Leaf API. 
 
     > Both Apache and IIS use a remote user, which is a special trusted value populated by various mechanisms (`LOGON_USER`, `REMOTE_USER`) related to the attributes passed along.

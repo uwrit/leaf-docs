@@ -40,9 +40,11 @@ There are only two routes that _must_ be protected by the SAML2 Service Provider
 
 In a non-federated deployment, you can also elect to protect the entire API surface.
 
-**Caution**: If you are running Leaf's React application at the root of an IIS Server (e.g. `leaf.uwmedicine.org` instead of `leaf.uwmedicine.org/leaf`), **make sure to make `leaf.uwmedicine.org/leafApi` unprotected also.**
+!!! warning
+    If you are running Leaf's React application at the root of an IIS Server (e.g. `leaf.uwmedicine.org` instead of `leaf.uwmedicine.org/leaf`), **make sure to leave** `leaf.uwmedicine.org/leafApi` **unprotected also**
 
-Protecting the root of the React app `leaf.uwmedicine.org` in Shibboleth will automatically make all sub paths protected. If exceptions are only made for requests with the `/api` path (except for `/api/config` and `/api/user/`, noted above), once the URL Rewrite rule changes the request to the `/leafApi` path, Shibboleth will intercept this request and not allow the React App to call the API. This will break the application.
+!!! warning 
+    Protecting the root of the React app (e.g., `leaf.uwmedicine.org`) in Shibboleth will automatically make all sub-paths protected. **If exceptions are only made for requests with the** `/api` **path** (except for `/api/config` and `/api/user/`, noted above), once the IIS URL Rewrite rule changes the request to the `/leafApi` path, Shibboleth will intercept this request and not allow the React App to call the API - **this will break the application**
 
 ## Web Servers
 ### IIS
@@ -83,7 +85,7 @@ There is no extra Shibboleth Service Provider configuration required to interope
 ### IIS/ADFS
 Configure Shibboleth SP3 with IIS and ADFS 3.0.
 
-shibboleth2.xml
+`shibboleth2.xml`
 ```xml
 <SPConfig xmlns="urn:mace:shibboleth:3.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:3.0:native:sp:config"
@@ -173,7 +175,7 @@ shibboleth2.xml
 </SPConfig>
 ```
 
-attribute-map.xml
+`attribute-map.xml`
 ```xml
 <Attributes xmlns="urn:mace:shibboleth:2.0:attribute-map" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Attribute name="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" id="nameID"/>
@@ -185,7 +187,7 @@ The above example could be highly variable depending on your ADFS IdP set up, an
 ### Apache/Shibboleth
 Configure Shibboleth SP3 with Apache and Shibboleth IdP. This example uses InCommon Federation metadata, but would only allow authentication by the specified IdP.
 
-shibboleth2.xml
+`shibboleth2.xml`
 ```xml
 <SPConfig xmlns="urn:mace:shibboleth:3.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:3.0:native:sp:config"
@@ -264,8 +266,6 @@ shibboleth2.xml
 ```
 
 ---
-
-<br>
 !!! success "If you've made it this far, awesome! You've successfully configured Leaf to run in your environment."
 
 We promise the next steps are more fun. Next we'll configure Leaf to run queries on your clinical database.
