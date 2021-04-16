@@ -1190,13 +1190,13 @@
 </li>
 <li>
 <p>Under <code>Dropdowns</code>, click each dropdown you'd like to enable. Enabled dropdowns will turn green and say "enabled!".</p>
-<blockquote>
-<p>If you don't see any dropdowns available, under <code>SQL</code> make sure the Concept is using the same <code>SQL Set</code> as the dropdowns.</p>
-</blockquote>
 </li>
-<li>
-<p>Click <code>Save</code> at the top.</p>
-</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">If you don't see any dropdowns available, under <code>SQL</code> make sure the Concept is using the same <code>SQL Set</code> as the dropdowns</p>
+</div>
+<ol>
+<li>Click <code>Save</code> at the top.</li>
 </ol>
 <p>Users will now see the dropdown options when they drag over the Concept.</p>
 <h2 id="restricting-access">Restricting Access<a class="headerlink" href="#restricting-access" title="Permanent link">¶</a></h2>
@@ -1226,10 +1226,10 @@
 </ul>
 <h2 id="universal-ids">Universal IDs<a class="headerlink" href="#universal-ids" title="Permanent link">¶</a></h2>
 <p>Universal IDs allow users to query multiple Leaf instances in a federated fashion (see <a href="../../../deploy/fed">Networking Multiple Leaf instances</a> to learn how this works).</p>
-<blockquote>
-<p>If you are only planning to query Concepts locally at your institution, you don't need to worry about setting <code>UniversalIds</code>.</p>
-</blockquote>
-<p>Federated queries work by mapping the requesting user's local Concepts to the federated node's Concepts by <code>UniversalId</code>. <code>UniversalIds</code> are defined using the <a href="https://tools.ietf.org/html/rfc2141" target="_blank">URN Syntax</a>.</p>
+<p>Federated queries work by mapping the requesting user's local Concepts to the federated node's Concepts by <code>UniversalID</code>. <code>UniversalIDs</code> are defined using the <a href="https://tools.ietf.org/html/rfc2141" target="_blank">URN Syntax</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">If you are only planning to query Concepts locally at your institution, you don't need to worry about setting <code>UniversalIDs</code></p>
+</div>
 <h3 id="mapping-universalids-at-query-execution">Mapping UniversalIds at Query Execution<a class="headerlink" href="#mapping-universalids-at-query-execution" title="Permanent link">¶</a></h3>
 <p>Assuming multiple Leaf instances have exchanged certificates, user queries can be federated if:</p>
 <ol>
@@ -1240,7 +1240,10 @@
 <p>All federated Leaf instances have Concepts that match the <code>UniversalIds</code> used in the query.</p>
 </li>
 </ol>
-<p>Because <code>UniversalIds</code> themselves are data-model agnostic and are simply a pointer to an arbitrary Concept, this functionality works even if federated Leaf instances use different data models (see here for a working demonstration <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a>).</p>
+<p>Because <code>UniversalIds</code> themselves are data-model agnostic and are simply a pointer to an arbitrary Concept, this functionality works even if federated Leaf instances use different data models.</p>
+<div class="admonition info">
+<p class="admonition-title">See <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a> for a working demonstration</p>
+</div>
 <h3 id="naming-conventions">Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permanent link">¶</a></h3>
 <p>A Concept representing Outpatient encounters could be defined with the <code>UniversalId</code>:</p>
 <div class="highlight"><pre><span></span><code>urn:leaf:concept:encounter:type=outpatient

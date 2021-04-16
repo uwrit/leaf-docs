@@ -926,7 +926,7 @@
 <h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">¶</a></h2>
 <p>There are a variety of ways to build the API, as the <code>dotnet</code> CLI tool supports both self-contained builds as well as runtime dependent targets. Although .NET Core is cross-platform, some targets have quirks that should be noted. If you're curious, you can review the <a href="https://github.com/uwrit/leaf/blob/master/build.sh">build.sh</a> script in the project's root directory. Self-contained builds produce an executable and embed the entire .NET runtime in the build artifacts, resulting in a much larger deployment payload but removing the need to install the .NET Core runtime on your target machine. Conversely, runtime dependent builds assume that the .NET Core runtime will be installed on your target machine and only includes the application and its 3rd party dependencies in the artifact folder.</p>
 <hr />
-<p>From <code>/leaf_download/src/server</code>: </p>
+<p>From <code>/leaf/src/server</code>: </p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Linux (RHEL/CentOS/Ubuntu)</label><div class="tabbed-content">
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">With User Authentication</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>$ dotnet publish -c Release -o /var/opt/leafapi/api

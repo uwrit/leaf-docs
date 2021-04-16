@@ -912,7 +912,10 @@
                 <h1 id="2-configure-app-server">2 - Configure App Server<a class="headerlink" href="#2-configure-app-server" title="Permanent link">¶</a></h1>
 <p><img alt="Infra" src="../../images/infra_app_focus.png" title="Architecure-Focus-Example" /> </p>
 <p>The application server hosts the <a href="https://github.com/uwrit/leaf/tree/master/src/server" target="_blank">Leaf API</a>, and serves as the intermediary between the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a> and <a href="https://github.com/uwrit/leaf/tree/master/src/db" target="_blank">databases</a>. The API is written in C# and .NET Core, and can run in either Linux or Windows environments. </p>
-<p>Note that the Leaf app database created in <a href="../1_app_db">Step 1 - Create App Database</a> <strong>must be query-able from this server</strong>, so check to make sure any necessary firewall exceptions are in place.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Leaf app database created in <a href="../1_app_db">Step 1 - Create App Database</a> <strong>must be query-able from this server</strong>, so check to make sure any necessary firewall exceptions are in place</p>
+</div>
 <p>We'll be using the following directory layout for organizing the API deployment:  </p>
 <div class="highlight"><pre><span></span><code>var
 ├── opt
@@ -929,16 +932,38 @@ $ <span class="nb">cd</span>    /var/opt/leafapi/leaf_download
 $ git clone git@github.com:uwrit/leaf.git
 </code></pre></div>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Linux</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Linux (RHEL/CentOS)</label><div class="tabbed-content">
 <p>CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
 <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.</p>
 <p>At the time of this writing, installing .NET on CentOS/RHEL looks like this:
 <div class="highlight"><pre><span></span><code>$ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
 $ yum install -y dotnet-sdk-3.1
 </code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos">https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos</a></p>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Windows</label><div class="tabbed-content">
-<p>Ensure that IIS8+ is installed on the intended app server. See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012" target="_blank">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a>.</p>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Linux (Ubuntu)</label><div class="tabbed-content">
+<p>.NET Core 3.1 can be installed on Ubuntu by running:</p>
+<div class="highlight"><pre><span></span><code>$ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+$ sudo dpkg -i packages-microsoft-prod.deb
+$ sudo apt-get update<span class="p">;</span> <span class="se">\</span>
+    sudo apt-get install -y apt-transport-https <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    sudo apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    sudo apt-get install -y dotnet-sdk-3.1
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu">https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu</a></p>
+</div>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Windows</label><div class="tabbed-content">
+<p>Ensure that IIS8+ is installed on the intended app server.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a></p>
+</div>
 </div>
 </div>
 <p><br>
