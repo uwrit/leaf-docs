@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -10,8 +8,9 @@
       
       
       
-      <link rel="shortcut icon" href="../../images/leaf.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+      
+      <link rel="icon" href="../../images/leaf.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
     
     
       
@@ -19,22 +18,24 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.5ce4f19a.min.css">
-      
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.24ef6ec6.min.css">
-      
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
       
         
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
         
-        <meta name="theme-color" content="#009688">
+          
+          
+          <meta name="theme-color" content="#009485">
+        
       
     
     
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
       
     
     
@@ -51,8 +52,13 @@
     
     
     
+    
+    
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
   
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -69,45 +75,49 @@
     </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="Leaf" class="md-header-nav__button md-logo" aria-label="Leaf">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
       
   <img src="../../images/leaf.svg" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             Leaf
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               The Building Blocks of Leaf: Concepts
             
           </span>
         </div>
-      
+      </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
@@ -124,12 +134,12 @@
 </div>
     
     
-      <div class="md-header-nav__source">
+      <div class="md-header__source">
         
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source">
+<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Leaf
@@ -142,45 +152,37 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
           
-
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
+  
+  
+
+
   <li class="md-tabs__item">
-    
-      <a href="../.." class="md-tabs__link">
-        What is Leaf?
-      </a>
-    
+    <a href="../.." class="md-tabs__link">
+      What is Leaf?
+    </a>
   </li>
 
       
         
-      
-        
-      
-        
-      
-        
-      
-        
+  
+  
+
+
+  
   
   
     <li class="md-tabs__item">
-      
-        <a href="../../FAQs/" class="md-tabs__link">
-          FAQs
-        </a>
-      
+      <a href="../../installation/" class="md-tabs__link">
+        Installation
+      </a>
     </li>
   
 
@@ -188,12 +190,15 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../" class="md-tabs__link md-tabs__link--active">
-          Administration
-        </a>
-      
+      <a href="../../development_and_testing/" class="md-tabs__link">
+        Development and Testing
+      </a>
     </li>
   
 
@@ -201,12 +206,17 @@
         
   
   
+    
+  
+
+
+  
+  
+  
     <li class="md-tabs__item">
-      
-        <a href="../../development_and_testing/" class="md-tabs__link">
-          Development and testing
-        </a>
-      
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Administration
+      </a>
     </li>
   
 
@@ -214,12 +224,47 @@
         
   
   
+
+
+  
+  
+  
     <li class="md-tabs__item">
+      <a href="../../faqs_and_troubleshooting/" class="md-tabs__link">
+        FAQs and Troubleshooting
+      </a>
+    </li>
+  
+
       
-        <a href="../../installation/" class="md-tabs__link">
-          Installation
-        </a>
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../showcase/" class="md-tabs__link">
+        Showcase
+      </a>
+    </li>
+  
+
       
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        About
+      </a>
     </li>
   
 
@@ -233,12 +278,20 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf">
+    <a href="../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
       
   <img src="../../images/leaf.svg" alt="logo">
 
@@ -248,10 +301,10 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source">
+<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     Leaf
@@ -265,102 +318,15 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../.." title="What is Leaf?" class="md-nav__link">
-      What is Leaf?
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../about/" title="The Leaf Team" class="md-nav__link">
-      The Leaf Team
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../contributing/" title="Contributing to Leaf" class="md-nav__link">
-      Contributing to Leaf
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../leaf_help_research/" title="How can Leaf help biomedical research?" class="md-nav__link">
-      How can Leaf help biomedical research?
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../sponsor/" title="Leaf Sponsors" class="md-nav__link">
-      Leaf Sponsors
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      FAQs
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="FAQs" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        FAQs
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../FAQs/" title="Troubleshooting and FAQs" class="md-nav__link">
-      Troubleshooting and FAQs
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        What is Leaf?
+      </a>
+    </li>
+  
 
     
       
@@ -368,78 +334,307 @@
       
 
   
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Installation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
     
-    <label class="md-nav__link" for="nav-7">
-      Administration
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Administration" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Installation steps
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installation steps" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation steps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/1_app_db/" class="md-nav__link">
+        1 - Create App Database
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/2_app_server/" class="md-nav__link">
+        2 - Configure App Server
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/3_jwt/" class="md-nav__link">
+        3 - Create a JWT Signing Key
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/4_compile_api/" class="md-nav__link">
+        4 - Compile the Leaf API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/5_compile_client/" class="md-nav__link">
+        5 - Build the Leaf Client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/6_appsettings/" class="md-nav__link">
+        6 - Configure the appsettings file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/7_env/" class="md-nav__link">
+        7 - Set Environment Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/8a_configure_apache/" class="md-nav__link">
+        8a - Configure Leaf with Apache
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/8b_configure_iis/" class="md-nav__link">
+        8b - Configure Leaf with IIS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installation_steps/9_saml2/" class="md-nav__link">
+        9 - Configure Authentication with SAML2
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Development and Testing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development and Testing" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Development and Testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development_and_testing/" class="md-nav__link">
+        Development and Testing
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
         Administration
+        <span class="md-nav__icon md-icon"></span>
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="Administration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Administration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../" title="Administration" class="md-nav__link">
-      Administration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../concept_reference/" title="Concept Reference" class="md-nav__link">
-      Concept Reference
-    </a>
-  </li>
-
-        
-          
-          
-          
-
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Administration
+      </a>
+    </li>
   
 
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concept_reference/" class="md-nav__link">
+        Concept Reference
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item md-nav__item--active">
+          
+            
+  
+  
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The Building Blocks of Leaf: Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         The Building Blocks of Leaf: Concepts
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="The Building Blocks of Leaf: Concepts" class="md-nav__link md-nav__link--active">
-      The Building Blocks of Leaf: Concepts
-    </a>
-    
+      </a>
       
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -447,12 +642,10 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#configuring-the-sql-compiler" class="md-nav__link">
@@ -526,283 +719,237 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataset_template_reference/" class="md-nav__link">
+        Dataset Templates Reference
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        Extracting Data for a Cohort: Datasets
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../federation/" class="md-nav__link">
+        Networking Multiple Leaf instances
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../dataset_template_reference/" title="Dataset Templates Reference" class="md-nav__link">
-      Dataset Templates Reference
-    </a>
-  </li>
-
-        
           
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../datasets/" title="Extracting Data for a Cohort: Datasets" class="md-nav__link">
-      Extracting Data for a Cohort: Datasets
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../federation/" title="Networking Multiple Leaf instances" class="md-nav__link">
-      Networking Multiple Leaf instances
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
-    
-    <label class="md-nav__link" for="nav-8">
-      Development and testing
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Development and testing" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Development and testing
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        FAQs and Troubleshooting
+        <span class="md-nav__icon md-icon"></span>
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="FAQs and Troubleshooting" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs and Troubleshooting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs_and_troubleshooting/" class="md-nav__link">
+        General Questions
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs_and_troubleshooting/installation_questions/" class="md-nav__link">
+        Installation Questions
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs_and_troubleshooting/troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../development_and_testing/" title="Development and Testing" class="md-nav__link">
-      Development and Testing
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+          
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
-    
-    <label class="md-nav__link" for="nav-9">
-      Installation
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Installation" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Installation
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Showcase
+        <span class="md-nav__icon md-icon"></span>
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="Showcase" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Showcase
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
-          
-          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../showcase/" class="md-nav__link">
+        Leaf Deployment Showcase
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../installation/" title="Architecture" class="md-nav__link">
-      Architecture
-    </a>
-  </li>
-
-        
           
-          
-          
+        </ul>
+      </nav>
+    </li>
+  
 
-
-  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-2" type="checkbox" id="nav-9-2">
+      
+      
+      
+
+  
+  
+  
     
-    <label class="md-nav__link" for="nav-9-2">
-      Installation steps
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Installation steps" data-md-level="2">
-      <label class="md-nav__title" for="nav-9-2">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Installation steps
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        About
+        <span class="md-nav__icon md-icon"></span>
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        A Brief History
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/contributing/" class="md-nav__link">
+        Contributing to Leaf
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/leaf_help_research/" class="md-nav__link">
+        How can Leaf help biomedical research?
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/1_app_db/" title="1 - Create App Database" class="md-nav__link">
-      1 - Create App Database
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/sponsor/" class="md-nav__link">
+        Leaf Sponsors
+      </a>
+    </li>
+  
+
           
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/2_app_server/" title="2 - Configure App Server" class="md-nav__link">
-      2 - Configure App Server
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/3_jwt/" title="3 - Create a JWT Signing Key" class="md-nav__link">
-      3 - Create a JWT Signing Key
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/4_compile_api/" title="4 - Compile the Leaf API" class="md-nav__link">
-      4 - Compile the Leaf API
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/5_compile_client/" title="5 - Build the Leaf Client" class="md-nav__link">
-      5 - Build the Leaf Client
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/6_appsettings/" title="6 - Configure the appsettings file" class="md-nav__link">
-      6 - Configure the appsettings file
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/7_env/" title="7 - Set Environment Variables" class="md-nav__link">
-      7 - Set Environment Variables
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/8a_configure_apache/" title="8a - Configure Leaf with Apache" class="md-nav__link">
-      8a - Configure Leaf with Apache
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/8b_configure_iis/" title="8b - Configure Leaf with IIS" class="md-nav__link">
-      8b - Configure Leaf with IIS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../installation/installation_steps/9_saml2/" title="9 - Configure Authentication with SAML2" class="md-nav__link">
-      9 - Configure Authentication with SAML2
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
   </ul>
@@ -812,102 +959,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-the-sql-compiler" class="md-nav__link">
-    Configuring the SQL compiler
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-sql-sets" class="md-nav__link">
-    Creating SQL Sets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-concepts" class="md-nav__link">
-    Creating Concepts
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#demographics" class="md-nav__link">
-    Demographics
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gender" class="md-nav__link">
-    Gender
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#road-test" class="md-nav__link">
-    Road test
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#encounters" class="md-nav__link">
-    Encounters
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#making-concepts-searchable" class="md-nav__link">
-    Making Concepts Searchable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#final-thoughts" class="md-nav__link">
-    Final thoughts
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
@@ -916,10 +969,7 @@
                   </a>
                 
                 
-                  
-                
-                
-                <h1 id="the-building-blocks-of-leaf-concepts">The Building Blocks of Leaf: Concepts</h1>
+                <h1 id="the-building-blocks-of-leaf-concepts">The Building Blocks of Leaf: Concepts<a class="headerlink" href="#the-building-blocks-of-leaf-concepts" title="Permanent link">¶</a></h1>
 <p>Leaf is a SQL writing and execution engine. While it is designed to be fun and intuitive for users, ultimately Leaf's most important job is to reliably and flexibly construct SQL queries using a few simple but powerful configuration rules. </p>
 <p>Let's start with an example. We'll use an <a href="https://www.ohdsi.org/data-standardization/the-common-data-model/">OMOP</a> v5 database for this example, though these steps can be applied to any particular data model. We'll focus on using the <code>person</code> and <code>visit_occurrence</code> tables via views in our OMOP database.</p>
 <p>The goals are:</p>
@@ -934,25 +984,24 @@
 <p>Create basic demographics and encounter Concepts which query our clinical database.</p>
 </li>
 </ol>
-<h2 id="configuring-the-sql-compiler">Configuring the SQL compiler</h2>
+<h2 id="configuring-the-sql-compiler">Configuring the SQL compiler<a class="headerlink" href="#configuring-the-sql-compiler" title="Permanent link">¶</a></h2>
 <p>Every Leaf instance assumes that there is a single, consistent field that represents patient identifiers. In OMOP databases this is the <code>person_id</code> field, which can be found on nearly any table with patient data. Likewise, Leaf assumes that longitudinal tables in the database will have a consistent field representing encounter identifiers. In OMOP this is the <code>visit_occurrence_id</code> field.</p>
 <p>Before starting, let's create two SQL views called <code>v_person</code> and <code>v_visit_occurrence</code> to make the <code>person</code> and <code>visit_occurrence</code> tables simpler to query. This example is specific to OMOP but the approach works for other models as well. Note that pointing Leaf at views is completely <em>optional</em> and demonstrated here for convenience and illustrative purposes.</p>
 <p>Our <code>v_person</code> view is defined as:</p>
-<pre><code class="sql">CREATE VIEW dbo.v_person AS
-SELECT
-    p.person_id
-  , p.birth_datetime
-  , gender           = c_gender.concept_code
-  , race             = c_race.concept_name
-  , ethnicity        = c_ethnicity.concept_name
-  , location_state   = loc.state
-FROM dbo.person AS p
-     LEFT JOIN dbo.concept AS c_gender ON p.gender_concept_id = c_gender.concept_id 
-     LEFT JOIN dbo.concept AS c_race ON p.race_concept_id = c_race.concept_id 
-     LEFT JOIN dbo.concept AS c_ethnicity ON p.ethnicity_concept_id = c_ethnicity.concept_id
-     LEFT JOIN dbo.location AS loc ON p.location_id = loc.location_id
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">dbo</span><span class="p">.</span><span class="n">v_person</span> <span class="k">AS</span>
+<span class="k">SELECT</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">person_id</span>
+  <span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">birth_datetime</span>
+  <span class="p">,</span> <span class="n">gender</span>           <span class="o">=</span> <span class="n">c_gender</span><span class="p">.</span><span class="n">concept_code</span>
+  <span class="p">,</span> <span class="n">race</span>             <span class="o">=</span> <span class="n">c_race</span><span class="p">.</span><span class="n">concept_name</span>
+  <span class="p">,</span> <span class="n">ethnicity</span>        <span class="o">=</span> <span class="n">c_ethnicity</span><span class="p">.</span><span class="n">concept_name</span>
+  <span class="p">,</span> <span class="n">location_state</span>   <span class="o">=</span> <span class="n">loc</span><span class="p">.</span><span class="k">state</span>
+<span class="k">FROM</span> <span class="n">dbo</span><span class="p">.</span><span class="n">person</span> <span class="k">AS</span> <span class="n">p</span>
+     <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">dbo</span><span class="p">.</span><span class="n">concept</span> <span class="k">AS</span> <span class="n">c_gender</span> <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">gender_concept_id</span> <span class="o">=</span> <span class="n">c_gender</span><span class="p">.</span><span class="n">concept_id</span> 
+     <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">dbo</span><span class="p">.</span><span class="n">concept</span> <span class="k">AS</span> <span class="n">c_race</span> <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">race_concept_id</span> <span class="o">=</span> <span class="n">c_race</span><span class="p">.</span><span class="n">concept_id</span> 
+     <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">dbo</span><span class="p">.</span><span class="n">concept</span> <span class="k">AS</span> <span class="n">c_ethnicity</span> <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">ethnicity_concept_id</span> <span class="o">=</span> <span class="n">c_ethnicity</span><span class="p">.</span><span class="n">concept_id</span>
+     <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">dbo</span><span class="p">.</span><span class="k">location</span> <span class="k">AS</span> <span class="n">loc</span> <span class="k">ON</span> <span class="n">p</span><span class="p">.</span><span class="n">location_id</span> <span class="o">=</span> <span class="n">loc</span><span class="p">.</span><span class="n">location_id</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -984,18 +1033,17 @@ FROM dbo.person AS p
 </tbody>
 </table>
 <p>The <code>v_visit_occurrence</code> view is defined as:</p>
-<pre><code class="sql">CREATE VIEW dbo.v_visit_occurrence AS
-SELECT 
-    o.person_id
-  , o.visit_occurrence_id
-  , o.visit_start_date
-  , o.visit_end_date
-  , o.care_site_id
-  , visit_type_code = c_visit.concept_code
-FROM dbo.visit_occurrence AS o 
-     LEFT JOIN dbo.concept AS c_visit ON o.visit_concept_id = c_visit.concept_id
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">dbo</span><span class="p">.</span><span class="n">v_visit_occurrence</span> <span class="k">AS</span>
+<span class="k">SELECT</span> 
+    <span class="n">o</span><span class="p">.</span><span class="n">person_id</span>
+  <span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">visit_occurrence_id</span>
+  <span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">visit_start_date</span>
+  <span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">visit_end_date</span>
+  <span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">care_site_id</span>
+  <span class="p">,</span> <span class="n">visit_type_code</span> <span class="o">=</span> <span class="n">c_visit</span><span class="p">.</span><span class="n">concept_code</span>
+<span class="k">FROM</span> <span class="n">dbo</span><span class="p">.</span><span class="n">visit_occurrence</span> <span class="k">AS</span> <span class="n">o</span> 
+     <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">dbo</span><span class="p">.</span><span class="n">concept</span> <span class="k">AS</span> <span class="n">c_visit</span> <span class="k">ON</span> <span class="n">o</span><span class="p">.</span><span class="n">visit_concept_id</span> <span class="o">=</span> <span class="n">c_visit</span><span class="p">.</span><span class="n">concept_id</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1051,20 +1099,20 @@ FROM dbo.visit_occurrence AS o
 </ul>
 <p>Great - we've now provided the most important information to help Leaf understand the basic structure of our clinical database. Note that these values are expected to be consistent and configured only once. <strong>Also, if you change them, make sure you restart the Leaf API in order for the changes to take effect.</strong></p>
 <p>Next, we'll move on to creating Concepts, the building blocks of Leaf queries.</p>
-<h2 id="creating-sql-sets">Creating SQL Sets</h2>
+<h2 id="creating-sql-sets">Creating SQL Sets<a class="headerlink" href="#creating-sql-sets" title="Permanent link">¶</a></h2>
 <p>We want to allow users to query Concepts using our two new views, <code>v_person</code> and <code>v_visit_occurrence</code>. To do so, let's create a Leaf <code>SQL Set</code> for each. Open up the Leaf client in your web browser.</p>
 <p align="center"><img src="../images/login.gif"/></p>
 
 <ol>
 <li>
 <p>Click <code>Admin</code> -&gt; <code>Concepts</code> on the left sidebar.</p>
-<blockquote>
-<p>If you don't see the <code>Admin</code> tab, make sure you have configured your <a href="../../deploy/app">admin group correctly</a>.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">If you don't see the <code>Admin</code> tab, make sure you have configured your <a href="../../deploy/app">admin group correctly</a></p>
+</div>
 </li>
 <li>
 <p>Click <code>Start by creating a Concept SQL Set</code>. <code>SQL Sets</code> are the SQL tables, views, or subqueries that are the foundation of Concepts and provide their <code>FROM</code> clauses.
-<p align="center"><img src="../images/sqlsets.gif"/></p></p>
+    <p align="center"><img src="../images/sqlsets.gif"/></p></p>
 </li>
 <li>
 <p>You should see a single white box near the top. Under <code>SQL FROM</code>, enter <code>dbo.v_person</code>.</p>
@@ -1079,21 +1127,21 @@ FROM dbo.visit_occurrence AS o
 <p>Click <code>Save</code> at the top. Now we are ready to make a few Concepts that use our <code>v_person</code> and <code>v_visit_occurrence</code> views.</p>
 </li>
 </ol>
-<h2 id="creating-concepts">Creating Concepts</h2>
+<h2 id="creating-concepts">Creating Concepts<a class="headerlink" href="#creating-concepts" title="Permanent link">¶</a></h2>
 <p>We've successfully created <code>SQL Sets</code> for our views, so we can now create Concepts that users can interact with.</p>
 <p>Our next goal will be to create a basic Concept tree with the following structure:</p>
-<pre><code>Demographics
+<div class="highlight"><pre><span></span><code>Demographics
 ├── Gender
 │   ├── Female
 │   ├── Male
 Encounters
 ├── Inpatient
 ├── Outpatient
-</code></pre>
-
+</code></pre></div>
 <p>Go to <code>Admin</code> -&gt; <code>Concepts</code>, then click <code>+Create New Concept</code>.</p>
-<h3 id="demographics">Demographics</h3>
-<p><p align="center"><img src="../images/concept_demographics.gif"/></p></p>
+<h3 id="demographics">Demographics<a class="headerlink" href="#demographics" title="Permanent link">¶</a></h3>
+<p align="center"><img src="../images/concept_demographics.gif"/></p>
+
 <ol>
 <li>
 <p>Under <code>Name</code>, fill in "Demographics". This will be the text that users see in the Concept tree.</p>
@@ -1107,8 +1155,9 @@ Encounters
 </ol>
 <p>As you may have noticed, this Concept is intended to simply serve as a hierachical container for Concepts under it related to Demographics. By itself it will likely not be very useful to users, and if they were to drag it over the query would be something simple like <code>SELECT person_id FROM dbo.v_person</code>, in other words, all patients in the table.</p>
 <p>Next let's create the <code>Gender</code> Concept, which will appear under <code>Demographics</code>. Click <code>+Create New Concept</code> at the top.</p>
-<h3 id="gender">Gender</h3>
-<p><p align="center"><img src="../images/concept_gender.gif"/></p></p>
+<h3 id="gender">Gender<a class="headerlink" href="#gender" title="Permanent link">¶</a></h3>
+<p align="center"><img src="../images/concept_gender.gif"/></p>
+
 <ol>
 <li>
 <p>Under <code>Name</code>, fill in "Gender", and under <code>Full Text</code>, fill in "Identify with a gender". </p>
@@ -1135,7 +1184,9 @@ Encounters
 </li>
 </ul>
 </li>
-<li>Male<ul>
+<li>
+<p>Male</p>
+<ul>
 <li>General Display<ul>
 <li><code>Name</code>: "Male"</li>
 <li><code>Full text</code>: "Identify as male"</li>
@@ -1147,13 +1198,14 @@ Encounters
 </ul>
 </li>
 </ul>
+<div class="admonition info">
+<p class="admonition-title">In reality people don't necessarily identify with gender binaries of female or male, and clinical databases will often reflect this. Female and male here are used simply for demonstrative purposes</p>
+</div>
 </li>
 </ul>
-<blockquote>
-<p>In reality people don't necessarily identify with gender binaries of female or male, and clinical databases will often reflect this. Female and male here are used simply for demonstrative purposes.</p>
-</blockquote>
-<h3 id="road-test">Road test</h3>
-<p><p align="center"><img src="../images/concept_firstquery.gif"/></p></p>
+<h3 id="road-test">Road test<a class="headerlink" href="#road-test" title="Permanent link">¶</a></h3>
+<p align="center"><img src="../images/concept_firstquery.gif"/></p>
+
 <p>Before proceeding to create our <code>Encounters</code> Concepts, let's take a moment to confirm our <code>Demographics</code> Concepts are working as expected by running a quick query to see how many female patients are in our database.</p>
 <ol>
 <li>
@@ -1161,20 +1213,20 @@ Encounters
 </li>
 <li>
 <p>Click <code>Run Query</code>. If you see a count of patients (assuming your database has female patients), great! You can even click <code>(i)</code> -&gt; <code>show detail</code> -&gt; <code>SQL</code> to see the query Leaf created using the new Concept. Success!</p>
+<div class="admonition info">
+<p class="admonition-title">If your query didn't work (you'll get a modal window notifying you there was an error), check the Leaf logs to see if there were any syntax or other errors in the query</p>
+</div>
 </li>
 </ol>
-<blockquote>
-<p>If your query didn't work (you'll get a modal window notifying you there was an error), check the Leaf logs to see if there were any syntax or other errors in the query</p>
-</blockquote>
-<h3 id="encounters">Encounters</h3>
-<p><p align="center"><img src="../images/concept_encounters.gif"/></p></p>
+<h3 id="encounters">Encounters<a class="headerlink" href="#encounters" title="Permanent link">¶</a></h3>
+<p align="center"><img src="../images/concept_encounters.gif"/></p>
+
 <p>Now that you're hopefully getting the hang of creating Concepts, let's finish by creating <code>Encounters</code> Concepts so users can query information by encounter types.</p>
-<p>Remember that the structure should look like this:</p>
-<pre><code>Encounters
+<p>Remember that the structure should look like this:
+<div class="highlight"><pre><span></span><code>Encounters
 ├── Inpatient
 ├── Outpatient
-</code></pre>
-
+</code></pre></div></p>
 <p>The field-level information for each Concept is (making sure to nest <code>Inpatient</code> and <code>Outpatient</code> under <code>Encounters</code>):</p>
 <ul>
 <li>Encounters<ul>
@@ -1218,18 +1270,20 @@ Encounters
 </li>
 </ul>
 <p>And that's it!</p>
-<h2 id="making-concepts-searchable">Making Concepts Searchable</h2>
+<h2 id="making-concepts-searchable">Making Concepts Searchable<a class="headerlink" href="#making-concepts-searchable" title="Permanent link">¶</a></h2>
 <p>So you've been able to make Concepts that users can query - great! Over time you'll likely find that your Concept tree will grow as you find new use cases and data sources, and may become cumbersome for users to manually traverse.</p>
 <p align="center"><img src="../images/concept_search.gif"/></p>
 
 <p>Leaf's Concept search is a powerful feature which will automatically parse and tokenize the text in your Concepts. This allows users to search for Concepts of interest to them in any word order. To enable this feature, run the <a href="https://github.com/uwrit/leaf/blob/master/src/db/obj/app.sp_UpdateSearchIndexTables.StoredProcedure.sql">app.sp_UpdateSearchIndexTables</a> stored procedure.</p>
 <p>Leaf search works by using a relatively simple <a href="https://en.wikipedia.org/wiki/Inverted_index">inverted index</a> and <a href="https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index">forward index</a> search engine in pure SQL.</p>
-<p>In SQL Server:</p>
-<pre><code class="sql">EXEC app.sp_UpdateSearchIndexTables
-</code></pre>
-
-<p><strong>Note: Be sure to run this stored procedure after any edits or additions to your Concept tree to ensure that users can search the latest text for your Concepts.</strong></p>
-<h2 id="final-thoughts">Final thoughts</h2>
+<p>In SQL Server:
+<div class="highlight"><pre><span></span><code><span class="k">EXEC</span> <span class="n">app</span><span class="p">.</span><span class="n">sp_UpdateSearchIndexTables</span>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Be sure to run this stored procedure after any edits or additions</strong> to your Concept tree to ensure that users can search the latest text for your Concepts</p>
+</div>
+<h2 id="final-thoughts">Final thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
 <p>If you were able to successfully make the Concepts in this tutorial, congratulations! Hopefully this was helpful and intuitive enough for you to get started making your clinical database accessible and intuitive for your users as well. </p>
 <p>Concepts can be extremely flexible and we've only scratched the surface of their functionality. If you'd like to learn more or have questions, head over to the <a href="../concept_reference">Concept Reference</a> page or jump to a section below:</p>
 <ul>
@@ -1254,45 +1308,48 @@ Encounters
             </article>
           </div>
         </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          </a>
+        
       </main>
       
         
 <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../concept_reference/" title="Concept Reference" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../concept_reference/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Concept Reference
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Concept Reference
-              </div>
+          </div>
+        </a>
+      
+      
+        <a href="../dataset_template_reference/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Dataset Templates Reference
             </div>
-          </a>
-        
-        
-          <a href="../dataset_template_reference/" title="Dataset Templates Reference" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Dataset Templates Reference
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1302,6 +1359,7 @@ Encounters
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
   <div class="md-footer-social">
@@ -1322,21 +1380,13 @@ Encounters
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
-      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: ["tabs"],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
-      
-        <script src="../../search/main.js"></script>
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
       
     
   </body>
