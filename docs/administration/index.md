@@ -5,6 +5,8 @@ In this section, we'll walk through:
 
 1. [Concepts, the building blocks of Leaf cohort queries](./concepts)
 
+    !!! info "See also the [Concepts Reference Guide](concept_reference.md)"
+
     <p align="center"><img src="images/concept_firstquery.gif"/></p>
 
 2. [Datasets, for viewing row-level cohort data](./datasets)

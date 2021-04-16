@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -967,7 +967,8 @@
 <p class="admonition-title">Info</p>
 <p>Networking with other Leaf instances is <strong>100% opt-in</strong> functionality. Deploying locally and querying only your institution's data is perfectly fine.</p>
 </div>
-<p><img alt="Multi Instance" src="../images/multi_instance_no_header.png" title="Multi Instance" /></p>
+<p align="center"><img src="../images/multi_instance_no_header.png"/></p>
+
 <h3 id="building-blocks">Building Blocks<a class="headerlink" href="#building-blocks" title="Permanent link">¶</a></h3>
 <p>Leaf achieves safe federation by leveraging existing web technology to establish cryptographic trust between instances. This mechanism is virtually identical to the way that SAML2 federated authentication establishes trust and is built on JSON Web Tokens (JWT). The core building block of federated communication is a uni-directional channel; composing two uni-directional channels together provides the bi-directional query functionality of mutually federated instances. Federation is opt-in and requires that two instances be in agreement about their relationship. A single endpoint can be configured in either, or both, of the following states:</p>
 <h4 id="responder">Responder<a class="headerlink" href="#responder" title="Permanent link">¶</a></h4>
@@ -986,20 +987,22 @@
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¶</a></h3>
 <h4 id="bi-directional-federation">Bi-directional Federation<a class="headerlink" href="#bi-directional-federation" title="Permanent link">¶</a></h4>
 <p>In this (most common) example, two nodes A and B wish to query each other. This configuration requires that A registers B as a <code>Responder</code> and <code>Interrogator</code>, and B registers A as a <code>Responder</code> and <code>Interrogator</code>. The following screenshots illustrate A and B's admin panel screen, respectively.</p>
-<div>Instance A's screen:</div>
-
-<p><img alt="Mutual Federation A" src="../images/fed_mutual_a.png" title="Mutual Federation A" /></p>
-<div>Instance B's screen:</div>
-
-<p><img alt="Mutual Federation B" src="../images/fed_mutual_b.png" title="Mutual Federation B" /></p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Instance A's networking configuration</label><div class="tabbed-content">
+<p><p align="center"><img src="../images/fed_mutual_a.png"/></p></p>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Instance B's networking configuration</label><div class="tabbed-content">
+<p><p align="center"><img src="../images/fed_mutual_b.png"/></p></p>
+</div>
+</div>
 <h4 id="uni-directional-federation">Uni-directional Federation<a class="headerlink" href="#uni-directional-federation" title="Permanent link">¶</a></h4>
 <p>In this example, there are two nodes X and Y where X would like to additionally query Y for data but Y has no need to query X. X registers Y as a <code>Responder</code>, and Y must register X as an <code>Interrogator</code>. This type of configuration can be composed with <code>Gateway</code> functionality in cases where an instance wishes to act as an observer only and has no data of its own to offer. The following screenshots illustrate X and Y's admin panel screen, respectively.</p>
-<div>Instance X's screen:</div>
-
-<p><img alt="Single Federation X" src="../images/fed_uni_x.png" title="Single Federation X" /></p>
-<div>Instance Y's screen:</div>
-
-<p><img alt="Single Federation Y" src="../images/fed_uni_y.png" title="Single Federation Y" /></p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Instance X's networking configuration</label><div class="tabbed-content">
+<p><p align="center"><img src="../images/fed_uni_x.png"/></p></p>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Instance Y's networking configuration</label><div class="tabbed-content">
+<p><p align="center"><img src="../images/fed_uni_y.png"/></p></p>
+</div>
+</div>
                 
               
               

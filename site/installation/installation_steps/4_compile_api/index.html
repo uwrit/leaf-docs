@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -467,26 +467,6 @@
   <a href="#compilation" class="md-nav__link">
     Compilation
   </a>
-  
-    <nav class="md-nav" aria-label="Compilation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#red-hat-enterprise-linux-rhelcentos" class="md-nav__link">
-    Red Hat Enterprise Linux (RHEL)/CentOS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    Windows
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -945,27 +925,39 @@
 </div>
 <h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">¶</a></h2>
 <p>There are a variety of ways to build the API, as the <code>dotnet</code> CLI tool supports both self-contained builds as well as runtime dependent targets. Although .NET Core is cross-platform, some targets have quirks that should be noted. If you're curious, you can review the <a href="https://github.com/uwrit/leaf/blob/master/build.sh">build.sh</a> script in the project's root directory. Self-contained builds produce an executable and embed the entire .NET runtime in the build artifacts, resulting in a much larger deployment payload but removing the need to install the .NET Core runtime on your target machine. Conversely, runtime dependent builds assume that the .NET Core runtime will be installed on your target machine and only includes the application and its 3rd party dependencies in the artifact folder.</p>
-<div class="admonition info">
-<p class="admonition-title">Release vs. Debug compilation</p>
-<p>The below examples describe how to compile the Leaf API for various environments. If you intend to simply evaluate Leaf and not allow general user access, you can change <code>-c Release</code> to <code>-c Debug</code> for any of the examples below.</p>
-<p>Doing so will allow you to run Leaf in <code>UNSECURED</code> mode without user authentication in a deployment setting. We recommend being <strong>very careful</strong> about this and <strong>not using identified data</strong> in this case, as <strong>Leaf will assume all users to be administrators</strong>.</p>
-</div>
-<h3 id="red-hat-enterprise-linux-rhelcentos">Red Hat Enterprise Linux (RHEL)/CentOS<a class="headerlink" href="#red-hat-enterprise-linux-rhelcentos" title="Permanent link">¶</a></h3>
-<p>First, <code>cd</code> into where leaf source code was downloaded from github. Then targeting the example <code>/var/opt/leafapi/api</code> directory, the build command would be:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /var/opt/leaf/leaf_download/leaf/
-$ dotnet publish -c Release -o /var/opt/leafapi/api
-</code></pre></div>
-<p>To build on Windows/MacOS building for RHEL/Cent:
-<div class="highlight"><pre><span></span><code>$ dotnet publish -c Release -o /var/opt/leafapi/api -r rhel.7-x64 --self-contained <span class="nb">false</span> /p:MicrosoftNETPlatformLibrary<span class="o">=</span>Microsoft.NETCore.App
-</code></pre></div></p>
-<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">¶</a></h3>
-<p>Windows fully supports both self-contained builds as well as runtime dependent builds.</p>
-<p>Self-contained:
-<div class="highlight"><pre><span></span><code>$ dotnet publish -c Release -r win-x64 -o /var/opt/leafapi/api
-</code></pre></div>
-Runtime dependent:
+<hr />
+<p>From <code>/leaf_download/src/server</code>: </p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Linux (RHEL/CentOS/Ubuntu)</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">With User Authentication</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>$ dotnet publish -c Release -o /var/opt/leafapi/api
-</code></pre></div></p>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">No Authentication (UNSECURED)</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>$ dotnet publish -c Debug -o /var/opt/leafapi/api
+</code></pre></div>
+</div>
+</div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Windows</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">With User Authentication</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>$ dotnet publish -c Release -o &lt;your_api_deployment_directory&gt;
+</code></pre></div>
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">No Authentication (UNSECURED)</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>$ dotnet publish -c Debug -o &lt;your_api_deployment_directory&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">For more information on the <code>dotnet publish</code> command see <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish">https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Release vs. Debug compilation</p>
+<p>Besides running Leaf less efficiently and using additional memory, <code>-c Debug</code> allows Leaf to run in <code>UNSECURED</code> <a href="../6_appsettings#authentication">authentication</a> and <a href="../6_appsettings#authorization">authorization</a> mode in a deployment setting. We recommend being <strong>very careful</strong> about this and <strong>not using identified data</strong> in this case, as <strong>Leaf will assume all users to be administrators</strong></p>
+</div>
 <h2 id="wrapping-up">Wrapping up<a class="headerlink" href="#wrapping-up" title="Permanent link">¶</a></h2>
 <p>At this point, your Leaf directory on the app server should look similar to this:</p>
 <div class="highlight"><pre><span></span><code>var

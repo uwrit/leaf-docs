@@ -124,7 +124,8 @@ Because dropdowns are tied to `SQL Sets`, every Concept that uses that `SQL Set`
 2. Under `Configuration`, make sure `Allow Dropdowns` is set to `true`.
 
 3. Under `Dropdowns`, click each dropdown you'd like to enable. Enabled dropdowns will turn green and say "enabled!".
-> If you don't see any dropdowns available, under `SQL` make sure the Concept is using the same `SQL Set` as the dropdowns.
+
+!!! info "If you don't see any dropdowns available, under `SQL` make sure the Concept is using the same `SQL Set` as the dropdowns"
 
 4. Click `Save` at the top.
 
@@ -154,9 +155,9 @@ Note that:
 ## Universal IDs
 Universal IDs allow users to query multiple Leaf instances in a federated fashion (see [Networking Multiple Leaf instances](../../../deploy/fed) to learn how this works).
 
-> If you are only planning to query Concepts locally at your institution, you don't need to worry about setting `UniversalIds`.
+Federated queries work by mapping the requesting user's local Concepts to the federated node's Concepts by `UniversalID`. `UniversalIDs` are defined using the <a href="https://tools.ietf.org/html/rfc2141" target="_blank">URN Syntax</a>.
 
-Federated queries work by mapping the requesting user's local Concepts to the federated node's Concepts by `UniversalId`. `UniversalIds` are defined using the <a href="https://tools.ietf.org/html/rfc2141" target="_blank">URN Syntax</a>.
+!!! info "If you are only planning to query Concepts locally at your institution, you don't need to worry about setting `UniversalIDs`"
 
 ### Mapping UniversalIds at Query Execution
 Assuming multiple Leaf instances have exchanged certificates, user queries can be federated if:
@@ -165,7 +166,9 @@ Assuming multiple Leaf instances have exchanged certificates, user queries can b
 
 2. All federated Leaf instances have Concepts that match the `UniversalIds` used in the query.
 
-Because `UniversalIds` themselves are data-model agnostic and are simply a pointer to an arbitrary Concept, this functionality works even if federated Leaf instances use different data models (see here for a working demonstration <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a>).
+Because `UniversalIds` themselves are data-model agnostic and are simply a pointer to an arbitrary Concept, this functionality works even if federated Leaf instances use different data models.
+
+!!! info "See <a href="https://www.youtube.com/watch?v=ZuKKC7B8mHI" target="_blank">https://www.youtube.com/watch?v=ZuKKC7B8mHI</a> for a working demonstration"
 
 ### Naming Conventions
 A Concept representing Outpatient encounters could be defined with the `UniversalId`:

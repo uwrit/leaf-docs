@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -947,10 +947,10 @@
 <ol>
 <li>
 <p><strong>Check that your API is up-and-running</strong> - the Leaf client will only give you vague, indirect information about where the failure lies (note that this is <em>by design</em> and largely for security reasons). There are a number of ways to check if your API is running, including <code>systemctl status</code> or <code>apachectl status</code> (if on Linux), the IIS user interface or Event Viewer (if on Windows), or <code>docker ps -a</code> / <code>podman ps -a</code> (if using containers). Choose the best method appropriate for your deployment.</p>
-<p>Perhaps most simply, <strong>check the Leaf API logs</strong>. These will tell you immediately whether the Leaf API successfully started, and/or any errors it has run into along with way. Remember that <strong>Leaf API files are stored in the directory you set as your <a href="../installation/installation_steps/7_env/">SERILOG_DIR</a></strong>. This can be as simple as:</p>
+<p>Perhaps most simply, <strong>check the Leaf API logs</strong>. These will tell you immediately whether the Leaf API successfully started, and/or any errors it has run into along with way. Remember that <strong>Leaf API files are stored in the directory you set as your <a href="../../installation/installation_steps/7_env/">SERILOG_DIR</a></strong>. This can be as simple as:</p>
 <div class="highlight"><pre><span></span><code>$ tail -10 /<span class="nv">$SERILOG_DIR</span>/leaf-api-&lt;todays_date&gt;.log
 </code></pre></div>
-<p><strong>If the API is not running</strong>, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for <code>"Error":"System.Data.SqlClient.SqlException"</code>). These cases are nearly always due to incorrect SQL passwords or usernames configured in your <a href="../installation/installation_steps/7_env/">environment variables</a>.</p>
+<p><strong>If the API is not running</strong>, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for <code>"Error":"System.Data.SqlClient.SqlException"</code>). These cases are nearly always due to incorrect SQL passwords or usernames configured in your <a href="../../installation/installation_steps/7_env/">environment variables</a>.</p>
 </li>
 <li>
 <p><strong>Check that your browser can communicate with the API</strong> - If the API appears to be up, in a separate browser tab, go to <code>https://&lt;your_leaf_url&gt;/api/config</code>. </p>
@@ -980,7 +980,7 @@
 </code></pre></div>
 </details>
 <h3 id="api-error-value-cannot-be-null-parameter-path1">API Error: "Value cannot be null. (Parameter 'path1')"<a class="headerlink" href="#api-error-value-cannot-be-null-parameter-path1" title="Permanent link">¶</a></h3>
-<details class="tldr"><summary>Answer</summary><p>This occurs if the API is unable to read your <a href="../installation/installation_steps/7_env/">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
+<details class="tldr"><summary>Answer</summary><p>This occurs if the API is unable to read your <a href="../../../installation/installation_steps/7_env">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
 </details>
 <h3 id="api-error-nameid-header-not-found-no-scoped-identity-available">API Error: "nameID header not found, no scoped identity available"<a class="headerlink" href="#api-error-nameid-header-not-found-no-scoped-identity-available" title="Permanent link">¶</a></h3>
 <details class="tldr"><summary>Answer</summary><p>This error occurs if <strong><em>Shibboleth attributes</em></strong> aren't correctly mapped to <strong><em>user attributes</em></strong>, and thus aren't sent in headers to the Leaf API. </p>

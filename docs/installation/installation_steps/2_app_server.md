@@ -4,7 +4,8 @@
 
 The application server hosts the <a href="https://github.com/uwrit/leaf/tree/master/src/server" target="_blank">Leaf API</a>, and serves as the intermediary between the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a> and <a href="https://github.com/uwrit/leaf/tree/master/src/db" target="_blank">databases</a>. The API is written in C# and .NET Core, and can run in either Linux or Windows environments. 
 
-Note that the Leaf app database created in [Step 1 - Create App Database](../1_app_db) **must be query-able from this server**, so check to make sure any necessary firewall exceptions are in place.
+!!! warning
+    The Leaf app database created in [Step 1 - Create App Database](../1_app_db) **must be query-able from this server**, so check to make sure any necessary firewall exceptions are in place
 
 We'll be using the following directory layout for organizing the API deployment:  
 
@@ -29,7 +30,7 @@ $ git clone git@github.com:uwrit/leaf.git
 
 ## Prerequisites
 
-=== "Linux"
+=== "Linux (RHEL/CentOS)"
     CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
     <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.
 
@@ -39,8 +40,29 @@ $ git clone git@github.com:uwrit/leaf.git
     $ yum install -y dotnet-sdk-3.1
     ```
 
+    !!! info 
+        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos)
+
+=== "Linux (Ubuntu)"
+    .NET Core 3.1 can be installed on Ubuntu by running:
+
+    ```sh
+    $ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    $ sudo dpkg -i packages-microsoft-prod.deb
+    $ sudo apt-get update; \
+        sudo apt-get install -y apt-transport-https && \
+        sudo apt-get update && \
+        sudo apt-get install -y dotnet-sdk-3.1
+    ```
+
+    !!! info 
+        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu)
+
 === "Windows"
-    Ensure that IIS8+ is installed on the intended app server. See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012" target="_blank">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a>.
+    Ensure that IIS8+ is installed on the intended app server.
+    
+    !!! info
+        See instructions at [https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012)
 
 
 <br>
