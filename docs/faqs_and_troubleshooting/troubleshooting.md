@@ -21,18 +21,18 @@
 
         **If the API is not running**, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for `"Error":"System.Data.SqlClient.SqlException"`). These cases are nearly always due to incorrect SQL passwords or usernames configured in your [environment variables](../installation/installation_steps/7_env.md).
 
-        **If no log files appear and you are running IIS**, see [I started the Leaf API but don't see any log files!](http://127.0.0.1:8000/faqs_and_troubleshooting/troubleshooting/#i-started-the-leaf-api-but-dont-see-any-log-files) below.
+        **If no log files appear and you are running IIS**, see [I started the Leaf API but don't see any log files!](#i-started-the-leaf-api-but-dont-see-any-log-files) below.
 
 ### I started the Leaf API but don't see any log files!
 ??? tldr "Answer"
-    **If you are running IIS**:
+    If you are running IIS:
 
-    - **Make sure your service account is running in IIS and has permissions to write** to the `SERILOG_DIR` directory.
+    1. **Make sure your service account is running in IIS and has permissions to write** to the `SERILOG_DIR` directory.
 
-    - **Check the Windows Event Viewer** application for possible errors:
+    2. **Check the Windows Event Viewer** application for possible errors:
     <p align="center"><img src="../../installation/images/iis_event_viewer_error.png" /></p>
 
-    - **Check that your browser can communicate with the API** - If the API appears to be up, in a separate browser tab, go to `https://<your_leaf_url>/api/config`. 
+    3. **Check that your browser can communicate with the API** - If the API appears to be up, in a separate browser tab, go to `https://<your_leaf_url>/api/config`. 
 
         **If your browser returns an error with no data:**
 

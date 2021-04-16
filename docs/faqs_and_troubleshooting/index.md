@@ -1,11 +1,11 @@
 # General Questions
-### What makes Leaf unique compared to tools like i2b2 or TriNetX?
+### What makes Leaf unique compared to i2b2 or TriNetX?
 !!! tldr "Answer"
     This is a great question! While a detailed answer would be quite lengthy, here are a few distinguishing features of Leaf:
 
     - [x] **Open** - Leaf's codebase is open to the community, and you can use, change, and deploy Leaf as you'd like
     - [x] **Adaptable to any data model** - Leaf does not assume your data is structured in any particular way
-    - [x] **Use on your terms** - Leaf never "*phones home*" and runs on your hardware. No data leaves your servers (besides exports from users, which can be disabled)
+    - [x] **Use on your terms** - Leaf never "*phones home*", and runs completely on your hardware. No data leaves your servers (besides exports from users, which can be disabled)
     - [x] **Free!** - We develop and use Leaf internally at the University of Washington and share with the community in the hopes of improving healthcare and collaboration
     - [x] **Modern and fun** - Leaf uses a cutting-edge development stack ([ReactJS](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [.NET Core](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-5.0)) that allows for a fun, intuitive user experience that we believe meets or exceeds that of comparable commercial products (which you would *pay* for, either in software-as-a-service fees or by allowing external use of your data)
 

@@ -569,6 +569,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development_and_testing/development/" class="md-nav__link">
+        Running Leaf as a Developer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development_and_testing/testing/" class="md-nav__link">
+        Testing Leaf
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -898,7 +922,24 @@
     <p align="center"><img src="../../images/iis_app_pool.png" /></p></p>
 </li>
 <li>
-<p>In the new Application pool's Advanced Settings, set <code>Load User Profile</code> to <code>true</code> and recycle the pool.</p>
+<p>Create a service account for IIS to run the application as. 
+    <p align="center"><img src="../../images/iis_svc_account.png" /></p></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this walkthrough we use <code>sv_uw_leaf_service</code> but use whatever naming convention is appropriate for your environment</p>
+</div>
+</li>
+<li>
+<p>Add <strong>Write</strong> permissions for the service account to your logging directory (where the <a href="../7_env">SERILOG_DIR</a> environment variable is pointing to; this example uses <code>F:\leaf</code>)
+    <p align="center"><img src="../../images/iis_log_perms.png" /></p></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This step is critical, as <strong>if IIS is unable to write log activity, you'll also be unable to understand errors or other issues the API encounters</strong>!</p>
+</div>
+</li>
+<li>
+<p>In the new Application Pool's <code>Advanced Settings</code>, set <code>Identity</code> to the service account created in (6), <code>Load User Profile</code> to <code>True</code>, then recycle the pool.
+    <p align="center"><img src="../../images/iis_identity.png" /></p></p>
 </li>
 <li>
 <p>Create the website to host the Leaf browser application.
@@ -912,14 +953,22 @@
 </div>
 </li>
 <li>
+<p>On the <code>Configuration Editor</code> screen, under <code>Section</code>: <code>system.webServer/aspNetCore</code> set</p>
+<ul>
+<li><code>arguments</code> -&gt; <code>.\API.dll</code></li>
+<li><code>processPath</code> -&gt; <code>dotnet</code></li>
+</ul>
+<p><p align="center"><img src="../../images/iis_config_editor.png" /></p></p>
+</li>
+<li>
 <p>Create a URL rewrite rule on the site with the following template.
     <p align="center"><img src="../../images/iis_url_rewrite.png" /></p></p>
 <div class="admonition warning">
-<p class="admonition-title">Be sure the <code>Append query string</code> box is checked. If not, API calls for Concept search will fail.</p>
+<p class="admonition-title">Be sure the <code>Append query string</code> box is checked. If not, API calls for Concept search will fail</p>
 </div>
 <p>Your <strong><code>web.config</code></strong> should now look like this:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;system.webServer&gt;</span>
-    ...additional configuration
+    ...
     <span class="nt">&lt;rewrite&gt;</span>
         <span class="nt">&lt;rules&gt;</span>
             <span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">&quot;add {applicationName}&quot;</span><span class="nt">&gt;</span>
@@ -934,10 +983,10 @@
 <li>
 <p>If the WebDAV module is installed in your IIS instance, you need to either uninstall it or disable it for this site. It inteferes with PUT/DELETE HTTP verbs.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;system.webServer&gt;</span>
+    ...
     <span class="nt">&lt;modules</span> <span class="na">runAllManagedModulesForAllRequests=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;remove</span> <span class="na">name=</span><span class="s">&quot;WebDAVModule&quot;</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;/modules&gt;</span>
-    ...additional configuration
 <span class="nt">&lt;/system.webServer&gt;</span>
 </code></pre></div>
 </li>
@@ -945,6 +994,23 @@
 <p>If you have not yet created the environment variables for IIS (as described in <a href="../7_env">Step 7 - Set Environment Variables</a>), do so now.</p>
 </li>
 </ol>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before moving on, we <strong>strongly recommend</strong> checking that the Leaf API starts appropriately and can log correctly. <strong>If you skip ahead and check the Leaf client and get an error, the error may simply be symptomatic of the API not running.</strong> To check the API, start the <code>Application Pool</code>, then:</p>
+<p><strong>Confirm that you can see an output log file in your <code>SERILOG_DIR</code> directory</strong> - If so, the first line should read something like <code>{"Timestamp":"...", "Level":"Information","MessageTemplate":"Starting Leaf's API v{Version}..."</code></p>
+<p><strong>If no log files appear</strong>:</p>
+<ol>
+<li>Make absolutely sure your service account is running in IIS and has permissions to write to the <code>SERILOG_DIR</code> directory.</li>
+<li>Check the Windows Event Viewer application for possible errors:
+<p align="center"><img src="../../images/iis_event_viewer_error.png" /></p></li>
+</ol>
+<p><strong>If log files appear but show an error such as <code>SqlException...</code></strong></p>
+<ol>
+<li>Check that the values in your <a href="../7_env">LEAF_APP_DB</a> environment variable connection string are correct, such as username and password. </li>
+<li>Check that your service account has <a href="../1_app_db">appropriate privileges to your app database</a>.</li>
+</ol>
+</div>
 <p><br>
 Next: <a href="../9_saml2">Step 9 - Configure Authentication with SAML2</a></p>
                 

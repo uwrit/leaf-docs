@@ -27,7 +27,9 @@ The following IIS guide assumes you are using a combined web & app single server
     !!! warning
         This step is critical, as **if IIS is unable to write log activity, you'll also be unable to understand errors or other issues the API encounters**!
 
-5. In the new Application Pool's `Advanced Settings`, set `Identity` to the service account created in (6), `Load User Profile` to `True`, then recycle the pool.
+5. In the new Application Pool's `Advanced Settings`, set 
+    - `Identity` to the service account created in (6) 
+    - `Load User Profile` to `True`
     <p align="center"><img src="../../images/iis_identity.png" /></p>
 
 6. Create the website to host the Leaf browser application.
@@ -38,7 +40,7 @@ The following IIS guide assumes you are using a combined web & app single server
 
     !!! warning "Do NOT name the API application `'api'`, as this will cause the rewrite rule to apply recursively until the request fails. At UW we name the backing application `'leafapi'`"
 
-8. On the `Configuration Editor` screen, under `Section`: `system.webServer/aspNetCore` set
+8. In the `Configuration Editor`, under `Section`: `system.webServer/aspNetCore` set
     - `arguments` -> `.\API.dll`
     - `processPath` -> `dotnet`
 
