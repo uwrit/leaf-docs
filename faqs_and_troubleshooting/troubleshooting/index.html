@@ -750,8 +750,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#at-startup-the-leaf-client-returns-an-error" class="md-nav__link">
-    At startup the Leaf client returns an error
+  <a href="#leaf-client-startup-error-contact-your-leaf-administrator" class="md-nav__link">
+    Leaf client startup error: "Contact your Leaf administrator"
   </a>
   
 </li>
@@ -936,10 +936,8 @@
                 
                 
                 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h1>
-<h3 id="at-startup-the-leaf-client-returns-an-error">At startup the Leaf client returns an error<a class="headerlink" href="#at-startup-the-leaf-client-returns-an-error" title="Permanent link">¶</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Answer</p>
-<p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
+<h3 id="leaf-client-startup-error-contact-your-leaf-administrator">Leaf client startup error: "Contact your Leaf administrator"<a class="headerlink" href="#leaf-client-startup-error-contact-your-leaf-administrator" title="Permanent link">¶</a></h3>
+<details class="tldr"><summary>Answer</summary><p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
 <p><p align="center"><img src="../images/err_server_not_found.png"/></p></p>
 <blockquote>
 <p>The particular message may instead be "<em>Hmmm... No Leaf server was found</em>", etc., but the best means of troubleshooting is the same either way.</p>
@@ -967,33 +965,25 @@
 </ul>
 </li>
 </ol>
-</div>
+</details>
 <h3 id="api-error-do-not-run-unsecured-authentication-in-non-development-environments">API Error: "Do not run UNSECURED authentication in non-development environments!"<a class="headerlink" href="#api-error-do-not-run-unsecured-authentication-in-non-development-environments" title="Permanent link">¶</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Answer</p>
-<p>In a bit of well-intentioned caution, <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446">Leaf assumes you will always want to authenticate your users</a>. The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. </p>
+<details class="tldr"><summary>Answer</summary><p>In a bit of well-intentioned caution, <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446">Leaf assumes you will always want to authenticate your users</a>. The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. </p>
 <p>While that's a precaution, we understand it can also be unhelpful if you're simply evaluating Leaf with synthetic/de-identified data, or only for a small number of users.</p>
 <p>To do so, as mentioned in <a href="../../../installation/installation_steps/4_compile_api/#compilation">the Installation documentation</a> compile the API with:</p>
 <div class="highlight"><pre><span></span><code>$ dotnet publish -c Debug ...&lt;additional parameters&gt;
 </code></pre></div>
 <p>The <strong><code>-c Debug</code></strong> parameter compiles the Leaf API but relaxes the above requirement.</p>
-</div>
+</details>
 <h3 id="api-error-unable-to-start-kestrelexception-systemnetsocketssocketexception-13-permission-denied">API Error: "Unable to start Kestrel.","Exception" : "System.Net.Sockets.SocketException (13) : Permission denied"<a class="headerlink" href="#api-error-unable-to-start-kestrelexception-systemnetsocketssocketexception-13-permission-denied" title="Permanent link">¶</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Answer</p>
-<p>If you are deploying in a Linux environment, be sure the <code>ASPNETCORE_URLS</code> environment variable is set:</p>
+<details class="tldr"><summary>Answer</summary><p>If you are deploying in a Linux environment, be sure the <code>ASPNETCORE_URLS</code> environment variable is set:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ASPNETCORE_URLS</span><span class="o">=</span>http://0.0.0.0:5001
 </code></pre></div>
-</div>
+</details>
 <h3 id="api-error-value-cannot-be-null-parameter-path1">API Error: "Value cannot be null. (Parameter 'path1')"<a class="headerlink" href="#api-error-value-cannot-be-null-parameter-path1" title="Permanent link">¶</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Answer</p>
-<p>This occurs if the API is unable to read your <a href="../installation/installation_steps/7_env/">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
-</div>
+<details class="tldr"><summary>Answer</summary><p>This occurs if the API is unable to read your <a href="../installation/installation_steps/7_env/">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
+</details>
 <h3 id="api-error-nameid-header-not-found-no-scoped-identity-available">API Error: "nameID header not found, no scoped identity available"<a class="headerlink" href="#api-error-nameid-header-not-found-no-scoped-identity-available" title="Permanent link">¶</a></h3>
-<div class="admonition tldr">
-<p class="admonition-title">Answer</p>
-<p>This error occurs if <strong><em>Shibboleth attributes</em></strong> aren't correctly mapped to <strong><em>user attributes</em></strong>, and thus aren't sent in headers to the Leaf API. </p>
+<details class="tldr"><summary>Answer</summary><p>This error occurs if <strong><em>Shibboleth attributes</em></strong> aren't correctly mapped to <strong><em>user attributes</em></strong>, and thus aren't sent in headers to the Leaf API. </p>
 <blockquote>
 <p>Both Apache and IIS use a remote user, which is a special trusted value populated by various mechanisms (<code>LOGON_USER</code>, <code>REMOTE_USER</code>) related to the attributes passed along.</p>
 </blockquote>
@@ -1016,7 +1006,7 @@
 </code></pre></div></p>
 </li>
 </ul>
-</div>
+</details>
                 
               
               
