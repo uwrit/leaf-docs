@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -931,25 +931,26 @@
 </ol>
 <h2 id="deploying-the-api-as-a-service">Deploying the API as a Service<a class="headerlink" href="#deploying-the-api-as-a-service" title="Permanent link">¶</a></h2>
 <p><img alt="Infra" src="../../images/infra_app_focus.png" title="Architecure-Focus-Example" /> </p>
-<p>We'll start by deploying the Leaf API as a service using <code>systemctl</code>. A few things to note:</p>
-<ul>
-<li>Once built, the API service should be run with a service account that is not an administrative user.</li>
-<li>The API host firewall will need to allow inbound communication on the chosen port to the Apache web server.</li>
-</ul>
+<p>We'll start by deploying the Leaf API as a service using <code>systemctl</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Once built, the API service should be run with a service account that is not an administrative user</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">The API host firewall will need to allow inbound communication on the chosen port to the Apache web server</p>
+</div>
 <p><strong>On the app server</strong>:</p>
 <ol>
 <li>
 <p>Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.</p>
-<pre><code>$ useradd -r api_svc_account
+<div class="highlight"><pre><span></span><code>$ useradd -r api_svc_account
 $ chown /var/log/leaf/
 $ chown -R /var/opt/leaf/
-</code></pre>
+</code></pre></div>
 </li>
 <li>
-<p>Create a service file for the API instance. The WorkingDirectory must be the directory where API.dll resides.</p>
-<pre><code>## /var/opt/leafapi/services/leaf_api.service
-
-[Unit]
+<p>Create a service file for the API instance. The <code>WorkingDirectory</code> must be the directory where <code>API.dll</code> resides.</p>
+<p><strong><code>/var/opt/leafapi/services/leaf_api.service</code></strong></p>
+<div class="highlight"><pre><span></span><code>[Unit]
 Description=Leaf API Service
 
 [Service]
@@ -959,23 +960,23 @@ Type=idle
 TimeoutStartSec=300
 TimeoutStopSec=30
 WorkingDirectory=/var/opt/leafapi/api/
-ExecStart=/usr/bin/dotnet API.dll
+ExecStart=/usr/bin/dotnet API.dll 
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
+</code></pre></div>
 </li>
 <li>
-<p>Last, link your service file with systemd, and make it aware of the service:</p>
-<pre><code># Create a symbolic link into the systemd directory
+<p>Last, link your service file with <code>systemd</code> and make it aware of the service:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a symbolic link into the systemd directory</span>
 $ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
 
-# Make the systemd aware of the service
+<span class="c1"># Make the systemd aware of the service</span>
 $ systemctl daemon-reload
 
-# Start the service
+<span class="c1"># Start the service</span>
 $ systemctl start leaf_api.service
-</code></pre>
+</code></pre></div>
 </li>
 </ol>
 <h2 id="hosting-leaf-with-apache">Hosting Leaf with Apache<a class="headerlink" href="#hosting-leaf-with-apache" title="Permanent link">¶</a></h2>
@@ -987,13 +988,14 @@ $ systemctl start leaf_api.service
 </li>
 <li>
 <p><strong>On the web server</strong>, define an <code>httpd.conf</code> file to host a single node in a Leaf deployment. </p>
-<blockquote>
-<p>Each Leaf client webapp must be hosted at the top level of the <code>DocumentRoot</code> of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same <code>DocumentRoot</code>, however each would need its own VirtualHost and unique DNS name defined (eg. site1.leaf.school.edu, site2.leaf.school.edu).</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Each Leaf client webapp must be hosted at the top level of the <code>DocumentRoot</code> of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same <code>DocumentRoot</code>, however each would need its own VirtualHost and unique DNS name defined (e.g., site1.leaf.school.edu, site2.leaf.school.edu).</p>
+</div>
 <p>In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.</p>
 </li>
 </ol>
-<p>httpd.conf</p>
+<p><strong><code>httpd.conf</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
 
     ServerName leaf.{subdomain}.{domain}.{tld}

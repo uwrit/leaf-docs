@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -540,6 +540,19 @@
     Identity Providers (IdP)
   </a>
   
+    <nav class="md-nav" aria-label="Identity Providers (IdP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -561,66 +574,12 @@
     Web Servers
   </a>
   
-    <nav class="md-nav" aria-label="Web Servers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#iis" class="md-nav__link">
-    IIS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#apache" class="md-nav__link">
-    Apache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adfs" class="md-nav__link">
-    ADFS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#shibboleth" class="md-nav__link">
-    Shibboleth
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example-configurations" class="md-nav__link">
+    Example Configurations
   </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#iisadfs" class="md-nav__link">
-    IIS/ADFS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#apacheshibboleth" class="md-nav__link">
-    Apache/Shibboleth
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -997,31 +956,86 @@
 <h2 id="identity-providers-idp">Identity Providers (IdP)<a class="headerlink" href="#identity-providers-idp" title="Permanent link">¶</a></h2>
 <p>Conceptually, Leaf does not depend concretely on any specific method of authentication. Instead, it only requires the following structured data be written to the request headers:</p>
 <ul>
-<li>A scoped identity of the form "&lt;identity>@&lt;scope>".</li>
-<li>A set of entitlements or group memberships in the form of a character delimited list.</li>
+<li>A scoped identity of the form <code>&lt;identity\&gt;@&lt;scope\&gt;</code></li>
+<li>A set of entitlements or group memberships in the form of a character delimited list</li>
 </ul>
 <p>Two well known IdP implementations that we've interacted with are:</p>
 <ul>
 <li><a href="#adfs">Active Directory Federation Services (ADFS)</a></li>
 <li><a href="#shibboleth">Shibboleth</a></li>
 </ul>
-<p>For example:</p>
-<ul>
-<li>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¶</a></h3>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">UW Shibboleth IdP</label><div class="tabbed-content">
 <p>UW's Shibboleth IdP sends:</p>
 <ul>
-<li>The <code>eppn</code> attribute with a value of <code>johndoe@washington.edu</code>.</li>
-<li>The <code>gws_groups</code> attribute with a value of <code>urn:mace:washington.edu:groups:uw_iths_it; urn:mace:washington.edu:groups:uw_rit_leaf_admins; urn:mace:washington.edu:groups:uw_rit_leaf_users</code></li>
+<li>An <code>eppn</code> attribute with a value of <code>johndoe@washington.edu</code></li>
+<li>A <code>gws_groups</code> attribute with a value of <code>urn:mace:washington.edu:groups:uw_leaf_admins; urn:mace:washington.edu:groups:uw_leaf_users</code>, etc.</li>
 </ul>
-</li>
-<li>
+<p>Thus the Leaf <a href="../6_appsettings">appsettings.json</a> configuration is:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Authentication&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Mechanism&quot;</span><span class="p">:</span> <span class="s2">&quot;SAML2&quot;</span><span class="p">,</span>
+    <span class="err">...</span>
+    <span class="nt">&quot;SAML2&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Headers&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ScopedIdentity&quot;</span><span class="p">:</span> <span class="s2">&quot;eppn&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nt">&quot;Authorization&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Mechanism&quot;</span><span class="p">:</span> <span class="s2">&quot;SAML2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;SAML2&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;HeadersMapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Entitlements&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;gws_groups&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;RolesMapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;User&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:mace:washington.edu:groups:uw_leaf_users&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Super&quot;</span><span class="p">:</span> <span class="s2">&quot;NOT_USED&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Identified&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:mace:washington.edu:groups:uw_leaf_identified&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Admin&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:mace:washington.edu:groups:uw_leaf_admins&quot;</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="err">...</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">UW Medicine ADFS IdP</label><div class="tabbed-content">
 <p>UW Medicine's ADFS IdP sends:</p>
 <ul>
-<li>The <code>sAMAccountName</code> attribute with a value of <code>johndoe@amc.uwmedicine.org</code>.</li>
-<li>The <code>amc_groups</code> attribute with a value of <code>am_leaf_users; am_leaf_admins; amSQL_RIT_Leaf_Admin</code></li>
+<li>A <code>uwUPN</code> attribute with a value of <code>johndoe@amc.uwmedicine.org</code></li>
+<li>A <code>uwGroups</code> attribute with a value of <code>am_Leaf_Users; am_Leaf_Identified; am_Leaf_Admin</code></li>
 </ul>
-</li>
-</ul>
+<p>Thus the Leaf <a href="../6_appsettings">appsettings.json</a> configuration is:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Authentication&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Mechanism&quot;</span><span class="p">:</span> <span class="s2">&quot;SAML2&quot;</span><span class="p">,</span>
+    <span class="err">...</span>
+    <span class="nt">&quot;SAML2&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Headers&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ScopedIdentity&quot;</span><span class="p">:</span> <span class="s2">&quot;uwUPN&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="nt">&quot;Authorization&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Mechanism&quot;</span><span class="p">:</span> <span class="s2">&quot;SAML2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;SAML2&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;HeadersMapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Entitlements&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;uwGroups&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;RolesMapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;User&quot;</span><span class="p">:</span> <span class="s2">&quot;am_Leaf_Users&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Super&quot;</span><span class="p">:</span> <span class="s2">&quot;NOT_USED&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Identified&quot;</span><span class="p">:</span> <span class="s2">&quot;am_Leaf_Identified&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Admin&quot;</span><span class="p">:</span> <span class="s2">&quot;am_Leaf_Admin&quot;</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+<span class="err">...</span>
+</code></pre></div>
+</div>
+</div>
 <h2 id="service-providers-sp">Service Providers (SP)<a class="headerlink" href="#service-providers-sp" title="Permanent link">¶</a></h2>
 <p>There are multiple implementations of the Service Provider role in the SAML2 protocol, but as we have only ever used Shibboleth, we will refer to that specifically in the following documentation.</p>
 <ul>
@@ -1029,23 +1043,25 @@
 <li><a href="https://wiki.shibboleth.net/confluence/display/SP3/Installation" target="_blank">Shibboleth SP Installation Documentation</a></li>
 </ul>
 <h2 id="route-protection-setup">Route Protection Setup<a class="headerlink" href="#route-protection-setup" title="Permanent link">¶</a></h2>
-<p>There are only two routes that <em>must</em> be protected by the SAML2 Service Provider (SP), all other routes are protected by requiring a JWT that can only be generated from a SAML2 SP protected endpoint.</p>
+<p>There are two routes that <strong><em>must</em></strong> be protected by the SAML2 Service Provider (SP). All other routes are protected by requiring a JWT that can only be generated from a SAML2 SP protected endpoint.</p>
 <ul>
-<li><code>/</code>           --&gt; React client app.</li>
-<li><code>/api/config</code> --&gt; Initial API check endpoint.</li>
-<li><code>/api/user</code>   --&gt; Token generation endpoint.</li>
+<li><code>/</code>           --&gt; React client app</li>
+<li><code>/api/user</code>   --&gt; Token generation endpoint</li>
 </ul>
-<p>In a non-federated deployment, you can also elect to protect the entire API surface.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you are running Leaf's React application at the root of an IIS Server (e.g. <code>leaf.uwmedicine.org</code> instead of <code>leaf.uwmedicine.org/leaf</code>), <strong>make sure to leave</strong> <code>leaf.uwmedicine.org/leafApi</code> <strong>unprotected also</strong></p>
+<div class="admonition info">
+<p class="admonition-title">In a non-federated deployment, you can also elect to protect the entire API surface</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Protecting the root of the React app (e.g., <code>leaf.uwmedicine.org</code>) in Shibboleth will automatically make all sub-paths protected. <strong>If exceptions are only made for requests with the</strong> <code>/api</code> <strong>path</strong> (except for <code>/api/config</code> and <code>/api/user/</code>, noted above), once the IIS URL Rewrite rule changes the request to the <code>/leafApi</code> path, Shibboleth will intercept this request and not allow the React App to call the API - <strong>this will break the application</strong></p>
+<p>If you are running Leaf's React application at the root of an IIS Server (e.g. <code>leaf.uwmedicine.org</code> instead of <code>leaf.uwmedicine.org/leaf</code>), <strong>make sure to leave</strong> <code>leaf.uwmedicine.org/leafApi</code> <strong>unprotected also</strong>.</p>
+<p>Why? Protecting the <strong>root</strong> of the React client app (e.g., <code>leaf.uwmedicine.org</code>) in Shibboleth will automatically make all sub-paths protected. If exceptions are only made for requests with the <code>/api</code> path (except for <code>/api/config</code> and <code>/api/user/</code>, noted above), once the IIS URL Rewrite rule changes the request to the <code>/leafApi</code> path, Shibboleth will intercept this request and not allow the React client app to call the API, <strong>thus will breaking the application</strong></p>
 </div>
 <h2 id="web-servers">Web Servers<a class="headerlink" href="#web-servers" title="Permanent link">¶</a></h2>
-<h3 id="iis">IIS<a class="headerlink" href="#iis" title="Permanent link">¶</a></h3>
+<p>Service Provider considerations for each component:</p>
+<div class="tabbed-set" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Apache</label><div class="tabbed-content">
+<p>There is no extra Shibboleth Service Provider configuration required to interoperate with Apache.</p>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">IIS</label><div class="tabbed-content">
 <p>IIS requires a specific <code>ISAPI</code> element within the <code>InProcess</code> element. Additionally, .NET Core does not support server variables and so the IdP provided user attributes must be written to the request headers. A prototypical IIS <code>InProcess</code> element looks like:
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;InProcess&gt;</span>
     ...additional configuration
@@ -1054,16 +1070,15 @@
     <span class="nt">&lt;/ISAPI&gt;</span>
 <span class="nt">&lt;/InProcess&gt;</span>
 </code></pre></div></p>
-<h3 id="apache">Apache<a class="headerlink" href="#apache" title="Permanent link">¶</a></h3>
-<p>There is no extra Shibboleth Service Provider configuration required to interoperate with Apache.</p>
-<h3 id="adfs">ADFS<a class="headerlink" href="#adfs" title="Permanent link">¶</a></h3>
+</div>
+<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">ADFS</label><div class="tabbed-content">
 <p>Shibboleth Service Provider 3 can be configured to work with ADFS. However, it requires a couple extensions bundled with the installation. The extensions are loaded into the <code>OutOfProcess</code> and <code>InProcess</code> elements via the <code>Extensions</code> element. A prototypical ADFS configuration looks like:
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;OutOfProcess</span> <span class="na">tranLogFormat=</span><span class="s">&quot;%u|%s|%IDP|%i|%ac|%t|%attr|%n|%b|%E|%S|%SS|%L|%UA|%a&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Extensions&gt;</span>
         <span class="nt">&lt;Library</span> <span class="na">path=</span><span class="s">&quot;adfs.so&quot;</span> <span class="na">fatal=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/Extensions&gt;</span>
 <span class="nt">&lt;/OutOfProcess&gt;</span>
-
+...
 <span class="nt">&lt;InProcess&gt;</span>
     <span class="nt">&lt;Extensions&gt;</span>
         <span class="nt">&lt;Library</span> <span class="na">path=</span><span class="s">&quot;adfs-lite.so&quot;</span> <span class="na">fatal=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
@@ -1071,12 +1086,15 @@
     ...ISAPI configuration if running in IIS
 <span class="nt">&lt;/InProcess&gt;</span>
 </code></pre></div></p>
-<h3 id="shibboleth">Shibboleth<a class="headerlink" href="#shibboleth" title="Permanent link">¶</a></h3>
+</div>
+<input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><label for="__tabbed_2_4">Shibboleth</label><div class="tabbed-content">
 <p>There is no extra Shibboleth Service Provider configuration required to interoperate with a Shibboleth IdP.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">¶</a></h2>
-<h3 id="iisadfs">IIS/ADFS<a class="headerlink" href="#iisadfs" title="Permanent link">¶</a></h3>
-<p>Configure Shibboleth SP3 with IIS and ADFS 3.0.</p>
-<p><code>shibboleth2.xml</code>
+</div>
+</div>
+<h2 id="example-configurations">Example Configurations<a class="headerlink" href="#example-configurations" title="Permanent link">¶</a></h2>
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">IIS/ADFS</label><div class="tabbed-content">
+<p>Configure Shibboleth SP3 with IIS and ADFS 3.0:</p>
+<p><strong><code>shibboleth2.xml</code></strong>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;SPConfig</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">xmlns:conf=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">clockSkew=</span><span class="s">&quot;180&quot;</span><span class="nt">&gt;</span>
@@ -1108,7 +1126,7 @@
         <span class="na">cipherSuites=</span><span class="s">&quot;DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1&quot;</span><span class="nt">&gt;</span>
 
         <span class="nt">&lt;Sessions</span> <span class="na">lifetime=</span><span class="s">&quot;28800&quot;</span> <span class="na">timeout=</span><span class="s">&quot;3600&quot;</span> <span class="na">relayState=</span><span class="s">&quot;ss:mem&quot;</span>
-                  <span class="na">checkAddress=</span><span class="s">&quot;false&quot;</span> <span class="na">handlerSSL=</span><span class="s">&quot;true&quot;</span> <span class="na">cookieProps=</span><span class="s">&quot;https&quot;</span><span class="nt">&gt;</span>
+                <span class="na">checkAddress=</span><span class="s">&quot;false&quot;</span> <span class="na">handlerSSL=</span><span class="s">&quot;true&quot;</span> <span class="na">cookieProps=</span><span class="s">&quot;https&quot;</span><span class="nt">&gt;</span>
 
             <span class="nt">&lt;SSO</span> <span class="na">id=</span><span class="s">&quot;&lt;idp_abbreviation&gt;&quot;</span> <span class="na">isDefault=</span><span class="s">&quot;true&quot;</span> <span class="na">entityID=</span><span class="s">&quot;&lt;idp_entityID&gt;&quot;</span><span class="nt">&gt;</span>
                 SAML2
@@ -1140,10 +1158,10 @@
         <span class="c">&lt;!-- Example of remotely supplied batch of signed metadata. --&gt;</span>
         <span class="nt">&lt;MetadataProvider</span> <span class="na">type=</span><span class="s">&quot;XML&quot;</span> <span class="na">validate=</span><span class="s">&quot;true&quot;</span>
                 <span class="na">url=</span><span class="s">&quot;&lt;idp_metadata_url&gt;&quot;</span>
-              <span class="na">backingFilePath=</span><span class="s">&quot;federation-metadata.xml&quot;</span> <span class="na">maxRefreshDelay=</span><span class="s">&quot;7200&quot;</span><span class="nt">&gt;</span>
+            <span class="na">backingFilePath=</span><span class="s">&quot;federation-metadata.xml&quot;</span> <span class="na">maxRefreshDelay=</span><span class="s">&quot;7200&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;/MetadataProvider&gt;</span>
 
-      <span class="c">&lt;!-- Map to extract attributes from SAML assertions. --&gt;</span>
+    <span class="c">&lt;!-- Map to extract attributes from SAML assertions. --&gt;</span>
         <span class="nt">&lt;AttributeExtractor</span> <span class="na">type=</span><span class="s">&quot;XML&quot;</span> <span class="na">validate=</span><span class="s">&quot;true&quot;</span> <span class="na">reloadChanges=</span><span class="s">&quot;false&quot;</span> <span class="na">path=</span><span class="s">&quot;attribute-map.xml&quot;</span><span class="nt">/&gt;</span>
 
         <span class="c">&lt;!-- Default filtering policy for recognized attributes, lets other data pass. --&gt;</span>
@@ -1164,25 +1182,29 @@
 
 <span class="nt">&lt;/SPConfig&gt;</span>
 </code></pre></div></p>
-<p><code>attribute-map.xml</code>
+<p><strong><code>attribute-map.xml</code></strong>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;Attributes</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:2.0:attribute-map&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified&quot;</span> <span class="na">id=</span><span class="s">&quot;nameID&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;http://schemas.microsoft.com/ws/2008/06/identity/claims/role&quot;</span> <span class="na">id=</span><span class="s">&quot;groups&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/Attributes&gt;</span>
 </code></pre></div>
 The above example could be highly variable depending on your ADFS IdP set up, and how your relying party's claims are configured.</p>
-<h3 id="apacheshibboleth">Apache/Shibboleth<a class="headerlink" href="#apacheshibboleth" title="Permanent link">¶</a></h3>
-<p>Configure Shibboleth SP3 with Apache and Shibboleth IdP. This example uses InCommon Federation metadata, but would only allow authentication by the specified IdP.</p>
-<p><code>shibboleth2.xml</code>
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Apache/Shibboleth</label><div class="tabbed-content">
+<p>Configure Shibboleth SP3 with Apache and Shibboleth IdP: </p>
+<div class="admonition info">
+<p class="admonition-title">This example uses InCommon Federation metadata, but would only allow authentication by the specified IdP</p>
+</div>
+<p><strong><code>shibboleth2.xml</code></strong>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;SPConfig</span> <span class="na">xmlns=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">xmlns:conf=</span><span class="s">&quot;urn:mace:shibboleth:3.0:native:sp:config&quot;</span>
     <span class="na">clockSkew=</span><span class="s">&quot;180&quot;</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;ApplicationDefaults</span> <span class="na">entityID=</span><span class="s">&quot;https://&lt;server&gt;.&lt;subdomain&gt;.&lt;institution&gt;.&lt;tld&gt;/shibboleth&quot;</span>
-                         <span class="na">REMOTE_USER=</span><span class="s">&quot;eppn persistent-id targeted-id&quot;</span><span class="nt">&gt;</span>
+                        <span class="na">REMOTE_USER=</span><span class="s">&quot;eppn persistent-id targeted-id&quot;</span><span class="nt">&gt;</span>
 
         <span class="nt">&lt;Sessions</span> <span class="na">lifetime=</span><span class="s">&quot;28800&quot;</span> <span class="na">timeout=</span><span class="s">&quot;3600&quot;</span> <span class="na">checkAddress=</span><span class="s">&quot;false&quot;</span>
-                  <span class="na">relayState=</span><span class="s">&quot;ss:mem&quot;</span> <span class="na">handlerSSL=</span><span class="s">&quot;true&quot;</span> <span class="na">cookieProps=</span><span class="s">&quot;https&quot;</span><span class="nt">&gt;</span>
+                <span class="na">relayState=</span><span class="s">&quot;ss:mem&quot;</span> <span class="na">handlerSSL=</span><span class="s">&quot;true&quot;</span> <span class="na">cookieProps=</span><span class="s">&quot;https&quot;</span><span class="nt">&gt;</span>
 
             <span class="nt">&lt;SSO</span> <span class="na">id=</span><span class="s">&quot;&lt;abbrev&gt;&quot;</span> <span class="na">isDefault=</span><span class="s">&quot;true&quot;</span> <span class="na">entityID=</span><span class="s">&quot;&lt;IdP supplied entityID&gt;&quot;</span><span class="nt">&gt;</span>
                 SAML2 SAML1
@@ -1219,8 +1241,8 @@ The above example could be highly variable depending on your ADFS IdP set up, an
                 <span class="na">certificate=</span><span class="s">&quot;/etc/pki/tls/certs/inc-md-cert.pem&quot;</span><span class="nt">/&gt;</span>
 
             <span class="nt">&lt;MetadataFilter</span> <span class="na">type=</span><span class="s">&quot;EntityRoleWhiteList&quot;</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;RetainedRole&gt;</span>md:IDPSSODescriptor<span class="nt">&lt;/RetainedRole&gt;</span>
-              <span class="nt">&lt;RetainedRole&gt;</span>md:AttributeAuthorityDescriptor<span class="nt">&lt;/RetainedRole&gt;</span>
+            <span class="nt">&lt;RetainedRole&gt;</span>md:IDPSSODescriptor<span class="nt">&lt;/RetainedRole&gt;</span>
+            <span class="nt">&lt;RetainedRole&gt;</span>md:AttributeAuthorityDescriptor<span class="nt">&lt;/RetainedRole&gt;</span>
             <span class="nt">&lt;/MetadataFilter&gt;</span>
 
         <span class="nt">&lt;/MetadataProvider&gt;</span>
@@ -1249,6 +1271,8 @@ The above example could be highly variable depending on your ADFS IdP set up, an
 
 <span class="nt">&lt;/SPConfig&gt;</span>
 </code></pre></div></p>
+</div>
+</div>
 <hr />
 <div class="admonition success">
 <p class="admonition-title">If you've made it this far, awesome! You've successfully configured Leaf to run in your environment.</p>
