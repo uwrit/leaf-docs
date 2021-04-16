@@ -9,6 +9,11 @@ Alternatively, you may instead download the latest pre-compiled Leaf API from th
 ## Compilation
 There are a variety of ways to build the API, as the `dotnet` CLI tool supports both self-contained builds as well as runtime dependent targets. Although .NET Core is cross-platform, some targets have quirks that should be noted. If you're curious, you can review the [build.sh](https://github.com/uwrit/leaf/blob/master/build.sh) script in the project's root directory. Self-contained builds produce an executable and embed the entire .NET runtime in the build artifacts, resulting in a much larger deployment payload but removing the need to install the .NET Core runtime on your target machine. Conversely, runtime dependent builds assume that the .NET Core runtime will be installed on your target machine and only includes the application and its 3rd party dependencies in the artifact folder.
 
+!!! info "Release vs. Debug compilation"
+    The below examples describe how to compile the Leaf API for various environments. If you intend to simply evaluate Leaf and not allow general user access, you can change `-c Release` to `-c Debug` for any of the examples below.
+
+    Doing so will allow you to run Leaf in `UNSECURED` mode without user authentication in a deployment setting. We recommend being **very careful** about this and **not using identified data** in this case, as **Leaf will assume all users to be administrators**.
+
 ### Red Hat Enterprise Linux (RHEL)/CentOS
 First, `cd` into where leaf source code was downloaded from github. Then targeting the example `/var/opt/leafapi/api` directory, the build command would be:
 

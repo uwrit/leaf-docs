@@ -1,26 +1,40 @@
 site_name: Leaf
 theme:
-    language: en
-    font:
-        text: Roboto
-        code: Roboto Mono
-    favicon: images/leaf.svg
-    logo: images/leaf.svg
-    icon:
-    name: null
-    custom_dir: material
-    palette:
-        primary: teal
-        accent: pink
-        # scheme: slate
-    features:
-        - tabs
+  language: en
+  font:
+      text: Roboto
+      code: Roboto Mono
+  favicon: images/leaf.svg
+  logo: images/leaf.svg
+  icon: null
+  name: material
+  #custom_dir: material
+  palette:
+      primary: teal
+      accent: pink
+  features:
+      - navigation.tabs
+      - navigation.sections
+      - navigation.top
+      - toc.integrate
 
 repo_name: Leaf
 repo_url: https://github.com/uwrit/leaf
 extra_css:
-    - stylesheets/extra.css
+  - stylesheets/extra.css
+plugins:
+  - search
+  - awesome-pages
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: ¶
 extra:
-    social:
-      - icon: fontawesome/brands/github-alt
-        link: https://github.com/uwrit/leaf
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/uwrit/leaf

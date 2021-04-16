@@ -34,10 +34,10 @@ CentOS requires .NET to be installed prior to building the application. Refer to
 <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.
 
 
-Currently, installing .NET on CentOS/RHEL looks like this:
+At the time of this writing, installing .NET on CentOS/RHEL looks like this:
 ```bash
 $ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-$ yum install -y dotnet-sdk-2.2
+$ yum install -y dotnet-sdk-3.1
 ```
 
 ### Windows

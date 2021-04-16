@@ -82,10 +82,11 @@ We want to allow users to query Concepts using our two new views, `v_person` and
 <p align="center"><img src="../images/login.gif"/></p>
 
 1. Click `Admin` -> `Concepts` on the left sidebar.
-> If you don't see the `Admin` tab, make sure you have configured your [admin group correctly](../../deploy/app).
+
+    !!! info "If you don't see the `Admin` tab, make sure you have configured your [admin group correctly](../../deploy/app)"
 
 3. Click `Start by creating a Concept SQL Set`. `SQL Sets` are the SQL tables, views, or subqueries that are the foundation of Concepts and provide their `FROM` clauses.
-<p align="center"><img src="../images/sqlsets.gif"/></p>
+    <p align="center"><img src="../images/sqlsets.gif"/></p>
 
 4. You should see a single white box near the top. Under `SQL FROM`, enter `dbo.v_person`.
 
@@ -151,7 +152,7 @@ Click `Save`. Repeat the process for the final two demographic Concepts, `Female
         - `Table, View, or Subquery`: "dbo.v_person"
         - `WHERE Clause`: "@.gender = 'M'"
 
-> In reality people don't necessarily identify with gender binaries of female or male, and clinical databases will often reflect this. Female and male here are used simply for demonstrative purposes.
+    !!! info "In reality people don't necessarily identify with gender binaries of female or male, and clinical databases will often reflect this. Female and male here are used simply for demonstrative purposes"
 
 ### Road test
 <p align="center"><img src="../images/concept_firstquery.gif"/></p>
@@ -162,7 +163,7 @@ Before proceeding to create our `Encounters` Concepts, let's take a moment to co
 
 2. Click `Run Query`. If you see a count of patients (assuming your database has female patients), great! You can even click `(i)` -> `show detail` -> `SQL` to see the query Leaf created using the new Concept. Success!
 
-> If your query didn't work (you'll get a modal window notifying you there was an error), check the Leaf logs to see if there were any syntax or other errors in the query
+    !!! info "If your query didn't work (you'll get a modal window notifying you there was an error), check the Leaf logs to see if there were any syntax or other errors in the query"
 
 ### Encounters
 <p align="center"><img src="../images/concept_encounters.gif"/></p>
@@ -216,7 +217,8 @@ In SQL Server:
 EXEC app.sp_UpdateSearchIndexTables
 ```
 
-**Note: Be sure to run this stored procedure after any edits or additions to your Concept tree to ensure that users can search the latest text for your Concepts.**
+!!! warning 
+    **Be sure to run this stored procedure after any edits or additions** to your Concept tree to ensure that users can search the latest text for your Concepts
 
 ## Final thoughts
 If you were able to successfully make the Concepts in this tutorial, congratulations! Hopefully this was helpful and intuitive enough for you to get started making your clinical database accessible and intuitive for your users as well. 

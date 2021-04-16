@@ -44,15 +44,20 @@ The expected columns are:
 | religion          | nvarchar  |
 
 ### Key Points
-- **All columns in `Basic Demongraphics` are required** - Leaf will automatically date-shift, calculate ages, and remove the HIPAA identified columns (`mrn` and `name`) depending on if the user is in `Identified` or `De-identified` mode.
+!!! info "All columns in `Basic Demongraphics` are required"
+    Leaf will automatically date-shift, calculate ages, and remove the HIPAA identified columns (`mrn` and `name`) depending on if the user is in `Identified` or `De-identified` mode
 
-- **The Patient Identifier column must be called *personId*** - While Leaf Concepts are flexible regarding the column name for patient identifiers, `Datasets` are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf `Datasets` when multiple Leaf instances are federated, among other reasons.
+!!! info "The Patient Identifier column must be called *personId*"
+    While Leaf Concepts are flexible regarding the column name for patient identifiers, `Datasets` are more restrictive and require a predictable, specific column name. This ensures alignment of Leaf `Datasets` when multiple Leaf instances are federated, among other reasons
 
-- **It's okay if you don't have data for every column** - Though every column must be returned in the SQL statement, it's fine to hard-code it as 'Unknown', etc. For example, `religion = 'Unknown'`.
+!!! info "It's OK if you don't have data for every column"
+    Though every column must be returned in the SQL statement, it's fine to hard-code it as `NULL` or `'Unknown'`, etc. For example, `religion = NULL`
 
-- **The `isDeceased`, `isHispanic`, and `isMarried` bit/boolean columns are used in the bar charts on the `Visualize` screen** - These are needed because Leaf does not enforce specific values for the `ethnicity` or `maritalStatus` columns (so you have flexiblity in showing your data as it is), but in return you need to define these true/false columns yourself. For example, `hispanicBoolean = CAST(CASE ethnicity WHEN 'Hispanic or Latino' THEN 1 ELSE 0 END AS BIT)`.
+!!! info "The `isDeceased`, `isHispanic`, and `isMarried` bit/boolean columns are used in the bar charts on the `Visualize` screen"
+    These are needed because Leaf does not enforce specific values for the `ethnicity` or `maritalStatus` columns (so you have flexiblity in showing your data as it is), but in return you need to define these true/false columns yourself. For example, `hispanicBoolean = CAST(CASE ethnicity WHEN 'Hispanic or Latino' THEN 1 ELSE 0 END AS BIT)`
 
-- **Values in `gender` must be `F`, `Female`, `M`, or `Male`** - This allows them to be predictably aggregated in bar charts (case insensitive).
+!!! info "Values in `gender` must be `F`, `Female`, `M`, or `Male`"
+    This allows them to be predictably aggregated in bar charts (case insensitive)
 
 ### Defining the Basic Demographics Query
 Basic Demographics and other datasets can be added using the Admin page within Leaf.
@@ -65,7 +70,8 @@ Basic Demographics and other datasets can be added using the Admin page within L
 
 3. Copy/paste or type out your SQL statement. Make sure the green arrows on the left light up to confirm you're returning all expected columns.
 
-> Note: you don't need to do anything special to find a particular cohort of patients; just make a plain SQL statement to find ***any*** cohort. Leaf will automatically wrap your SQL in a Common Table Expression and filter it to relevant patients for you.
+!!! info 
+    You don't need to do anything special to find a particular cohort of patients; just make a plain SQL statement to find ***any*** cohort. Leaf will automatically wrap your SQL in a Common Table Expression and filter it to relevant patients for you.
 
 ## Adding New Datasets
 If you've successfully added the `Basic Demographics` dataset and can see data returned in the `Patient List` screen in the Leaf user interface, you're off to a great start. Inevitably though you'll likely want to allow users to add more datasets beyond demographics.
@@ -135,7 +141,9 @@ Finally, let's test to see if the dataset works. In the Leaf client app, run a q
 
 <p align="center"><img src="../images/dataset_add.gif"/></p>
 
-If you're able to navigate to the `Patient List` and add the new dataset, congratulations! Leaf automatically determines that this is a numeric dataset because the `valueQuantity` field is populated, and computes statistics for each patient.
+!!! info "If you run into errors, be sure to check the Leaf logs"
 
->If you run into errors, be sure to check the Leaf logs.
+!!! success "If you're able to navigate to the `Patient List` and add the new dataset, congratulations!" 
+
+Leaf automatically determines that this is a numeric dataset because the `valueQuantity` field is populated, and computes statistics for each patient. Pretty cool, eh?
 

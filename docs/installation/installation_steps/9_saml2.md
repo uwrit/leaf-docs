@@ -266,7 +266,7 @@ shibboleth2.xml
 ---
 
 <br>
-If you've made it this far, awesome! You've successfully configured Leaf to run in your environment.
+!!! success "If you've made it this far, awesome! You've successfully configured Leaf to run in your environment."
 
 We promise the next steps are more fun. Next we'll configure Leaf to run queries on your clinical database.
 

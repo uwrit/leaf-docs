@@ -17,6 +17,8 @@ And find her answer:
 ## Results
 While Leaf can't solve every clinical data problem, it has enabled and helped hundreds of research and quality improvement projects at our institution, all while reducing the overall maintenance and support burden for our informatics teams. Here are a few projects that used Leaf:
 
+* <a href="https://doi.org/10.3899/jrheum.201142" target="_blank">Frequency of Allopurinol Dose Reduction in Hospitalized Patients With Gout Flares </a>
+* <a href="https://doi.org/10.1093/jamia/ocaa196" target="_blank">The National COVID Cohort Collaborative (N3C): Rationale, design, infrastructure, and deployment </a>
 * <a href="https://doi.org/10.1093/ofid/ofy184" target="_blank">Risk Factors for Indeterminate Outcome on Interferon Gamma Release Assay in Non-US-Born Persons Screened for Latent Tuberculosis Infection</a>
 * <a href="https://www.jvascsurg.org/article/S0741-5214(18)30694-3/fulltext">PC040. Disease-Based Observational Cohort Study of Patients With Thoracoabdominal Aortic Aneurysm</a>
 * <a href="https://www.ncbi.nlm.nih.gov/pubmed/30552040">Left ventricular hypertrophy is a possible biomarker for early mortality after type B aortic dissection</a>

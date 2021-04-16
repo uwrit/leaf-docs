@@ -1,0 +1,8 @@
+nav:
+    - What is Leaf?: index.md
+    - Installation: installation
+    - Development and Testing: development_and_testing
+    - Administration: administration
+    - FAQs and Troubleshooting: faqs_and_troubleshooting
+    - Showcase: showcase
+    - About: about

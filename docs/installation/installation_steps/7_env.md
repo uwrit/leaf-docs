@@ -6,20 +6,20 @@ Leaf uses environment variables to store sensitive information, such as connecti
 
 **Leaf environment variables with example values**:
 
-```bash
+```python
 # Required
-LEAF_JWT_CERT   = /var/opt/leafapi/.keys/cert.pem
-LEAF_JWT_KEY    = /var/opt/leafapi/.keys/leaf.pfx
-LEAF_JWT_KEY_PW = <your_pass>
+LEAF_JWT_CERT   = /var/opt/leafapi/.keys/cert.pem # JWT Cert path
+LEAF_JWT_KEY    = /var/opt/leafapi/.keys/leaf.pfx # JWT Key path
+LEAF_JWT_KEY_PW = <your_pass>                     # JWT Key passphrase
 LEAF_APP_DB     = <leaf_app_db_connection_string> # App DB created in Step 1
-LEAF_CLIN_DB    = <clinical_db_connection_string>
-SERILOG_DIR     = /var/log/leaf/
+LEAF_CLIN_DB    = <clinical_db_connection_string> # Clinical DB
+SERILOG_DIR     = /var/log/leaf/                  # Directory for API logs
+ASPNETCORE_URLS = http://0.0.0.0:5001             # Only if using Linux
 
 # Optional
 LEAF_REDCAP_SUPERTOKEN = <your_token>     # Only if using REDCap import/export
 LEAF_SMTP_USR          = <smtp_user>      # Only if auto-generating help emails
 LEAF_SMTP_PW           = <smtp_password>  # Only if auto-generating help emails
-ASPNETCORE_URLS = http://0.0.0.0:5001     # Only if using Linux
 ```
 
 Note that the `LEAF_APP_DB` and `LEAF_CLIN_DB` environment variables are connection strings of the form:
