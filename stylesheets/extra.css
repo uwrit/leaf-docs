@@ -32,8 +32,8 @@ img[title="Single Instance Combined"] {
 /* Hide right-side nav */
 .md-sidebar.md-sidebar--secondary,
 .md-sidebar.md-sidebar--secondary .md-nav__link {
-    color: transparent !important;
-    pointer-events: none;
+    zcolor: transparent !important;
+    zpointer-events: none;
     zdisplay: none;
 }
 
