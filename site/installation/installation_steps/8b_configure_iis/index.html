@@ -938,8 +938,12 @@
 </div>
 </li>
 <li>
-<p>In the new Application Pool's <code>Advanced Settings</code>, set <code>Identity</code> to the service account created in (6), <code>Load User Profile</code> to <code>True</code>, then recycle the pool.
-    <p align="center"><img src="../../images/iis_identity.png" /></p></p>
+<p>In the new Application Pool's <code>Advanced Settings</code>, set </p>
+<ul>
+<li><code>Identity</code> to the service account created in (6) </li>
+<li><code>Load User Profile</code> to <code>True</code>
+<p align="center"><img src="../../images/iis_identity.png" /></p></li>
+</ul>
 </li>
 <li>
 <p>Create the website to host the Leaf browser application.
@@ -953,7 +957,7 @@
 </div>
 </li>
 <li>
-<p>On the <code>Configuration Editor</code> screen, under <code>Section</code>: <code>system.webServer/aspNetCore</code> set</p>
+<p>In the <code>Configuration Editor</code>, under <code>Section</code>: <code>system.webServer/aspNetCore</code> set</p>
 <ul>
 <li><code>arguments</code> -&gt; <code>.\API.dll</code></li>
 <li><code>processPath</code> -&gt; <code>dotnet</code></li>

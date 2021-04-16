@@ -904,12 +904,123 @@
                 
                 <h1 id="testing-leaf">Testing Leaf<a class="headerlink" href="#testing-leaf" title="Permanent link">¶</a></h1>
 <p>Interesting in trying Leaf out? Great! Below are a few options, depending on your environment and preferences.</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Local Computer</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Local Computer</label><div class="tabbed-content">
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">MacOS</label><div class="tabbed-content">
-<p>Coming soon!</p>
+<div class="admonition note">
+<p class="admonition-title">These instructions assume you</p>
+<ul>
+<li>Are comfortable using bash or other Unix-based command line tools</li>
+<li>Have <a href="https://www.docker.com/">Docker installed</a> (to run the API and DB)</li>
+<li>Have <a href="https://www.npmjs.com/get-npm">npm installed</a> (to run the client)</li>
+</ul>
+</div>
+<hr />
+<ol>
+<li>
+<p>Complete the following steps in the <a href="../../installation/installation_steps/1_app_db">Leaf Installation Guide</a>:</p>
+<ul>
+<li>
+<p><a href="../../installation/installation_steps/3_jwt">3 - Create a JWT Signing Key</a></p>
+</li>
+<li>
+<p><a href="../../installation/installation_steps/7_env">7 - Set Environment Variables</a></p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Environment Variables must be visible to the Docker containers run from the command line, though you can configure them however you'd like</p>
+</div>
+</li>
+<li>
+<p>Build and populate the Leaf API and databases. On the command line run:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf
+$ ./containerize_leaf.sh
+</code></pre></div>
+<p>You should see output indicating the app and clinical database containers are up and populated with data, followed by the API:
+    <p><img src="../images/testing_dotnet_run.png" /></p></p>
+<div class="admonition info">
+<p class="admonition-title">Alternatives to using containerize_leaf.sh<p><strong>Database</strong> - If you have an existing SQL Server Docker container, you can simply build the app database as described in <a href="../../installation/installation_steps/1_app_db">1 - Create App Database</a>.</p>
+</p>
+<hr />
+<p><strong>API</strong> - For non-Docker API usage, you can either:</p>
+<ul>
+<li>Manually run the <a href="https://github.com/uwrit/leaf/blob/master/src/server/Dockerfile">Leaf API Dockerfile</a> (see <a href="https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh#L33"><code>./containerize_leaf.sh</code></a> for an example of how to do this)</li>
+</ul>
+<p><em>or</em></p>
+<ul>
+<li>If you have the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet cli installed</a>, in bash, run:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf/src/server/API
+$ dotnet run
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>In a separate command line window, run the Leaf client:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf/src/ui-client
+$ npm install
+$ npm start
+</code></pre></div>
+<p><p align="center"><img src="../../administration/images/concept_firstquery.gif"/></p></p>
+<div class="admonition success">
+<p class="admonition-title">Success! Leaf should start up in your browser using <code>http://localhost:3000</code></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">If you run into errors check the <a href="../../faqs_and_troubleshooting/troubleshooting">Leaf Troubleshooting Guide</a></p>
+</div>
+</li>
+</ol>
 </div>
 <input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Windows</label><div class="tabbed-content">
-<p>Coming soon!</p>
+<div class="admonition note">
+<p class="admonition-title">These instructions assume you</p>
+<ul>
+<li>Have SQL Server 2014+ installed and accessible by <code>localhost</code> with a clinical database available to test with</li>
+<li>Have a Unix-like command line tool such as <a href="https://www.cygwin.com/">Cygwin installed</a></li>
+<li>Have the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet cli installed</a> (to run the API)</li>
+<li>Have <a href="https://www.npmjs.com/get-npm">npm installed</a> (to run the client)</li>
+</ul>
+</div>
+<hr />
+<ol>
+<li>
+<p>Complete the following steps in the <a href="../../installation/installation_steps/1_app_db">Leaf Installation Guide</a>:</p>
+<ul>
+<li>
+<p><a href="../../installation/installation_steps/1_app_db">1 - Create App Database</a> (on <code>localhost</code>)</p>
+</li>
+<li>
+<p><a href="../../installation/installation_steps/3_jwt">3 - Create a JWT Signing Key</a></p>
+</li>
+<li>
+<p><a href="../../installation/installation_steps/7_env">7 - Set Environment Variables</a></p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Setting Environment Variables at the System level is usually simplest, though any method works as long as the Environment Variables are visible to the API</p>
+</div>
+</li>
+<li>
+<p>As your application and clinical datatases should now be running on SQL Server <code>localhost</code>, next we'll run the Leaf API. On the command line run:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf/src/server/API
+$ dotnet run
+</code></pre></div>
+<p>You should see something like:
+    <p><img src="../images/testing_dotnet_run.png" /></p></p>
+</li>
+<li>
+<p>In a separate command line window, run the Leaf client:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf/src/ui-client
+$ npm install
+$ npm start
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success! Leaf should start up in your browser using <code>http://localhost:3000</code></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">If you run into errors check the <a href="../../faqs_and_troubleshooting/troubleshooting">Leaf Troubleshooting Guide</a></p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -921,6 +1032,9 @@
 <p>Coming soon!</p>
 </div>
 </div>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Access a UW Test Instance</label><div class="tabbed-content">
+<p>Please contact us at <a href="mailto:leafsupport@uw.edu">leafsupport@uw.edu</a>, as we have several Leaf instances with synthetic data used for demonstration purposes and hosted at the University of Washington. While <em>we'd like</em> to have these available on the internet without making you jump through hoops, for various security reasons we ask that you just reach out to us and let us know you're interested, after which we'll grant you access.</p>
 </div>
 </div>
                 

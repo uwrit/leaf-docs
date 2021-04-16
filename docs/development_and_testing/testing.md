@@ -114,3 +114,7 @@ Interesting in trying Leaf out? Great! Below are a few options, depending on you
     === "Windows"
 
         Coming soon!
+
+=== "Access a UW Test Instance"
+
+    Please contact us at [leafsupport@uw.edu](mailto:leafsupport@uw.edu), as we have several Leaf instances with synthetic data used for demonstration purposes and hosted at the University of Washington. While *we'd like* to have these available on the internet without making you jump through hoops, for various security reasons we ask that you just reach out to us and let us know you're interested, after which we'll grant you access.

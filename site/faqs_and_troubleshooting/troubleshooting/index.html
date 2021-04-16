@@ -982,13 +982,13 @@
 <div class="highlight"><pre><span></span><code>$ tail -10 /<span class="nv">$SERILOG_DIR</span>/leaf-api-&lt;todays_date&gt;.log
 </code></pre></div>
 <p><strong>If the API is not running</strong>, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for <code>"Error":"System.Data.SqlClient.SqlException"</code>). These cases are nearly always due to incorrect SQL passwords or usernames configured in your <a href="../../installation/installation_steps/7_env/">environment variables</a>.</p>
-<p><strong>If no log files appear and you are running IIS</strong>, see <a href="http://127.0.0.1:8000/faqs_and_troubleshooting/troubleshooting/#i-started-the-leaf-api-but-dont-see-any-log-files">I started the Leaf API but don't see any log files!</a> below.</p>
+<p><strong>If no log files appear and you are running IIS</strong>, see <a href="#i-started-the-leaf-api-but-dont-see-any-log-files">I started the Leaf API but don't see any log files!</a> below.</p>
 </li>
 </ol>
 </details>
 <h3 id="i-started-the-leaf-api-but-dont-see-any-log-files">I started the Leaf API but don't see any log files!<a class="headerlink" href="#i-started-the-leaf-api-but-dont-see-any-log-files" title="Permanent link">¶</a></h3>
-<details class="tldr"><summary>Answer</summary><p><strong>If you are running IIS</strong>:</p>
-<ul>
+<details class="tldr"><summary>Answer</summary><p>If you are running IIS:</p>
+<ol>
 <li>
 <p><strong>Make sure your service account is running in IIS and has permissions to write</strong> to the <code>SERILOG_DIR</code> directory.</p>
 </li>
@@ -1008,7 +1008,7 @@
 </li>
 </ul>
 </li>
-</ul>
+</ol>
 </details>
 <h3 id="api-error-do-not-run-unsecured-authentication-in-non-development-environments">API Error: "Do not run UNSECURED authentication in non-development environments!"<a class="headerlink" href="#api-error-do-not-run-unsecured-authentication-in-non-development-environments" title="Permanent link">¶</a></h3>
 <details class="tldr"><summary>Answer</summary><p>In a bit of well-intentioned caution, <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446">Leaf assumes you will always want to authenticate your users</a>. The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. </p>
