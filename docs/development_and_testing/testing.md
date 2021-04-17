@@ -9,6 +9,7 @@ Interesting in trying Leaf out? Great! Below are a few options, depending on you
             - Are comfortable using bash or other Unix-based command line tools
             - Have [Docker installed](https://www.docker.com/) (to run the API and DB)
             - Have [npm installed](https://www.npmjs.com/get-npm) (to run the client)
+            - Have [sqlcmd installed](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15#macos) (to populate the database)
 
         ---
 
@@ -35,13 +36,13 @@ Interesting in trying Leaf out? Great! Below are a few options, depending on you
 
                 ---
 
-                **API** - For non-Docker API usage, you can either:
+                **API** - You can either:
                 
-                - Manually run the [Leaf API Dockerfile](https://github.com/uwrit/leaf/blob/master/src/server/Dockerfile) (see [`./containerize_leaf.sh`](https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh#L33) for an example of how to do this)
+                - Manually build and run the [Leaf API Dockerfile](https://github.com/uwrit/leaf/blob/master/src/server/Dockerfile) (see [`./containerize_leaf.sh`](https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh#L33) for an example of how to do this)
 
                 *or*
 
-                - If you have the [dotnet cli installed](https://docs.microsoft.com/en-us/dotnet/core/tools/), in bash, run:
+                - If you prefer not to use Docker and have the [dotnet cli installed](https://docs.microsoft.com/en-us/dotnet/core/tools/), in bash, run:
 
                 ```sh
                 $ cd /leaf/src/server/API

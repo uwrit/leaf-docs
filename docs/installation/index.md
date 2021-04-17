@@ -20,8 +20,11 @@ or alternatively:
 3. **Web Server**, with
     - <a href="https://en.wikipedia.org/wiki/Apache_HTTP_Server" target="_blank">Apache</a> or <a href="https://www.iis.net/overview" target="_blank">IIS</a> installed to handle <a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank">https</a> routing for requests from the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a>. These can be configured to work with a <a href="https://en.wikipedia.org/wiki/SAML_2.0" target="_blank">SAML2</a> Identity Provider to manage user authentication and authorization, such as <a href="https://www.shibboleth.net/index/" target="_blank">Shibboleth</a> or <a href="https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services" target="_blank">ADFS</a>.
 
-<br>
-Whether you use 2 or 3 servers, however, in general the deployment strategies are largely the same. **For simplicity, in this guide we'll illustrate examples using a 3-tier architecture, but all steps are applicable to either deployment model** unless stated otherwise.
+!!! info 
+    Whether you use 2 or 3 servers, however, in general the deployment strategies are largely the same. **For simplicity, in this guide we'll illustrate examples using a 3-tier architecture, but all steps are applicable to either deployment model** unless stated otherwise.
+
+!!! tip
+    **Looking for a faster way to test Leaf out?** Take a look at our [Leaf Testing Guide](../../development_and_testing/testing) for more information
 
 <br>
 Next: [Step 1 - Create the Leaf Application Databse](./installation_steps/1_app_db)
