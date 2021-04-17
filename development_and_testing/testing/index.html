@@ -941,13 +941,13 @@ $ ./containerize_leaf.sh
 <p class="admonition-title">Alternatives to using containerize_leaf.sh<p><strong>Database</strong> - If you have an existing SQL Server Docker container, you can simply build the app database as described in <a href="../../installation/installation_steps/1_app_db">1 - Create App Database</a>.</p>
 </p>
 <hr />
-<p><strong>API</strong> - For non-Docker API usage, you can either:</p>
+<p><strong>API</strong> - You can either:</p>
 <ul>
-<li>Manually run the <a href="https://github.com/uwrit/leaf/blob/master/src/server/Dockerfile">Leaf API Dockerfile</a> (see <a href="https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh#L33"><code>./containerize_leaf.sh</code></a> for an example of how to do this)</li>
+<li>Manually build and run the <a href="https://github.com/uwrit/leaf/blob/master/src/server/Dockerfile">Leaf API Dockerfile</a> (see <a href="https://github.com/uwrit/leaf/blob/master/containerize_leaf.sh#L33"><code>./containerize_leaf.sh</code></a> for an example of how to do this)</li>
 </ul>
 <p><em>or</em></p>
 <ul>
-<li>If you have the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet cli installed</a>, in bash, run:</li>
+<li>If you prefer not to use Docker and have the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/">dotnet cli installed</a>, in bash, run:</li>
 </ul>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /leaf/src/server/API
 $ dotnet run
