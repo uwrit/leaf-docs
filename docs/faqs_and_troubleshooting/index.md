@@ -1,5 +1,5 @@
 # General Questions
-### What makes Leaf unique compared to i2b2 or TriNetX?
+#### What makes Leaf unique compared to i2b2 or TriNetX?
 !!! tldr "Answer"
     This is a great question! While a detailed answer would be quite lengthy, here are a few distinguishing features of Leaf:
 
@@ -10,7 +10,7 @@
     - [x] **Modern and fun** - Leaf uses a cutting-edge development stack ([ReactJS](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [.NET Core](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-5.0)) that allows for a fun, intuitive user experience that we believe meets or exceeds that of comparable commercial products (which you would *pay* for, either in software-as-a-service fees or by allowing external use of your data)
 
 
-### I just want to test Leaf out. Is there an easy way to do so?
+#### I just want to test Leaf out. Is there an easy way to do so?
 !!! tldr "Answer"
     Absolutely! Leaf can take time to install and wanting to "*kick the tires*" is understandable. Here are two options, depending on your preference:
 

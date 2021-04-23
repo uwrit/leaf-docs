@@ -101,6 +101,8 @@ Interesting in trying Leaf out? Great! Below are a few options, depending on you
             $ npm start
             ```
 
+            <p align="center"><img src="../../administration/images/concept_firstquery.gif"/></p>
+
             !!! success "Success! Leaf should start up in your browser using `http://localhost:3000`"
 
             !!! info "If you run into errors check the [Leaf Troubleshooting Guide](../../faqs_and_troubleshooting/troubleshooting)"

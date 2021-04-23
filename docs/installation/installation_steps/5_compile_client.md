@@ -23,6 +23,8 @@ Like the Leaf API, Leaf Client as available on GitHub is not yet built for produ
 
     This outputs a build bundle to a new `src/ui-client/build/` folder.
 
+    !!! info "Make sure you are using *NodeJS version 14.9.0+* and *NPM version 6.14.8+* when building the Leaf client. See [the troubleshooting page](../../../faqs_and_troubleshooting/troubleshooting/#im-trying-to-build-the-leaf-client-but-get-the-error-failed-atreact-scripts-build) for more information"
+
 3. **Deploy build artifacts**
 
     The final step is to copy the `/build` folder contents to a directory on the web server that Apache/IIS can serve to users. As we haven't configured Apache or IIS at this point, however, for now just take note of the location of the `/build` folder. 

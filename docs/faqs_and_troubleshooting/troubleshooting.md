@@ -1,5 +1,6 @@
 # Troubleshooting
-### Leaf client startup error: "Contact your Leaf administrator"
+## Leaf client errors
+#### Startup error: "Contact your Leaf administrator"
 ??? tldr "Answer"
     When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:
     
@@ -23,7 +24,46 @@
 
         **If no log files appear and you are running IIS**, see [I started the Leaf API but don't see any log files!](#i-started-the-leaf-api-but-dont-see-any-log-files) below.
 
-### I started the Leaf API but don't see any log files!
+#### Visualization and Patient List error: "Whoops! An error occurred while loading patient visualizations"
+??? tldr "Answer"
+    When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:
+    
+    <p><img src="../images/err_visualization.png"/></p>
+
+    **These errors result from an error while the API is executing the [Basic Demographics query](../../administration/datasets/#basic-demographics)**
+
+    **What to do:**
+
+    1. **Check that you've [defined a Basic Demographis query](../../administration/datasets/#defining-the-basic-demographics-query)** - If you haven't yet, go ahead and do so, making sure your output column types match the expected column types.
+
+    2. **Check the Leaf logs for execution or validation errors** - As ensuring de-identification and so on are performed correctly, **Leaf is very strict about output column types matching expected column types**. The Leaf logs will tell you of any SQL execution errors or column type mismatch errors that occur.
+
+#### I'm trying to build the Leaf client but get the error, "Failed at...'react-scripts build'"
+??? tldr "Answer"
+    This is usually caused by older versions of [NPM](https://www.npmjs.com/) and [NodeJS](https://nodejs.org/en/) being used. We recommend using **NodeJS version 14.9.0+** and **NPM version 6.14.8+.**
+
+    You can check your current versions using:
+
+    ```sh
+    $ node --version
+    # v14.9.0
+    
+    $ npm --version
+    # 6.14.8
+    ```
+
+    If you have an older version, the easiest way to upgrade is typically by using:
+
+    ```sh
+    $ npm upgrade -g
+    ```
+
+    See [this helpful article](https://www.geeksforgeeks.org/how-to-update-npm/) or [NPM documentation](https://docs.npmjs.com/cli/v6/commands/npm-update) for more information.
+
+    **Alternatively**, you could instead also download the latest pre-compiled `leaf-ui-client-xxx.tar.gz` file from the [Leaf Releases page](https://github.com/uwrit/leaf/releases).
+
+## Leaf API errors
+#### I started the Leaf API but don't see any log files!
 ??? tldr "Answer"
     If you are running IIS:
 
@@ -40,7 +80,7 @@
 
         * **If the error was a 40x**, then the API call *likely did not* reach the API, in which case your API is not listening or available as you'd expect it to be. In this case, check your [Apache](../installation/installation_steps/8a_configure_apache.md) or [IIS](../installation/installation_steps/8b_configure_iis.md) configuration to make sure everything is configured correctly. Note that each of these ([as well as Shibboleth](https://wiki.shibboleth.net/confluence/display/SP3/Logging)) include logging of their own which may be helpful.
 
-### API Error: "Do not run UNSECURED authentication in non-development environments!"
+#### API Error: "Do not run UNSECURED authentication in non-development environments!"
 ??? tldr "Answer"
     In a bit of well-intentioned caution, [Leaf assumes you will always want to authenticate your users](https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446). The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. 
     
@@ -54,7 +94,7 @@
 
     The **`-c Debug`** parameter compiles the Leaf API but relaxes the above requirement.
 
-### API Error: "Unable to start Kestrel.","Exception" : "System.Net.Sockets.SocketException (13) : Permission denied"
+#### API Error: "Unable to start Kestrel.","Exception" : "System.Net.Sockets.SocketException (13) : Permission denied"
 ??? tldr "Answer"
     If you are deploying in a Linux environment, be sure the `ASPNETCORE_URLS` environment variable is set:
 
@@ -62,11 +102,11 @@
     ASPNETCORE_URLS=http://0.0.0.0:5001
     ```
 
-### API Error: "Value cannot be null. (Parameter 'path1')"
+#### API Error: "Value cannot be null. (Parameter 'path1')"
 ??? tldr "Answer"
     This occurs if the API is unable to read your [environment variables](../../../installation/installation_steps/7_env) correctly. Check to make sure those are configured and visible to the API.
 
-### API Error: "nameID header not found, no scoped identity available"
+#### API Error: "nameID header not found, no scoped identity available"
 ??? tldr "Answer"
     This error occurs if ***Shibboleth attributes*** aren't correctly mapped to ***user attributes***, and thus aren't sent in headers to the Leaf API. 
 
