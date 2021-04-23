@@ -73,6 +73,40 @@ Basic Demographics and other datasets can be added using the Admin page within L
 !!! info 
     You don't need to do anything special to find a particular cohort of patients; just make a plain SQL statement to find ***any*** cohort. Leaf will automatically wrap your SQL in a Common Table Expression and filter it to relevant patients for you.
 
+!!! info "Using OMOP? Try this Basic Demographics SQL query as a starting point:"
+    ```sql
+    SELECT
+        personId          = CONVERT(NVARCHAR(10),P.person_id)
+      , addressPostalCode = L.zip
+      , addressState      = L.[state]
+      , birthDate         = P.birth_datetime
+      , deceasedDateTime  = D.death_datetime
+      , ethnicity         = c_ethnicity.concept_name
+      , gender            = c_gender.concept_name
+      , deceasedBoolean   = CONVERT(BIT, CASE WHEN D.person_id IS NULL THEN 1 
+                                         ELSE 0 END)
+      , hispanicBoolean   = CONVERT(BIT, CASE WHEN c_ethnicity.concept_name = 'Hispanic or Latino' THEN 1 
+                                         ELSE 0 END)
+      , marriedBoolean    = CONVERT(BIT, 0)           /* Assumed not available */
+      , language          = CONVERT(NVARCHAR(1),NULL) /* Assumed not available */
+      , maritalStatus     = CONVERT(NVARCHAR(1),NULL) /* Assumed not available */
+      , mrn               = CONVERT(NVARCHAR(1),NULL) /* Assumed not available */
+      , name              = CONVERT(NVARCHAR(1),NULL) /* Assumed not available */
+      , religion          = CONVERT(NVARCHAR(1),NULL) /* Assumed not available */
+      , race              = c_race.concept_name
+    FROM dbo.person AS P
+        LEFT JOIN dbo.concept AS c_gender
+            ON P.gender_concept_id = c_gender.concept_id
+        LEFT JOIN dbo.concept AS c_race
+            ON P.race_concept_id = c_race.concept_id
+        LEFT JOIN dbo.concept AS c_ethnicity
+            ON p.ethnicity_concept_id = c_ethnicity.concept_id
+        LEFT JOIN dbo.[location] AS L
+            ON P.location_id = L.location_id
+        LEFT JOIN dbo.death AS D
+            ON P.person_id = D.person_id
+    ```
+
 ## Adding New Datasets
 If you've successfully added the `Basic Demographics` dataset and can see data returned in the `Patient List` screen in the Leaf user interface, you're off to a great start. Inevitably though you'll likely want to allow users to add more datasets beyond demographics.
 
