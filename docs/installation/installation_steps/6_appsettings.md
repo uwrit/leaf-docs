@@ -144,24 +144,27 @@ Example configurations:
 
 ## Client
 - **Map**
-    - **Enabled**: `true | false` - Value which indicates whether the Map screen should be shown in the user interface. 
+    - **Enabled**: `true | false` - Boolean which indicates whether the `Map` screen should be shown in the user interface. 
     ![Map](../images/map_example.png "Map")
     - **TileURI**: URI for the tile layer from which to request dynamic images and generate maps for, such as `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`. Leaf uses [Leaflet.js](https://leafletjs.com/) and [React-Leaflet](https://react-leaflet.js.org/) for map generation. A list of Leaflet tile layer providers can be found at [https://leaflet-extras.github.io/leaflet-providers/preview/](https://leaflet-extras.github.io/leaflet-providers/preview/).
 - **Visualize**
-    - **Enabled**: `true | false` - Value which indicates whether the Visualize screen should be shown in the user interface. 
+    - **Enabled**: `true | false` - Boolean which indicates whether the `Visualize` screen should be shown in the user interface. 
     ![Visualize](../images/visualize_example.png "Visualize")
-    - **ShowFederated**: `true | false` - Value which indicates whether the Visualize results for federated Leaf instances should be shown in the user interface. If `false`, only aggregate results from all Leaf instance will be shown.
+    - **ShowFederated**: `true | false` - Value which indicates whether the `Visualize` results for federated Leaf instances should be shown in the user interface. If `false`, only aggregate results from all Leaf instance will be shown.
+- **Timelines**
+    - **Enabled**: `true | false` - Boolean which indicates whether the Timelines` screen should be shown in the user interface. 
+    ![Timelines](../images/timelines_example.gif "Timelines")
 - **PatientList**
-    - **Enabled**: `true | false` - Value which indicates whether the Patient screen should be shown in the user interface. 
+    - **Enabled**: `true | false` - Boolean which indicates whether the `Patient List` screen should be shown in the user interface. 
     ![PatientList](../images/patient_list_example.png "PatientList")
 - **Help**
-    - **Enabled**: `true | false` - Value which indicates whether the Help box should be shown in the lower left of the user interface. 
+    - **Enabled**: `true | false` - Boolean which indicates whether the Help box should be shown in the lower left of the user interface. 
     ![Help](../images/help.gif "Help")
     - **Email**: An email address to direct users to, suc has `<your_support_email>.edu`. If blank, "Contact a Leaf administrator" will not be shown.
     - **URI**: A URI/URL to direct users to, such as `https://<your_support_page>`. If blank, "Learn more here" will not be shown.
 
 ## Notification
-- **Enabled**: `true | false` - Value which indicates whether notification to administrators by email is enabled.
+- **Enabled**: `true | false` - Boolean which indicates whether notification to administrators by email is enabled.
 - **Email**
     - **Server**: SMTP server address from which to send emails from, such as `my.server.edu`.
     - **UseSSL**: `true | false` - Value which indicates whether SSL should be used for sending emails.

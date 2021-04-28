@@ -1203,24 +1203,29 @@
 <h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">¶</a></h2>
 <ul>
 <li><strong>Map</strong><ul>
-<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether the Map screen should be shown in the user interface. 
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the <code>Map</code> screen should be shown in the user interface. 
 <img alt="Map" src="../../images/map_example.png" title="Map" /></li>
 <li><strong>TileURI</strong>: URI for the tile layer from which to request dynamic images and generate maps for, such as <code>https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</code>. Leaf uses <a href="https://leafletjs.com/">Leaflet.js</a> and <a href="https://react-leaflet.js.org/">React-Leaflet</a> for map generation. A list of Leaflet tile layer providers can be found at <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">https://leaflet-extras.github.io/leaflet-providers/preview/</a>.</li>
 </ul>
 </li>
 <li><strong>Visualize</strong><ul>
-<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether the Visualize screen should be shown in the user interface. 
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the <code>Visualize</code> screen should be shown in the user interface. 
 <img alt="Visualize" src="../../images/visualize_example.png" title="Visualize" /></li>
-<li><strong>ShowFederated</strong>: <code>true | false</code> - Value which indicates whether the Visualize results for federated Leaf instances should be shown in the user interface. If <code>false</code>, only aggregate results from all Leaf instance will be shown.</li>
+<li><strong>ShowFederated</strong>: <code>true | false</code> - Value which indicates whether the <code>Visualize</code> results for federated Leaf instances should be shown in the user interface. If <code>false</code>, only aggregate results from all Leaf instance will be shown.</li>
+</ul>
+</li>
+<li><strong>Timelines</strong><ul>
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the Timelines` screen should be shown in the user interface. 
+<img alt="Timelines" src="../../images/timelines_example.gif" title="Timelines" /></li>
 </ul>
 </li>
 <li><strong>PatientList</strong><ul>
-<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether the Patient screen should be shown in the user interface. 
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the <code>Patient List</code> screen should be shown in the user interface. 
 <img alt="PatientList" src="../../images/patient_list_example.png" title="PatientList" /></li>
 </ul>
 </li>
 <li><strong>Help</strong><ul>
-<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether the Help box should be shown in the lower left of the user interface. 
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the Help box should be shown in the lower left of the user interface. 
 <img alt="Help" src="../../images/help.gif" title="Help" /></li>
 <li><strong>Email</strong>: An email address to direct users to, suc has <code>&lt;your_support_email&gt;.edu</code>. If blank, "Contact a Leaf administrator" will not be shown.</li>
 <li><strong>URI</strong>: A URI/URL to direct users to, such as <code>https://&lt;your_support_page&gt;</code>. If blank, "Learn more here" will not be shown.</li>
@@ -1229,7 +1234,7 @@
 </ul>
 <h2 id="notification">Notification<a class="headerlink" href="#notification" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Enabled</strong>: <code>true | false</code> - Value which indicates whether notification to administrators by email is enabled.</li>
+<li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether notification to administrators by email is enabled.</li>
 <li><strong>Email</strong><ul>
 <li><strong>Server</strong>: SMTP server address from which to send emails from, such as <code>my.server.edu</code>.</li>
 <li><strong>UseSSL</strong>: <code>true | false</code> - Value which indicates whether SSL should be used for sending emails.</li>
