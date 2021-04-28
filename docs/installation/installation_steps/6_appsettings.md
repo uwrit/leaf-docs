@@ -152,7 +152,7 @@ Example configurations:
     ![Visualize](../images/visualize_example.png "Visualize")
     - **ShowFederated**: `true | false` - Value which indicates whether the `Visualize` results for federated Leaf instances should be shown in the user interface. If `false`, only aggregate results from all Leaf instance will be shown.
 - **Timelines**
-    - **Enabled**: `true | false` - Boolean which indicates whether the Timelines` screen should be shown in the user interface. 
+    - **Enabled**: `true | false` - Boolean which indicates whether the `Timelines` screen should be shown in the user interface. 
     ![Timelines](../images/timelines_example.gif "Timelines")
 - **PatientList**
     - **Enabled**: `true | false` - Boolean which indicates whether the `Patient List` screen should be shown in the user interface. 
