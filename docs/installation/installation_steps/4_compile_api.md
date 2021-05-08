@@ -18,13 +18,13 @@ From `/leaf/src/server`:
     === "With User Authentication"
 
         ```sh
-        $ dotnet publish -c Release -o /var/opt/leafapi/api
+        dotnet publish -c Release -o /var/opt/leafapi/api
         ```
 
     === "No Authentication (UNSECURED)"
 
         ```sh
-        $ dotnet publish -c Debug -o /var/opt/leafapi/api
+        dotnet publish -c Debug -o /var/opt/leafapi/api
         ```
 
 === "Windows"
@@ -32,13 +32,13 @@ From `/leaf/src/server`:
     === "With User Authentication"
 
         ```sh
-        $ dotnet publish -c Release -o <your_api_deployment_directory>
+        dotnet publish -c Release -o <your_api_deployment_directory>
         ```
 
     === "No Authentication (UNSECURED)"
 
         ```sh
-        $ dotnet publish -c Debug -o <your_api_deployment_directory>
+        dotnet publish -c Debug -o <your_api_deployment_directory>
         ```
 ---
 

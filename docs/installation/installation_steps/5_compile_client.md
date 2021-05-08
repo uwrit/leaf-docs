@@ -11,7 +11,7 @@ Like the Leaf API, Leaf Client as available on GitHub is not yet built for produ
 
 1. **Install dependencies**
 
-        $ cd /var/opt/leaf/leaf_download/leaf/
+        $ cd /var/opt/leafapi/leaf_download/leaf/
         $ cd src/ui-client/
         $ npm install
 
