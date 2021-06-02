@@ -26,7 +26,7 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
     - **Connection**: `LEAF_APP_DB` - Name of the Leaf app database connection string environment variable.
     - **DefaultTimeout**: Number of seconds allowed before a Leaf app database query times out.
 - **Clin**
-    - **Connection**: `LEAF_CLIN_DB` - Name of the Leaf app database connection string environment variable.
+    - **Connection**: `LEAF_CLIN_DB` - Name of the clinical database connection string environment variable.
     - **DefaultTimeout**: Number of seconds allowed before a clinical database query times out.
     - **Cohort**: 
         - **QueryStrategy**: `CTE | PARALLEL` - `CTE` queries wrap individual Leaf panel SQL within a single larger CTE query, and leverage the SQL engine to find the intersect. `PARALLEL` queries are performed concurrently by the Leaf API, which then map/reduces the results to find the intersect.
@@ -45,7 +45,7 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
 ## Authentication
 - **Mechanism**: `SAML2 | UNSECURED` - Only `SAML2` is currently supported for production. Use `UNSECURED` for development.
 - **SessionTimeoutMinutes**: Number of minutes allowed before a session expires. We recommend aligning this value with the timeout configuration other Service Provider used (e.g., Shibboleth).
-- **InactivityTimeoutMinutes**: Number of minutes allowed before a lack of user logs a user out of Leaf.
+- **InactivityTimeoutMinutes**: Number of minutes allowed before a lack of user activity logs a user out of Leaf.
 - **LogoutURI**: The URI/URL Leaf will redirect to in the browser upon user logout. For Shibboleth, this is typically of the form `https:<your_leaf_url>.edu/Shibboleth.sso/Logout?return=<Shibboleth_specific_logout_URL>`
 - **SAML2**
     - **Headers**
@@ -150,7 +150,7 @@ Example configurations:
 - **Visualize**
     - **Enabled**: `true | false` - Boolean which indicates whether the `Visualize` screen should be shown in the user interface. 
     ![Visualize](../images/visualize_example.png "Visualize")
-    - **ShowFederated**: `true | false` - Value which indicates whether the `Visualize` results for federated Leaf instances should be shown in the user interface. If `false`, only aggregate results from all Leaf instance will be shown.
+    - **ShowFederated**: `true | false` - Value which indicates whether the `Visualize` results for federated Leaf instances should be shown in the user interface. If `false`, only aggregate results from all Leaf instances will be shown.
 - **Timelines**
     - **Enabled**: `true | false` - Boolean which indicates whether the `Timelines` screen should be shown in the user interface. 
     ![Timelines](../images/timelines_example.gif "Timelines")

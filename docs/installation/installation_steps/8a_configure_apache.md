@@ -20,9 +20,10 @@ We'll start by deploying the Leaf API as a service using `systemctl`.
 1. Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.
 
     ```sh
-    $ useradd -r api_svc_account
-    $ chown /var/log/leaf/
-    $ chown -R /var/opt/leaf/
+    useradd -r api_svc_account
+    mkdir /var/log/leaf/
+    chown api_svc_account /var/log/leaf/
+    chown -R api_svc_account /var/opt/leafapi/
     ```
 
 2. Create a service file for the API instance. The `WorkingDirectory` must be the directory where `API.dll` resides.
@@ -50,13 +51,13 @@ We'll start by deploying the Leaf API as a service using `systemctl`.
 
     ```sh
     # Create a symbolic link into the systemd directory
-    $ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+    ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
 
     # Make the systemd aware of the service
-    $ systemctl daemon-reload
+    systemctl daemon-reload
 
     # Start the service
-    $ systemctl start leaf_api.service
+    systemctl start leaf_api.service
     ```
 
 ## Hosting Leaf with Apache
@@ -64,6 +65,11 @@ We'll start by deploying the Leaf API as a service using `systemctl`.
 ![Infra](../images/infra_web_focus.png "Architecure-Focus-Example") 
 
 Great, at this point the Leaf database and API should be up and running.
+The status of the Leaf API can be checked with this command:
+
+    ```sh
+    systemctl status leaf_api.service
+    ```
 
 1. **From the app server**, copy the `/build` directory made in [Step 5 - Build the Leaf UI](../5_compile_client) to `/data/www/` **on the web server**. This will copy the Leaf Client production files over for Apache to host.
 
@@ -72,7 +78,7 @@ Great, at this point the Leaf database and API should be up and running.
     !!! info 
         Each Leaf client webapp must be hosted at the top level of the `DocumentRoot` of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same `DocumentRoot`, however each would need its own VirtualHost and unique DNS name defined (e.g., site1.leaf.school.edu, site2.leaf.school.edu).
 
-    In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.
+    In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via Apache (i.e. during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.
 
 **`httpd.conf`**
 

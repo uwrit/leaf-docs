@@ -2,7 +2,7 @@
 
 ![Infra](../images/infra_app_focus.png "Architecure-Focus-Example") 
 
-Leaf uses environment variables to store sensitive information, such as connection strings, which are loaded when the API is launched. Regardless of the OS and configuration, as a best practice we recommend using environment variables specific to the user account running the Leaf API (rather than global environment variables)
+Leaf uses environment variables to store sensitive information, such as connection strings, which are loaded when the API is launched. Regardless of the OS and configuration, as a best practice we recommend using environment variables specific to the user account running the Leaf API (rather than global environment variables).
 
 **Leaf environment variables with example values**:
 

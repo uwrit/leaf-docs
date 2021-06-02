@@ -36,8 +36,8 @@ $ git clone git@github.com:uwrit/leaf.git
 
     At the time of this writing, installing .NET on CentOS/RHEL looks like this:
     ```bash
-    $ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-    $ yum install -y dotnet-sdk-3.1
+    rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
+    yum install -y dotnet-sdk-3.1
     ```
 
     !!! info 
@@ -47,9 +47,9 @@ $ git clone git@github.com:uwrit/leaf.git
     .NET Core 3.1 can be installed on Ubuntu by running:
 
     ```sh
-    $ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    $ sudo dpkg -i packages-microsoft-prod.deb
-    $ sudo apt-get update; \
+    wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    sudo apt-get update; \
         sudo apt-get install -y apt-transport-https && \
         sudo apt-get update && \
         sudo apt-get install -y dotnet-sdk-3.1
