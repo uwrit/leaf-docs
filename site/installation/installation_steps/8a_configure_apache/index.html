@@ -966,9 +966,10 @@
 <ol>
 <li>
 <p>Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.</p>
-<div class="highlight"><pre><span></span><code>$ useradd -r api_svc_account
-$ chown /var/log/leaf/
-$ chown -R /var/opt/leaf/
+<div class="highlight"><pre><span></span><code>useradd -r api_svc_account
+mkdir /var/log/leaf/
+chown api_svc_account /var/log/leaf/
+chown -R api_svc_account /var/opt/leafapi/
 </code></pre></div>
 </li>
 <li>
@@ -993,19 +994,24 @@ WantedBy=multi-user.target
 <li>
 <p>Last, link your service file with <code>systemd</code> and make it aware of the service:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create a symbolic link into the systemd directory</span>
-$ ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
 
 <span class="c1"># Make the systemd aware of the service</span>
-$ systemctl daemon-reload
+systemctl daemon-reload
 
 <span class="c1"># Start the service</span>
-$ systemctl start leaf_api.service
+systemctl start leaf_api.service
 </code></pre></div>
 </li>
 </ol>
 <h2 id="hosting-leaf-with-apache">Hosting Leaf with Apache<a class="headerlink" href="#hosting-leaf-with-apache" title="Permanent link">¶</a></h2>
 <p><img alt="Infra" src="../../images/infra_web_focus.png" title="Architecure-Focus-Example" /> </p>
-<p>Great, at this point the Leaf database and API should be up and running.</p>
+<p>Great, at this point the Leaf database and API should be up and running.
+The status of the Leaf API can be checked with this command:</p>
+<pre><code>```sh
+systemctl status leaf_api.service
+```
+</code></pre>
 <ol>
 <li>
 <p><strong>From the app server</strong>, copy the <code>/build</code> directory made in <a href="../5_compile_client">Step 5 - Build the Leaf UI</a> to <code>/data/www/</code> <strong>on the web server</strong>. This will copy the Leaf Client production files over for Apache to host.</p>
@@ -1016,7 +1022,7 @@ $ systemctl start leaf_api.service
 <p class="admonition-title">Info</p>
 <p>Each Leaf client webapp must be hosted at the top level of the <code>DocumentRoot</code> of an Apache VirtualHost. Multiple nodes could be hosted on a single Apache instance pointing at that same <code>DocumentRoot</code>, however each would need its own VirtualHost and unique DNS name defined (e.g., site1.leaf.school.edu, site2.leaf.school.edu).</p>
 </div>
-<p>In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via apache (ie during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.</p>
+<p>In the below example, the Shibboleth module is used to authenticate users via SAML2 and provide group membership to the app. If you want to define your own set of groups that limit access to the app via Apache (i.e. during pre-release or evaluation), you can define your own Apache groups via the AuthGroupFile directive and then require those groups.</p>
 </li>
 </ol>
 <p><strong><code>httpd.conf</code></strong></p>

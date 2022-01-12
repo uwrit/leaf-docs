@@ -1043,7 +1043,7 @@
 </ul>
 </li>
 <li><strong>Clin</strong><ul>
-<li><strong>Connection</strong>: <code>LEAF_CLIN_DB</code> - Name of the Leaf app database connection string environment variable.</li>
+<li><strong>Connection</strong>: <code>LEAF_CLIN_DB</code> - Name of the clinical database connection string environment variable.</li>
 <li><strong>DefaultTimeout</strong>: Number of seconds allowed before a clinical database query times out.</li>
 <li>
 <p><strong>Cohort</strong>: </p>
@@ -1068,8 +1068,12 @@
 <ul>
 <li><strong>Mechanism</strong>: <code>SAML2 | UNSECURED</code> - Only <code>SAML2</code> is currently supported for production. Use <code>UNSECURED</code> for development.</li>
 <li><strong>SessionTimeoutMinutes</strong>: Number of minutes allowed before a session expires. We recommend aligning this value with the timeout configuration other Service Provider used (e.g., Shibboleth).</li>
-<li><strong>InactivityTimeoutMinutes</strong>: Number of minutes allowed before a lack of user logs a user out of Leaf.</li>
-<li><strong>LogoutURI</strong>: The URI/URL Leaf will redirect to in the browser upon user logout. For Shibboleth, this is typically of the form <code>https:&lt;your_leaf_url&gt;.edu/Shibboleth.sso/Logout?return=&lt;Shibboleth_specific_logout_URL&gt;</code></li>
+<li><strong>InactivityTimeoutMinutes</strong>: Number of minutes allowed before a lack of user activity logs a user out of Leaf.</li>
+<li><strong>Logout</strong><ul>
+<li><strong>Enabled</strong>: <code>true | false</code> - Indicates whether logout should be allowed or not (disabling is sometimes preferred if an explicit logout from a single-sign on system may also logout the user from other institutional apps as a side-effect). If <code>false</code>, the logout option will not appear in the Leaf user interface and the server will disallow API calls to do so.</li>
+<li><strong>URI</strong>: The URI/URL Leaf will redirect to in the browser upon user logout. For Shibboleth, this is typically of the form <code>https:&lt;your_leaf_url&gt;.edu/Shibboleth.sso/Logout?return=&lt;Shibboleth_specific_logout_URL&gt;</code></li>
+</ul>
+</li>
 <li><strong>SAML2</strong><ul>
 <li><strong>Headers</strong><ul>
 <li><strong>ScopedIdentity</strong>: The SAML2 <strong>Attribute name</strong> which identifies a given user.</li>
@@ -1080,7 +1084,17 @@
 </ul>
 <h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Mechanism</strong>: <code>SAML2 | UNSECURED</code> - Only <code>SAML2</code> is currently supported for production. Use <code>UNSECURED</code> for development.</li>
+<li>
+<p><strong>Mechanism</strong>: <code>SAML2 | APPDB | UNSECURED</code> - Only <code>SAML2</code> and <code>APPDB</code> are currently supported for production. Use <code>UNSECURED</code> for development.</p>
+<ul>
+<li>If <code>SAML2</code>, Leaf will read the SAML2 headers and assign user roles based on groups supplied in <code>SAML2.RoleMapping</code>.</li>
+<li>If <code>APPDB</code>, Leaf will match authenticated user names to records in the <code>auth.UserRole</code> and <code>auth.UserGroup</code> Leaf AppDB tables. User permissions can be set using these tables. Example:</li>
+</ul>
+<p><img alt="AppDbUserRoles" src="../../images/appdb_user_roles.png" title="AppDbUserRoles" /></p>
+</li>
+<li>
+<p><strong>AllowAllAuthenticatedUsers</strong>: <code>true | false</code> - Indicates whether the <code>SAML2.RoleMapping.User</code> group should be ignored, and <strong><em>any</em></strong> user who successfully authenticates should be treated as a Leaf user.</p>
+</li>
 <li><strong>SAML2</strong><ul>
 <li><strong>HeadersMapping</strong><ul>
 <li><strong>Entitlements</strong><ul>
@@ -1103,7 +1117,17 @@
 </ul>
 <h2 id="attestation">Attestation<a class="headerlink" href="#attestation" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Enabled</strong> - <code>true | false</code> - Value which indicates whether the login attestation screen should be shown in the user interface. <img alt="Attestation" src="../../images/attestation_example.png" title="Attestation" /></li>
+<li><strong>Enabled</strong> - <code>true | false</code> - Indicates whether the login attestation screen should be shown in the user interface. <img alt="Attestation" src="../../images/attestation_example.png" title="Attestation" /></li>
+<li><strong>Type</strong>: <code>TEXT | HTML</code> - <em>Optional</em> value used if using a <strong>custom attestation test</strong>. <code>TEXT</code> will caused the value <code>Attestation.Text</code> to be treated as plaintext, while <code>HTML</code> will be treated as HTML.</li>
+<li>
+<p><strong>Text</strong> - <code>string[]</code> - <em>Optional</em> value used if using a <strong>custom attestation test</strong>. Should be a string array. If <code>Attestation.Type</code> = <code>TEXT</code>, each element of the array will be treated as a paragraph.</p>
+<p>HTML usage example:</p>
+<p><img alt="image" src="../../images/attest_html.png" /></p>
+<p>Text usage example:</p>
+<p><img alt="image" src="../../images/attest_text.png" /></p>
+<p>The custom attestation will then be displayed to users:</p>
+<p><img alt="image" src="../../images/attest_display.png" /></p>
+</li>
 </ul>
 <h2 id="compiler">Compiler<a class="headerlink" href="#compiler" title="Permanent link">¶</a></h2>
 <p>Example configurations:</p>
@@ -1211,7 +1235,7 @@
 <li><strong>Visualize</strong><ul>
 <li><strong>Enabled</strong>: <code>true | false</code> - Boolean which indicates whether the <code>Visualize</code> screen should be shown in the user interface. 
 <img alt="Visualize" src="../../images/visualize_example.png" title="Visualize" /></li>
-<li><strong>ShowFederated</strong>: <code>true | false</code> - Value which indicates whether the <code>Visualize</code> results for federated Leaf instances should be shown in the user interface. If <code>false</code>, only aggregate results from all Leaf instance will be shown.</li>
+<li><strong>ShowFederated</strong>: <code>true | false</code> - Value which indicates whether the <code>Visualize</code> results for federated Leaf instances should be shown in the user interface. If <code>false</code>, only aggregate results from all Leaf instances will be shown.</li>
 </ul>
 </li>
 <li><strong>Timelines</strong><ul>

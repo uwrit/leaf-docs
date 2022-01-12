@@ -906,7 +906,7 @@
                 
                 <h1 id="7-set-environment-variables">7 - Set Environment Variables<a class="headerlink" href="#7-set-environment-variables" title="Permanent link">¶</a></h1>
 <p><img alt="Infra" src="../../images/infra_app_focus.png" title="Architecure-Focus-Example" /> </p>
-<p>Leaf uses environment variables to store sensitive information, such as connection strings, which are loaded when the API is launched. Regardless of the OS and configuration, as a best practice we recommend using environment variables specific to the user account running the Leaf API (rather than global environment variables)</p>
+<p>Leaf uses environment variables to store sensitive information, such as connection strings, which are loaded when the API is launched. Regardless of the OS and configuration, as a best practice we recommend using environment variables specific to the user account running the Leaf API (rather than global environment variables).</p>
 <p><strong>Leaf environment variables with example values</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Required</span>
 <span class="n">LEAF_JWT_CERT</span>   <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">leafapi</span><span class="o">/.</span><span class="n">keys</span><span class="o">/</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span> 

@@ -960,8 +960,8 @@ $ git clone git@github.com:uwrit/leaf.git
 <p>CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
 <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.</p>
 <p>At the time of this writing, installing .NET on CentOS/RHEL looks like this:
-<div class="highlight"><pre><span></span><code>$ rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-$ yum install -y dotnet-sdk-3.1
+<div class="highlight"><pre><span></span><code>rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
+yum install -y dotnet-sdk-3.1
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -970,9 +970,9 @@ $ yum install -y dotnet-sdk-3.1
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Linux (Ubuntu)</label><div class="tabbed-content">
 <p>.NET Core 3.1 can be installed on Ubuntu by running:</p>
-<div class="highlight"><pre><span></span><code>$ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-$ sudo dpkg -i packages-microsoft-prod.deb
-$ sudo apt-get update<span class="p">;</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update<span class="p">;</span> <span class="se">\</span>
     sudo apt-get install -y apt-transport-https <span class="o">&amp;&amp;</span> <span class="se">\</span>
     sudo apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
     sudo apt-get install -y dotnet-sdk-3.1
