@@ -46,13 +46,21 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
 - **Mechanism**: `SAML2 | UNSECURED` - Only `SAML2` is currently supported for production. Use `UNSECURED` for development.
 - **SessionTimeoutMinutes**: Number of minutes allowed before a session expires. We recommend aligning this value with the timeout configuration other Service Provider used (e.g., Shibboleth).
 - **InactivityTimeoutMinutes**: Number of minutes allowed before a lack of user activity logs a user out of Leaf.
-- **LogoutURI**: The URI/URL Leaf will redirect to in the browser upon user logout. For Shibboleth, this is typically of the form `https:<your_leaf_url>.edu/Shibboleth.sso/Logout?return=<Shibboleth_specific_logout_URL>`
+- **Logout**
+    - **Enabled**: `true | false` - Indicates whether logout should be allowed or not (disabling is sometimes preferred if an explicit logout from a single-sign on system may also logout the user from other institutional apps as a side-effect). If `false`, the logout option will not appear in the Leaf user interface and the server will disallow API calls to do so.
+    - **URI**: The URI/URL Leaf will redirect to in the browser upon user logout. For Shibboleth, this is typically of the form `https:<your_leaf_url>.edu/Shibboleth.sso/Logout?return=<Shibboleth_specific_logout_URL>`
 - **SAML2**
     - **Headers**
         - **ScopedIdentity**: The SAML2 **Attribute name** which identifies a given user.
 
 ## Authorization
-- **Mechanism**: `SAML2 | UNSECURED` - Only `SAML2` is currently supported for production. Use `UNSECURED` for development.
+- **Mechanism**: `SAML2 | APPDB | UNSECURED` - Only `SAML2` and `APPDB` are currently supported for production. Use `UNSECURED` for development.
+    - If `SAML2`, Leaf will read the SAML2 headers and assign user roles based on groups supplied in `SAML2.RoleMapping`.
+    - If `APPDB`, Leaf will match authenticated user names to records in the `auth.UserRole` and `auth.UserGroup` Leaf AppDB tables. User permissions can be set using these tables. Example:
+
+    ![AppDbUserRoles](../images/appdb_user_roles.png "AppDbUserRoles")
+
+- **AllowAllAuthenticatedUsers**: `true | false` - Indicates whether the `SAML2.RoleMapping.User` group should be ignored, and ***any*** user who successfully authenticates should be treated as a Leaf user.
 - **SAML2**
     - **HeadersMapping**
         - **Entitlements**
@@ -66,7 +74,21 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
         - **Federated**: User group from `Entitlements.Name` which the user must be a member of to be able to **query other federated Leaf instances** (if configured).
 
 ## Attestation
-- **Enabled** - `true | false` - Value which indicates whether the login attestation screen should be shown in the user interface. ![Attestation](../images/attestation_example.png "Attestation")
+- **Enabled** - `true | false` - Indicates whether the login attestation screen should be shown in the user interface. ![Attestation](../images/attestation_example.png "Attestation")
+- **Type**: `TEXT | HTML` - *Optional* value used if using a **custom attestation test**. `TEXT` will caused the value `Attestation.Text` to be treated as plaintext, while `HTML` will be treated as HTML.
+- **Text** - `string[]` - *Optional* value used if using a **custom attestation test**. Should be a string array. If `Attestation.Type` = `TEXT`, each element of the array will be treated as a paragraph.
+
+    HTML usage example:
+
+    ![image](../images/attest_html.png)
+
+    Text usage example:
+
+    ![image](../images/attest_text.png)
+
+    The custom attestation will then be displayed to users:
+
+    ![image](../images/attest_display.png)
     
 ## Compiler
 
