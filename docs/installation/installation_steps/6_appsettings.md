@@ -92,6 +92,10 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
     
 ## Compiler
 
+- **Alias**: `@` - Unique character which Leaf will replace with a SQL Set alias when compiling SQL queries.
+- **FieldPersonId**: SQL field that must be present on every SQL object Leaf will query which uniquely identifies patients in a clinical database. This is usually a value such as `person_id`, `PATIENT_NUM`, `PAT_ID`, etc.
+- **FieldEncounterId**: SQL field that must be present on every SQL object Leaf will query with a one-to-many relationship to patients (i.e., a single patient can have multiple records). This field uniquely identifies encounters, and is usually a value such as `visit_occurrence_id`, `ENCOUNTER_NUM`, or `EncounterId`.
+
 Example configurations:
 
 **`OMOP`**
@@ -107,10 +111,6 @@ Example configurations:
 "FieldPersonId": "PATIENT_NUM",
 "FieldEncounterId": "ENCOUNTER_NUM",
 ```
-
-- **Alias**: `@` - Unique character which Leaf will replace with a SQL Set alias when compiling SQL queries.
-- **FieldPersonId**: SQL field that must be present on every SQL object Leaf will query which uniquely identifies patients in the clinical database.This is usually a value such as `person_id`, `PATIENT_NUM`, `PAT_ID`, etc.
-- **FieldEncounterId**: SQL field that must be present on every SQL object Leaf will query which has a one-to-many relationship to patients, such thatpatients can have many over time. This field uniquely identifies for encounters, and is usually a value such as `visit_occurrence_id`,`ENCOUNTER_NUM`, or `EncounterId`.
 
 ## Cohort
 - **RowLimit**: Maximum allowed number of unique patients which Leaf will cache for a given query. If a user's query exceeds this number, Leaf will not generate Visualization or Patient List screen data.
