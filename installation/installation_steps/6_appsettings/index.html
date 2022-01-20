@@ -1130,6 +1130,11 @@
 </li>
 </ul>
 <h2 id="compiler">Compiler<a class="headerlink" href="#compiler" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>Alias</strong>: <code>@</code> - Unique character which Leaf will replace with a SQL Set alias when compiling SQL queries.</li>
+<li><strong>FieldPersonId</strong>: SQL field that must be present on every SQL object Leaf will query which uniquely identifies patients in a clinical database. This is usually a value such as <code>person_id</code>, <code>PATIENT_NUM</code>, <code>PAT_ID</code>, etc.</li>
+<li><strong>FieldEncounterId</strong>: SQL field that must be present on every SQL object Leaf will query with a one-to-many relationship to patients (i.e., a single patient can have multiple records). This field uniquely identifies encounters, and is usually a value such as <code>visit_occurrence_id</code>, <code>ENCOUNTER_NUM</code>, or <code>EncounterId</code>.</li>
+</ul>
 <p>Example configurations:</p>
 <p><strong><code>OMOP</code></strong>
 <div class="highlight"><pre><span></span><code><span class="nt">&quot;Alias&quot;</span><span class="p">:</span> <span class="s2">&quot;@&quot;</span><span class="p">,</span>
@@ -1141,11 +1146,6 @@
 <span class="nt">&quot;FieldPersonId&quot;</span><span class="p">:</span> <span class="s2">&quot;PATIENT_NUM&quot;</span><span class="p">,</span>
 <span class="nt">&quot;FieldEncounterId&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCOUNTER_NUM&quot;</span><span class="p">,</span>
 </code></pre></div></p>
-<ul>
-<li><strong>Alias</strong>: <code>@</code> - Unique character which Leaf will replace with a SQL Set alias when compiling SQL queries.</li>
-<li><strong>FieldPersonId</strong>: SQL field that must be present on every SQL object Leaf will query which uniquely identifies patients in the clinical database.This is usually a value such as <code>person_id</code>, <code>PATIENT_NUM</code>, <code>PAT_ID</code>, etc.</li>
-<li><strong>FieldEncounterId</strong>: SQL field that must be present on every SQL object Leaf will query which has a one-to-many relationship to patients, such thatpatients can have many over time. This field uniquely identifies for encounters, and is usually a value such as <code>visit_occurrence_id</code>,<code>ENCOUNTER_NUM</code>, or <code>EncounterId</code>.</li>
-</ul>
 <h2 id="cohort">Cohort<a class="headerlink" href="#cohort" title="Permanent link">¶</a></h2>
 <ul>
 <li><strong>RowLimit</strong>: Maximum allowed number of unique patients which Leaf will cache for a given query. If a user's query exceeds this number, Leaf will not generate Visualization or Patient List screen data.</li>
