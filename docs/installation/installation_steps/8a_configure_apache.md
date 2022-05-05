@@ -87,7 +87,7 @@ The status of the Leaf API can be checked with this command:
 
     ServerName leaf.{subdomain}.{domain}.{tld}
     ServerAlias leaf
-    DocumentRoot /data/www
+    DocumentRoot /data/www/build
     HostnameLookups Off
     ErrorLog logs/leaf_ssl_error_log
     CustomLog logs/leaf_ssl_access_log combinedio

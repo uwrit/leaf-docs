@@ -19,6 +19,9 @@ $ openssl pkcs12 -in /var/opt/leafapi/keys/cert.pem -inkey key.pem \
 
 Note that the output paths and password can be whatever you'd like, and you'll need to reference them in the environment variables at a later step.
 
+!!! warning "Be sure that the key.pem file and path are readable by the (service) account which will be running the Leaf API"
+
+
 At this point, your Leaf directory on the app server should look similar to this:
 
 ```

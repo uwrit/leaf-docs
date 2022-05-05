@@ -2,14 +2,11 @@
 
 ![Infra](../images/infra_db_focus.png "Architecure-Focus-Example") 
 
-1. Create a database to serve as the Leaf application database. Note that this **must be the same server that contains your clinical database** you intend to query. This can be as simple as:
+1. Create a database to serve as the Leaf application database. This can be as simple as:
 
     ```sql
     CREATE DATABASE LeafDB 
     ```
-
-    !!! info
-        Details on why the databases need to be on the same server can be found on the [FAQs and Troubleshooting page](../../../faqs_and_troubleshooting/installation_questions/#why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server)
 
     !!! tip
         We also recommend also **creating a Leaf-specific SQL service account and password** for the API to use, though this isn't a requirement

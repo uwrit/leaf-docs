@@ -5,7 +5,7 @@
 The application server hosts the <a href="https://github.com/uwrit/leaf/tree/master/src/server" target="_blank">Leaf API</a>, and serves as the intermediary between the <a href="https://github.com/uwrit/leaf/tree/master/src/ui-client" target="_blank">client app</a> and <a href="https://github.com/uwrit/leaf/tree/master/src/db" target="_blank">databases</a>. The API is written in C# and .NET Core, and can run in either Linux or Windows environments. 
 
 !!! warning
-    The Leaf app database created in [Step 1 - Create App Database](../1_app_db) **must be query-able from this server**, so check to make sure any necessary firewall exceptions are in place
+    The Leaf App database (created in [Step 1 - Create App Database](../1_app_db)) and Clinical database **must be reachable from this server**, so check to make sure any necessary firewall exceptions are in place
 
 We'll be using the following directory layout for organizing the API deployment:  
 

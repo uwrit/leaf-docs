@@ -10,9 +10,16 @@ or alternatively:
 ![Single Instance Combined](images/single_instance_combined_server.png "Single Instance Combined") 
 
 ## Components
-1. **Database Server**, with
-    - The clinical database you'd like to point Leaf at deployed in <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> (2014+).
-    - <a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.sql" target="_blank">Leaf application database</a>. Note that this *must* be the same server the clinical database ↑ is deployed to.
+1. ** App Database Server**, with
+    - The <a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.sql" target="_blank">Leaf application database</a> using <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> (2014+).
+
+1. ** Clinical Database Server**, with
+    - The clinical database you'd like Leaf to query, using <a href="https://www.mysql.com/" target="_blank">MySQL</a>, <a href="https://mariadb.org/" target="_blank">MariaDB</a>, <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>, <a href="https://www.oracle.com/database/" target="_blank">Oracle</a>, <a href="https://cloud.google.com/bigquery/" target="_blank">Google BigQuery</a>, or <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> *.
+
+    !!! info "* If using SQL Server, this may also be the same database server the App Database is deployed to"
+
+    !!! info "* Prior to Leaf version 3.11, only SQL Server was supported and the App and Clinical databases were required to be on the same database server"
+    
 
 2. **Application Server**, with
     - <a href="https://dotnet.microsoft.com/download" target="_blank">.NET Core Runtime</a> installed.

@@ -26,8 +26,11 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
     - **Connection**: `LEAF_APP_DB` - Name of the Leaf app database connection string environment variable.
     - **DefaultTimeout**: Number of seconds allowed before a Leaf app database query times out.
 - **Clin**
-    - **Connection**: `LEAF_CLIN_DB` - Name of the clinical database connection string environment variable.
+    - **Connection**: `LEAF_CLIN_DB` - Name of the clinical database connection string environment variable. 
+        - **If using Google BigQuery for `RDBMS`, this should be your [BigQuery ProjectId](https://cloud.google.com/resource-manager/docs/creating-managing-projects)**, not a connection string. Leaf further assumes that you also have a `GOOGLE_APPLICATION_CREDENTIALS` environment variable and associated `key.json` file. See [https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow](https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow) for more information.
+
     - **DefaultTimeout**: Number of seconds allowed before a clinical database query times out.
+    - **RDBMS**: `MSSQL | MYSQL | MARIADB | POSTGRES | ORACLE | BIGQUERY` - Relation Database Management System to use.
     - **Cohort**: 
         - **QueryStrategy**: `CTE | PARALLEL` - `CTE` queries wrap individual Leaf panel SQL within a single larger CTE query, and leverage the SQL engine to find the intersect. `PARALLEL` queries are performed concurrently by the Leaf API, which then map/reduces the results to find the intersect.
 

@@ -20,13 +20,18 @@ ASPNETCORE_URLS = http://0.0.0.0:5001             # Only if using Linux
 LEAF_REDCAP_SUPERTOKEN = <your_token>     # Only if using REDCap import/export
 LEAF_SMTP_USR          = <smtp_user>      # Only if auto-generating help emails
 LEAF_SMTP_PW           = <smtp_password>  # Only if auto-generating help emails
+GOOGLE_APPLICATION_CREDENTIALS            # Only if using Google BigQuery
 ```
 
 !!! info "SQL Connection string formatting"
-    The **`LEAF_APP_DB`** and **`LEAF_CLIN_DB`** environment variables should be of the form:
+    In most cases, the **`LEAF_APP_DB`** and **`LEAF_CLIN_DB`** environment variables should be similar to:
     ```
     Server=<server>;Database=<dbname>;uid=sa;Password=<dbpassword>;
     ```
+
+    Though the particulars will depend on your database vendor. 
+
+    **If you are using BigQuery, the `LEAF_CLIN_DB` variable should instead be your [BigQuery ProjectId](https://cloud.google.com/resource-manager/docs/creating-managing-projects).**
 
 ---
 === "Linux (RHEL/CentOS/Ubuntu)"
