@@ -14,7 +14,7 @@
     
     
       
-        <title>Architecture - Leaf</title>
+        <title>Architecture - Leaf Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href=".." title="Leaf Docs" class="md-header__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../images/leaf.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Leaf
+            Leaf Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -291,12 +291,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href=".." title="Leaf Docs" class="md-nav__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../images/leaf.svg" alt="logo">
 
     </a>
-    Leaf
+    Leaf Docs
   </label>
   
     <div class="md-nav__source">
@@ -941,11 +941,22 @@
 <h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">¶</a></h2>
 <ol>
 <li>
-<p><strong>Database Server</strong>, with</p>
+<p><strong> App Database Server</strong>, with</p>
 <ul>
-<li>The clinical database you'd like to point Leaf at deployed in <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> (2014+).</li>
-<li><a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.sql" target="_blank">Leaf application database</a>. Note that this <em>must</em> be the same server the clinical database ↑ is deployed to.</li>
+<li>The <a href="https://github.com/uwrit/leaf/blob/master/src/db/build/LeafDB.sql" target="_blank">Leaf application database</a> using <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> (2014+).</li>
 </ul>
+</li>
+<li>
+<p><strong> Clinical Database Server</strong>, with</p>
+<ul>
+<li>The clinical database you'd like Leaf to query, using <a href="https://www.mysql.com/" target="_blank">MySQL</a>, <a href="https://mariadb.org/" target="_blank">MariaDB</a>, <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>, <a href="https://www.oracle.com/database/" target="_blank">Oracle</a>, <a href="https://cloud.google.com/bigquery/" target="_blank">Google BigQuery</a>, or <a href="https://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">MS SQL Server</a> *.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">* If using SQL Server, this may also be the same database server the App Database is deployed to</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">* Prior to Leaf version 3.11, only SQL Server was supported and the App and Clinical databases were required to be on the same database server</p>
+</div>
 </li>
 <li>
 <p><strong>Application Server</strong>, with</p>

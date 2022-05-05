@@ -14,7 +14,7 @@
     
     
       
-        <title>Installation Questions - Leaf</title>
+        <title>Installation Questions - Leaf Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../.." title="Leaf Docs" class="md-header__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../images/leaf.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Leaf
+            Leaf Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -291,12 +291,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../.." title="Leaf Docs" class="md-nav__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../images/leaf.svg" alt="logo">
 
     </a>
-    Leaf
+    Leaf Docs
   </label>
   
     <div class="md-nav__source">
@@ -939,17 +939,27 @@
                 
                 
                 <h1 id="installation-questions">Installation Questions<a class="headerlink" href="#installation-questions" title="Permanent link">¶</a></h1>
-<h4 id="why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server">Why do the App and Clinical databases <a href="../../installation/installation_steps/1_app_db/">need to be on the same server</a>?<a class="headerlink" href="#why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server" title="Permanent link">¶</a></h4>
+<h4 id="why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server">Why do the App and Clinical databases need to be on the same server?<a class="headerlink" href="#why-do-the-app-and-clinical-databases-need-to-be-on-the-same-server" title="Permanent link">¶</a></h4>
 <div class="admonition tldr">
 <p class="admonition-title">Answer</p>
-<p>The reason for this is that after Leaf has executed a ‘Find Patients’ query, it <a href="https://github.com/uwrit/leaf/blob/master/src/server/Services/Cohort/CohortCacheService.cs#L58">caches the patient IDs in the app database</a>. When users navigate to the ‘Visualize’ or ‘Patient List’ screens, Leaf <a href="https://github.com/uwrit/leaf/blob/master/src/server/Model/Compiler/SqlServer/DemographicSqlCompiler.cs#L80">performs a JOIN query</a> between the cached patient IDs in the app database and patients in the clinical database to quickly retrieve patient demographics. Thus currently both databases need to be on the same server in order for the JOIN operation to work.</p>
+<p><strong>UPDATE 2022-05-05</strong> - As of <a href="https://github.com/uwrit/leaf/releases/tag/v3.11.0">Leaf v3.11</a>, the App and Clinical databases <strong>do not need to be on the same database server.</strong></p>
+<blockquote>
+<p>Old answer (pre-v3.11): The reason for this is that after Leaf has executed a ‘Find Patients’ query, it caches the patient IDs in the app database. When users navigate to the ‘Visualize’ or ‘Patient List’ screens, Leaf performs a JOIN query between the cached patient IDs in the app database and patients in the clinical database to quickly retrieve patient demographics. Thus currently both databases need to be on the same server in order for the JOIN operation to work.</p>
+</blockquote>
 </div>
 <h4 id="id-like-to-use-an-rdbms-besides-sql-server-does-leaf-support-any">I'd like to use an RDBMS besides SQL Server. Does Leaf support any?<a class="headerlink" href="#id-like-to-use-an-rdbms-besides-sql-server-does-leaf-support-any" title="Permanent link">¶</a></h4>
 <div class="admonition tldr">
 <p class="admonition-title">Answer</p>
-<p>We understand - there are many great RDBMSs besides SQL Server (MySQL/MariaDB, PostgreSQL, Oracle, BigQuery, etc.), and being restricted to SQL Server can be a pain. While Leaf <em>currently</em> only supports SQL Server, we are actively evaluating methods for allowing Leaf to query non-SQL Server databases as well.</p>
-<p>So <strong><em>if</em></strong>, in a future release we are able to have Leaf work with other RDBMSs, please note that it will likely <strong>only be the clinical database</strong> (as opposed to the <strong>app</strong> database), as the work involved in making the clinical database more flexible is much simpler than the app database. (Because the app database has various stored procedures and functions which would need to be written in other SQL dialects, while the clinical database simply executes standard SQL statements).</p>
-<p>In other words, in the future we <strong><em>may</em></strong> support other <em>clinical</em> database flavors, but <strong>you would still need to run the Leaf <em>application</em> database in SQL Server</strong>.</p>
+<p>As of <a href="https://github.com/uwrit/leaf/releases/tag/v3.11.0">Leaf v3.11</a>, Leaf does! For the Clinical DB, Leaf supports:</p>
+<ul>
+<li><a href="https://www.mysql.com/">MySQL</a></li>
+<li><a href="https://mariadb.org/">MariaDB</a></li>
+<li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+<li><a href="https://www.oracle.com/database/">Oracle</a></li>
+<li><a href="https://cloud.google.com/bigquery/">Google BigQuery</a></li>
+<li><a href="https://www.microsoft.com/en-us/sql-server/default.aspx">SQL Server</a></li>
+</ul>
+<p><strong>Note that the Leaf <em>App</em> DB must be deployed using SQL Server, however</strong>.</p>
 </div>
                 
               

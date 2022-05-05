@@ -14,7 +14,7 @@
     
     
       
-        <title>7 - Set Environment Variables - Leaf</title>
+        <title>7 - Set Environment Variables - Leaf Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-header__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Leaf
+            Leaf Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -291,12 +291,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-nav__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
     </a>
-    Leaf
+    Leaf Docs
   </label>
   
     <div class="md-nav__source">
@@ -921,12 +921,15 @@
 <span class="n">LEAF_REDCAP_SUPERTOKEN</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">your_token</span><span class="o">&gt;</span>     <span class="c1"># Only if using REDCap import/export</span>
 <span class="n">LEAF_SMTP_USR</span>          <span class="o">=</span> <span class="o">&lt;</span><span class="n">smtp_user</span><span class="o">&gt;</span>      <span class="c1"># Only if auto-generating help emails</span>
 <span class="n">LEAF_SMTP_PW</span>           <span class="o">=</span> <span class="o">&lt;</span><span class="n">smtp_password</span><span class="o">&gt;</span>  <span class="c1"># Only if auto-generating help emails</span>
+<span class="n">GOOGLE_APPLICATION_CREDENTIALS</span>            <span class="c1"># Only if using Google BigQuery</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">SQL Connection string formatting</p>
-<p>The <strong><code>LEAF_APP_DB</code></strong> and <strong><code>LEAF_CLIN_DB</code></strong> environment variables should be of the form:
+<p>In most cases, the <strong><code>LEAF_APP_DB</code></strong> and <strong><code>LEAF_CLIN_DB</code></strong> environment variables should be similar to:
 <div class="highlight"><pre><span></span><code>Server=&lt;server&gt;;Database=&lt;dbname&gt;;uid=sa;Password=&lt;dbpassword&gt;;
 </code></pre></div></p>
+<p>Though the particulars will depend on your database vendor. </p>
+<p><strong>If you are using BigQuery, the <code>LEAF_CLIN_DB</code> variable should instead be your <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">BigQuery ProjectId</a>.</strong></p>
 </div>
 <hr />
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Linux (RHEL/CentOS/Ubuntu)</label><div class="tabbed-content">
