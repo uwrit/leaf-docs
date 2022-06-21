@@ -14,7 +14,7 @@
     
     
       
-        <title>3 - Create a JWT Signing Key - Leaf</title>
+        <title>3 - Create a JWT Signing Key - Leaf Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-header__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Leaf
+            Leaf Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -291,12 +291,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-nav__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
     </a>
-    Leaf
+    Leaf Docs
   </label>
   
     <div class="md-nav__source">
@@ -917,6 +917,9 @@ $ openssl req -nodes -x509 -newkey rsa:2048 -keyout /var/opt/leafapi/keys/key.pe
     -export -out /var/opt/leafapi/keys/leaf.pfx -password pass:&lt;your_pass&gt;
 </code></pre></div></p>
 <p>Note that the output paths and password can be whatever you'd like, and you'll need to reference them in the environment variables at a later step.</p>
+<div class="admonition warning">
+<p class="admonition-title">Be sure that the key.pem file and path are readable by the (service) account which will be running the Leaf API</p>
+</div>
 <p>At this point, your Leaf directory on the app server should look similar to this:</p>
 <div class="highlight"><pre><span></span><code>var
 ├── opt

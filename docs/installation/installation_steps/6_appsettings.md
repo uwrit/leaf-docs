@@ -58,18 +58,18 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
 
 ## Authorization
 - **Mechanism**: `SAML2 | APPDB | UNSECURED` - Only `SAML2` and `APPDB` are currently supported for production. Use `UNSECURED` for development.
-    - If `SAML2`, Leaf will read the SAML2 headers and assign user roles based on groups supplied in `SAML2.RoleMapping`.
+    - If `SAML2`, Leaf will read the SAML2 headers and assign user roles based on groups supplied in `SAML2.RolesMapping`.
     - If `APPDB`, Leaf will match authenticated user names to records in the `auth.UserRole` and `auth.UserGroup` Leaf AppDB tables. User permissions can be set using these tables. Example:
 
     ![AppDbUserRoles](../images/appdb_user_roles.png "AppDbUserRoles")
 
-- **AllowAllAuthenticatedUsers**: `true | false` - Indicates whether the `SAML2.RoleMapping.User` group should be ignored, and ***any*** user who successfully authenticates should be treated as a Leaf user.
+- **AllowAllAuthenticatedUsers**: `true | false` - Indicates whether the `SAML2.RolesMapping.User` group should be ignored, and ***any*** user who successfully authenticates should be treated as a Leaf user.
 - **SAML2**
     - **HeadersMapping**
         - **Entitlements**
             - **Name**: The SAML2 `Attribute name` which identifies groups the user is in.
             - **Delimiter**: The delimeter character which separates group names under **Entitlements.Name**. This is typically `;`.
-    - **RoleMapping**
+    - **RolesMapping**
         - **User**: User group from `Entitlements.Name` which the user must be a member of to be a Leaf **user**. 
         - **Super**: User group from `Entitlements.Name` which the user must be a member of to be a Leaf **super user**. *Please note that this role is only a placeholder, and does not currently confer any additional functionality.*
         - **Identified**: User group from `Entitlements.Name` which the user must be a member of to **see identified health information**. 

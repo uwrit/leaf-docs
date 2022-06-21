@@ -14,7 +14,7 @@
     
     
       
-        <title>6 - Configure the appsettings file - Leaf</title>
+        <title>6 - Configure the appsettings file - Leaf Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Leaf" class="md-header__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-header__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Leaf
+            Leaf Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -291,12 +291,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Leaf" class="md-nav__button md-logo" aria-label="Leaf" data-md-component="logo">
+    <a href="../../.." title="Leaf Docs" class="md-nav__button md-logo" aria-label="Leaf Docs" data-md-component="logo">
       
   <img src="../../../images/leaf.svg" alt="logo">
 
     </a>
-    Leaf
+    Leaf Docs
   </label>
   
     <div class="md-nav__source">
@@ -1042,9 +1042,19 @@
 <li><strong>DefaultTimeout</strong>: Number of seconds allowed before a Leaf app database query times out.</li>
 </ul>
 </li>
-<li><strong>Clin</strong><ul>
-<li><strong>Connection</strong>: <code>LEAF_CLIN_DB</code> - Name of the clinical database connection string environment variable.</li>
-<li><strong>DefaultTimeout</strong>: Number of seconds allowed before a clinical database query times out.</li>
+<li>
+<p><strong>Clin</strong></p>
+<ul>
+<li>
+<p><strong>Connection</strong>: <code>LEAF_CLIN_DB</code> - Name of the clinical database connection string environment variable. </p>
+<ul>
+<li><strong>If using Google BigQuery for <code>RDBMS</code>, this should be your <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">BigQuery ProjectId</a></strong>, not a connection string. Leaf further assumes that you also have a <code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable and associated <code>key.json</code> file. See <a href="https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow">https://cloud.google.com/docs/authentication#getting_credentials_for_server-centric_flow</a> for more information.</li>
+</ul>
+</li>
+<li>
+<p><strong>DefaultTimeout</strong>: Number of seconds allowed before a clinical database query times out.</p>
+</li>
+<li><strong>RDBMS</strong>: <code>MSSQL | MYSQL | MARIADB | POSTGRES | ORACLE | BIGQUERY</code> - Relation Database Management System to use.</li>
 <li>
 <p><strong>Cohort</strong>: </p>
 <ul>

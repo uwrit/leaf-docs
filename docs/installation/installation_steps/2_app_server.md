@@ -32,7 +32,7 @@ $ git clone git@github.com:uwrit/leaf.git
 
 === "Linux (RHEL/CentOS)"
     CentOS requires .NET to be installed prior to building the application. Refer to Microsoft's current instructions for installing .NET Core framework.
-    <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current" target="_blank">https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current</a>.
+    <a href="https://docs.microsoft.com/en-us/dotnet/core/install/" target="_blank">https://docs.microsoft.com/en-us/dotnet/core/install/</a>.
 
     At the time of this writing, installing .NET on CentOS/RHEL looks like this:
     ```bash
