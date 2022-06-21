@@ -1097,13 +1097,13 @@
 <li>
 <p><strong>Mechanism</strong>: <code>SAML2 | APPDB | UNSECURED</code> - Only <code>SAML2</code> and <code>APPDB</code> are currently supported for production. Use <code>UNSECURED</code> for development.</p>
 <ul>
-<li>If <code>SAML2</code>, Leaf will read the SAML2 headers and assign user roles based on groups supplied in <code>SAML2.RoleMapping</code>.</li>
+<li>If <code>SAML2</code>, Leaf will read the SAML2 headers and assign user roles based on groups supplied in <code>SAML2.RolesMapping</code>.</li>
 <li>If <code>APPDB</code>, Leaf will match authenticated user names to records in the <code>auth.UserRole</code> and <code>auth.UserGroup</code> Leaf AppDB tables. User permissions can be set using these tables. Example:</li>
 </ul>
 <p><img alt="AppDbUserRoles" src="../../images/appdb_user_roles.png" title="AppDbUserRoles" /></p>
 </li>
 <li>
-<p><strong>AllowAllAuthenticatedUsers</strong>: <code>true | false</code> - Indicates whether the <code>SAML2.RoleMapping.User</code> group should be ignored, and <strong><em>any</em></strong> user who successfully authenticates should be treated as a Leaf user.</p>
+<p><strong>AllowAllAuthenticatedUsers</strong>: <code>true | false</code> - Indicates whether the <code>SAML2.RolesMapping.User</code> group should be ignored, and <strong><em>any</em></strong> user who successfully authenticates should be treated as a Leaf user.</p>
 </li>
 <li><strong>SAML2</strong><ul>
 <li><strong>HeadersMapping</strong><ul>
@@ -1114,7 +1114,7 @@
 </li>
 </ul>
 </li>
-<li><strong>RoleMapping</strong><ul>
+<li><strong>RolesMapping</strong><ul>
 <li><strong>User</strong>: User group from <code>Entitlements.Name</code> which the user must be a member of to be a Leaf <strong>user</strong>. </li>
 <li><strong>Super</strong>: User group from <code>Entitlements.Name</code> which the user must be a member of to be a Leaf <strong>super user</strong>. <em>Please note that this role is only a placeholder, and does not currently confer any additional functionality.</em></li>
 <li><strong>Identified</strong>: User group from <code>Entitlements.Name</code> which the user must be a member of to <strong>see identified health information</strong>. </li>
