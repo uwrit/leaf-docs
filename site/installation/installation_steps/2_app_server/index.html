@@ -961,32 +961,32 @@ $ git clone git@github.com:uwrit/leaf.git
 <a href="https://docs.microsoft.com/en-us/dotnet/core/install/" target="_blank">https://docs.microsoft.com/en-us/dotnet/core/install/</a>.</p>
 <p>At the time of this writing, installing .NET on CentOS/RHEL looks like this:
 <div class="highlight"><pre><span></span><code>rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-yum install -y dotnet-sdk-3.1
+yum install -y dotnet-sdk-6.0
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos">https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos</a></p>
+<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos">https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos</a>. Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.</p>
 </div>
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Linux (Ubuntu)</label><div class="tabbed-content">
-<p>.NET Core 3.1 can be installed on Ubuntu by running:</p>
+<p>.NET Core 6.0 can be installed on Ubuntu by running:</p>
 <div class="highlight"><pre><span></span><code>wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 sudo apt-get update<span class="p">;</span> <span class="se">\</span>
     sudo apt-get install -y apt-transport-https <span class="o">&amp;&amp;</span> <span class="se">\</span>
     sudo apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-    sudo apt-get install -y dotnet-sdk-3.1
+    sudo apt-get install -y dotnet-sdk-6.0
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu">https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu</a></p>
+<p>For more information see <a href="https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu">https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu</a>. Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.</p>
 </div>
 </div>
 <input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Windows</label><div class="tabbed-content">
-<p>Ensure that IIS8+ is installed on the intended app server.</p>
+<p>Ensure that IIS8+ is installed on the intended app server alongside the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0">ASP.NET Core Runtime 6.0</a>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a></p>
+<p>See instructions at <a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012">https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012</a>. Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.</p>
 </div>
 </div>
 </div>

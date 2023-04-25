@@ -77,9 +77,10 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
         - **Federated**: User group from `Entitlements.Name` which the user must be a member of to be able to **query other federated Leaf instances** (if configured).
 
 ## Attestation
-- **Enabled** - `true | false` - Indicates whether the login attestation screen should be shown in the user interface. ![Attestation](../images/attestation_example.png "Attestation")
+- **Enabled**: `true | false` - Indicates whether the login attestation screen should be shown in the user interface. ![Attestation](../images/attestation_example.png "Attestation")
+- **SkipModeSelection**: `true | false` - New in [v3.11.3](https://github.com/uwrit/leaf/releases/tag/v3.11.3). Set to `true` to skip directly to the attestation screen and avoid needing to select `Quality Improvement` vs. `Research` and so on. Defaults to `false` if omitted.
 - **Type**: `TEXT | HTML` - *Optional* value used if using a **custom attestation test**. `TEXT` will caused the value `Attestation.Text` to be treated as plaintext, while `HTML` will be treated as HTML.
-- **Text** - `string[]` - *Optional* value used if using a **custom attestation test**. Should be a string array. If `Attestation.Type` = `TEXT`, each element of the array will be treated as a paragraph.
+- **Text**: `string[]` - *Optional* value used if using a **custom attestation test**. Should be a string array. If `Attestation.Type` = `TEXT`, each element of the array will be treated as a paragraph.
 
     HTML usage example:
 
@@ -93,6 +94,14 @@ As we already [compiled the API in Step 4](../4_compile_api), though, it can now
 
     ![image](../images/attest_display.png)
     
+- **Credits** - *Optional*
+  - **Enabled**: `true | false` - Whether or not to show custom text or images at the top of the attestation page.
+
+    ![image](../images/custom_credits.png)
+
+    - **Logos**: `string[]` - *Optional* An array of *paths* of custom images to be shown, relative to the Leaf web client path. Each image will be automatically resized to fit within the UI space at the top.
+    - **Text**: *Optional* text to be shown alongside logos. It's best to keep this short, such as 50 characters or less.
+
 ## Compiler
 
 - **Alias**: `@` - Unique character which Leaf will replace with a SQL Set alias when compiling SQL queries.
