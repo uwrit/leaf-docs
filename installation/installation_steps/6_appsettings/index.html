@@ -1127,16 +1127,28 @@
 </ul>
 <h2 id="attestation">Attestation<a class="headerlink" href="#attestation" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Enabled</strong> - <code>true | false</code> - Indicates whether the login attestation screen should be shown in the user interface. <img alt="Attestation" src="../../images/attestation_example.png" title="Attestation" /></li>
+<li><strong>Enabled</strong>: <code>true | false</code> - Indicates whether the login attestation screen should be shown in the user interface. <img alt="Attestation" src="../../images/attestation_example.png" title="Attestation" /></li>
+<li><strong>SkipModeSelection</strong>: <code>true | false</code> - New in <a href="https://github.com/uwrit/leaf/releases/tag/v3.11.3">v3.11.3</a>. Set to <code>true</code> to skip directly to the attestation screen and avoid needing to select <code>Quality Improvement</code> vs. <code>Research</code> and so on. Defaults to <code>false</code> if omitted.</li>
 <li><strong>Type</strong>: <code>TEXT | HTML</code> - <em>Optional</em> value used if using a <strong>custom attestation test</strong>. <code>TEXT</code> will caused the value <code>Attestation.Text</code> to be treated as plaintext, while <code>HTML</code> will be treated as HTML.</li>
 <li>
-<p><strong>Text</strong> - <code>string[]</code> - <em>Optional</em> value used if using a <strong>custom attestation test</strong>. Should be a string array. If <code>Attestation.Type</code> = <code>TEXT</code>, each element of the array will be treated as a paragraph.</p>
+<p><strong>Text</strong>: <code>string[]</code> - <em>Optional</em> value used if using a <strong>custom attestation test</strong>. Should be a string array. If <code>Attestation.Type</code> = <code>TEXT</code>, each element of the array will be treated as a paragraph.</p>
 <p>HTML usage example:</p>
 <p><img alt="image" src="../../images/attest_html.png" /></p>
 <p>Text usage example:</p>
 <p><img alt="image" src="../../images/attest_text.png" /></p>
 <p>The custom attestation will then be displayed to users:</p>
 <p><img alt="image" src="../../images/attest_display.png" /></p>
+</li>
+<li>
+<p><strong>Credits</strong> - <em>Optional</em></p>
+</li>
+<li>
+<p><strong>Enabled</strong>: <code>true | false</code> - Whether or not to show custom text or images at the top of the attestation page.</p>
+<p><img alt="image" src="../../images/custom_credits.png" /></p>
+<ul>
+<li><strong>Logos</strong>: <code>string[]</code> - <em>Optional</em> An array of <em>paths</em> of custom images to be shown, relative to the Leaf web client path. Each image will be automatically resized to fit within the UI space at the top.</li>
+<li><strong>Text</strong>: <em>Optional</em> text to be shown alongside logos. It's best to keep this short, such as 50 characters or less.</li>
+</ul>
 </li>
 </ul>
 <h2 id="compiler">Compiler<a class="headerlink" href="#compiler" title="Permanent link">¶</a></h2>
