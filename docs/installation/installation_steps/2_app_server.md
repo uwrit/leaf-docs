@@ -37,14 +37,14 @@ $ git clone git@github.com:uwrit/leaf.git
     At the time of this writing, installing .NET on CentOS/RHEL looks like this:
     ```bash
     rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
-    yum install -y dotnet-sdk-3.1
+    yum install -y dotnet-sdk-6.0
     ```
 
     !!! info 
-        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos)
+        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos). Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.
 
 === "Linux (Ubuntu)"
-    .NET Core 3.1 can be installed on Ubuntu by running:
+    .NET Core 6.0 can be installed on Ubuntu by running:
 
     ```sh
     wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -52,17 +52,17 @@ $ git clone git@github.com:uwrit/leaf.git
     sudo apt-get update; \
         sudo apt-get install -y apt-transport-https && \
         sudo apt-get update && \
-        sudo apt-get install -y dotnet-sdk-3.1
+        sudo apt-get install -y dotnet-sdk-6.0
     ```
 
     !!! info 
-        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu)
+        For more information see [https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu). Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.
 
 === "Windows"
-    Ensure that IIS8+ is installed on the intended app server.
+    Ensure that IIS8+ is installed on the intended app server alongside the [ASP.NET Core Runtime 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
     
     !!! info
-        See instructions at [https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012)
+        See instructions at [https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/installing-iis-8-on-windows-server-2012). Prior to Leaf version 3.11.3, Leaf instead used dotnet core version 3.1.
 
 
 <br>
