@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../images/leaf.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-7.1.1">
     
     
       
@@ -136,7 +136,7 @@
     
       <div class="md-header__source">
         
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -301,7 +301,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -1009,7 +1009,9 @@
                 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h1>
 <h2 id="leaf-client-errors">Leaf client errors<a class="headerlink" href="#leaf-client-errors" title="Permanent link">¶</a></h2>
 <h4 id="startup-error-contact-your-leaf-administrator">Startup error: "Contact your Leaf administrator"<a class="headerlink" href="#startup-error-contact-your-leaf-administrator" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
 <p><p align="center"><img src="../images/err_server_not_found.png"/></p></p>
 <blockquote>
 <p>The particular message may instead be "<em>Hmmm... No Leaf server was found</em>", etc., but the best means of troubleshooting is the same either way.</p>
@@ -1020,7 +1022,7 @@
 <li>
 <p><strong>Check that your API is up-and-running</strong> - the Leaf client will only give you vague, indirect information about where the failure lies (note that this is <em>by design</em> and largely for security reasons). There are a number of ways to check if your API is running, including <code>systemctl status</code> or <code>apachectl status</code> (if on Linux), the IIS user interface or Event Viewer (if on Windows), or <code>docker ps -a</code> / <code>podman ps -a</code> (if using containers). Choose the best method appropriate for your deployment.</p>
 <p>Perhaps most simply, <strong>check the Leaf API logs</strong>. These will tell you immediately whether the Leaf API successfully started, and/or any errors it has run into along with way. Remember that <strong>Leaf API files are stored in the directory you set as your <a href="../../installation/installation_steps/7_env/">SERILOG_DIR</a></strong>. This can be as simple as:</p>
-<div class="highlight"><pre><span></span><code>$ tail -10 /<span class="nv">$SERILOG_DIR</span>/leaf-api-&lt;todays_date&gt;.log
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tail<span class="w"> </span>-10<span class="w"> </span>/<span class="nv">$SERILOG_DIR</span>/leaf-api-&lt;todays_date&gt;.log
 </code></pre></div>
 <p><strong>If the API is not running</strong>, dig into the logs to see what errors occurred. Often you may find that the API failed to communicate with the Leaf app database (hint: look for <code>"Error":"System.Data.SqlClient.SqlException"</code>). These cases are nearly always due to incorrect SQL passwords or usernames configured in your <a href="../../installation/installation_steps/7_env/">environment variables</a>.</p>
 <p><strong>If no log files appear and you are running IIS</strong>, see <a href="#i-started-the-leaf-api-but-dont-see-any-log-files">I started the Leaf API but don't see any log files!</a> below.</p>
@@ -1028,7 +1030,9 @@
 </ol>
 </details>
 <h4 id="visualization-and-patient-list-error-whoops-an-error-occurred-while-loading-patient-visualizations">Visualization and Patient List error: "Whoops! An error occurred while loading patient visualizations"<a class="headerlink" href="#visualization-and-patient-list-error-whoops-an-error-occurred-while-loading-patient-visualizations" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>When installing Leaf and running the Leaf client app in your browser, you may run into some variation of this message:</p>
 <p><p><img src="../images/err_visualization.png"/></p></p>
 <p><strong>These errors result from an error while the API is executing the <a href="../../administration/datasets/#basic-demographics">Basic Demographics query</a></strong></p>
 <p><strong>What to do:</strong></p>
@@ -1042,23 +1046,27 @@
 </ol>
 </details>
 <h4 id="im-trying-to-build-the-leaf-client-but-get-the-error-failed-atreact-scripts-build">I'm trying to build the Leaf client but get the error, "Failed at...'react-scripts build'"<a class="headerlink" href="#im-trying-to-build-the-leaf-client-but-get-the-error-failed-atreact-scripts-build" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>This is usually caused by older versions of <a href="https://www.npmjs.com/">NPM</a> and <a href="https://nodejs.org/en/">NodeJS</a> being used. We recommend using <strong>NodeJS version 14.9.0+</strong> and <strong>NPM version 6.14.8+.</strong></p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>This is usually caused by older versions of <a href="https://www.npmjs.com/">NPM</a> and <a href="https://nodejs.org/en/">NodeJS</a> being used. We recommend using <strong>NodeJS version 14.9.0+</strong> and <strong>NPM version 6.14.8+.</strong></p>
 <p>You can check your current versions using:</p>
-<div class="highlight"><pre><span></span><code>$ node --version
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>node<span class="w"> </span>--version
 <span class="c1"># v14.9.0</span>
 
-$ npm --version
+$<span class="w"> </span>npm<span class="w"> </span>--version
 <span class="c1"># 6.14.8</span>
 </code></pre></div>
 <p>If you have an older version, the easiest way to upgrade is typically by using:</p>
-<div class="highlight"><pre><span></span><code>$ npm upgrade -g
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>upgrade<span class="w"> </span>-g
 </code></pre></div>
 <p>See <a href="https://www.geeksforgeeks.org/how-to-update-npm/">this helpful article</a> or <a href="https://docs.npmjs.com/cli/v6/commands/npm-update">NPM documentation</a> for more information.</p>
 <p><strong>Alternatively</strong>, you could instead also download the latest pre-compiled <code>leaf-ui-client-xxx.tar.gz</code> file from the <a href="https://github.com/uwrit/leaf/releases">Leaf Releases page</a>.</p>
 </details>
 <h2 id="leaf-api-errors">Leaf API errors<a class="headerlink" href="#leaf-api-errors" title="Permanent link">¶</a></h2>
 <h4 id="i-started-the-leaf-api-but-dont-see-any-log-files">I started the Leaf API but don't see any log files!<a class="headerlink" href="#i-started-the-leaf-api-but-dont-see-any-log-files" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>If you are running IIS:</p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>If you are running IIS:</p>
 <ol>
 <li>
 <p><strong>Make sure your service account is running in IIS and has permissions to write</strong> to the <code>SERILOG_DIR</code> directory.</p>
@@ -1082,23 +1090,31 @@ $ npm --version
 </ol>
 </details>
 <h4 id="api-error-do-not-run-unsecured-authentication-in-non-development-environments">API Error: "Do not run UNSECURED authentication in non-development environments!"<a class="headerlink" href="#api-error-do-not-run-unsecured-authentication-in-non-development-environments" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>In a bit of well-intentioned caution, <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446">Leaf assumes you will always want to authenticate your users</a>. The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. </p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>In a bit of well-intentioned caution, <a href="https://github.com/uwrit/leaf/blob/master/src/server/API/Options/StartupExtensions.Options.cs#L446">Leaf assumes you will always want to authenticate your users</a>. The reason for this is to prevent inadvertantly allowing access to identified patient information because users weren't authenticated. </p>
 <p>While that's a precaution, we understand it can also be unhelpful if you're simply evaluating Leaf with synthetic/de-identified data, or only for a small number of users.</p>
 <p>To do so, as mentioned in <a href="../../../installation/installation_steps/4_compile_api/#compilation">the Installation documentation</a> compile the API with:</p>
-<div class="highlight"><pre><span></span><code>$ dotnet publish -c Debug ...&lt;additional parameters&gt;
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>dotnet<span class="w"> </span>publish<span class="w"> </span>-c<span class="w"> </span>Debug<span class="w"> </span>...&lt;additional<span class="w"> </span>parameters&gt;
 </code></pre></div>
 <p>The <strong><code>-c Debug</code></strong> parameter compiles the Leaf API but relaxes the above requirement.</p>
 </details>
 <h4 id="api-error-unable-to-start-kestrelexception-systemnetsocketssocketexception-13-permission-denied">API Error: "Unable to start Kestrel.","Exception" : "System.Net.Sockets.SocketException (13) : Permission denied"<a class="headerlink" href="#api-error-unable-to-start-kestrelexception-systemnetsocketssocketexception-13-permission-denied" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>If you are deploying in a Linux environment, be sure the <code>ASPNETCORE_URLS</code> environment variable is set:</p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>If you are deploying in a Linux environment, be sure the <code>ASPNETCORE_URLS</code> environment variable is set:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ASPNETCORE_URLS</span><span class="o">=</span>http://0.0.0.0:5001
 </code></pre></div>
 </details>
 <h4 id="api-error-value-cannot-be-null-parameter-path1">API Error: "Value cannot be null. (Parameter 'path1')"<a class="headerlink" href="#api-error-value-cannot-be-null-parameter-path1" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>This occurs if the API is unable to read your <a href="../../../installation/installation_steps/7_env">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>This occurs if the API is unable to read your <a href="../../../installation/installation_steps/7_env">environment variables</a> correctly. Check to make sure those are configured and visible to the API.</p>
 </details>
 <h4 id="api-error-nameid-header-not-found-no-scoped-identity-available">API Error: "nameID header not found, no scoped identity available"<a class="headerlink" href="#api-error-nameid-header-not-found-no-scoped-identity-available" title="Permanent link">¶</a></h4>
-<details class="tldr"><summary>Answer</summary><p>This error occurs if <strong><em>Shibboleth attributes</em></strong> aren't correctly mapped to <strong><em>user attributes</em></strong>, and thus aren't sent in headers to the Leaf API. </p>
+<details class="tldr">
+<summary>Answer</summary>
+<p>This error occurs if <strong><em>Shibboleth attributes</em></strong> aren't correctly mapped to <strong><em>user attributes</em></strong>, and thus aren't sent in headers to the Leaf API. </p>
 <blockquote>
 <p>Both Apache and IIS use a remote user, which is a special trusted value populated by various mechanisms (<code>LOGON_USER</code>, <code>REMOTE_USER</code>) related to the attributes passed along.</p>
 </blockquote>
@@ -1111,13 +1127,13 @@ $ npm --version
 </li>
 <li>
 <p>On the <strong><em>receiving</em></strong> side, in <code>attribute-map.xml</code>:
-<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- displayName --&gt;</span>
-<span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:mace:dir:attribute-def:displayName&quot;</span> <span class="na">id=</span><span class="s">&quot;displayName&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:oid:2.16.840.1.113730.3.1.241&quot;</span> <span class="na">id=</span><span class="s">&quot;displayName&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- displayName --&gt;</span>
+<span class="nt">&lt;Attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;urn:mace:dir:attribute-def:displayName&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;displayName&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;urn:oid:2.16.840.1.113730.3.1.241&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;displayName&quot;</span><span class="nt">/&gt;</span>
 
-<span class="c">&lt;!-- email --&gt;</span>
-<span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:mace:dir:attribute-def:mail&quot;</span> <span class="na">id=</span><span class="s">&quot;mail&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Attribute</span> <span class="na">name=</span><span class="s">&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;</span> <span class="na">id=</span><span class="s">&quot;mail&quot;</span><span class="nt">/&gt;</span>
+<span class="cm">&lt;!-- email --&gt;</span>
+<span class="nt">&lt;Attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;urn:mace:dir:attribute-def:mail&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;mail&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;mail&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div></p>
 </li>
 </ul>
@@ -1207,7 +1223,7 @@ $ npm --version
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>

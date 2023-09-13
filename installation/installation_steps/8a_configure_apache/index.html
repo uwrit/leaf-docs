@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../../images/leaf.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-7.1.1">
     
     
       
@@ -136,7 +136,7 @@
     
       <div class="md-header__source">
         
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -301,7 +301,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -966,10 +966,10 @@
 <ol>
 <li>
 <p>Create a nologin user account to isolate the service from the operating system, and give that account ownership over the API -related folders.</p>
-<div class="highlight"><pre><span></span><code>useradd -r api_svc_account
-mkdir /var/log/leaf/
-chown api_svc_account /var/log/leaf/
-chown -R api_svc_account /var/opt/leafapi/
+<div class="highlight"><pre><span></span><code>useradd<span class="w"> </span>-r<span class="w"> </span>api_svc_account
+mkdir<span class="w"> </span>/var/log/leaf/
+chown<span class="w"> </span>api_svc_account<span class="w"> </span>/var/log/leaf/
+chown<span class="w"> </span>-R<span class="w"> </span>api_svc_account<span class="w"> </span>/var/opt/leafapi/
 </code></pre></div>
 </li>
 <li>
@@ -994,13 +994,13 @@ WantedBy=multi-user.target
 <li>
 <p>Last, link your service file with <code>systemd</code> and make it aware of the service:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create a symbolic link into the systemd directory</span>
-ln -s /var/opt/leafapi/services/leaf_api.service /etc/systemd/system/leaf_api.service
+ln<span class="w"> </span>-s<span class="w"> </span>/var/opt/leafapi/services/leaf_api.service<span class="w"> </span>/etc/systemd/system/leaf_api.service
 
 <span class="c1"># Make the systemd aware of the service</span>
-systemctl daemon-reload
+systemctl<span class="w"> </span>daemon-reload
 
 <span class="c1"># Start the service</span>
-systemctl start leaf_api.service
+systemctl<span class="w"> </span>start<span class="w"> </span>leaf_api.service
 </code></pre></div>
 </li>
 </ol>
@@ -1026,75 +1026,75 @@ systemctl status leaf_api.service
 </li>
 </ol>
 <p><strong><code>httpd.conf</code></strong></p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:443</span><span class="nt">&gt;</span>
 
-    ServerName leaf.{subdomain}.{domain}.{tld}
-    ServerAlias leaf
-    DocumentRoot /data/www/build
-    HostnameLookups Off
-    ErrorLog logs/leaf_ssl_error_log
-    CustomLog logs/leaf_ssl_access_log combinedio
+<span class="w">    </span>ServerName<span class="w"> </span>leaf.{subdomain}.{domain}.{tld}
+<span class="w">    </span>ServerAlias<span class="w"> </span>leaf
+<span class="w">    </span>DocumentRoot<span class="w"> </span>/data/www/build
+<span class="w">    </span>HostnameLookups<span class="w"> </span>Off
+<span class="w">    </span>ErrorLog<span class="w"> </span>logs/leaf_ssl_error_log
+<span class="w">    </span>CustomLog<span class="w"> </span>logs/leaf_ssl_access_log<span class="w"> </span>combinedio
 
-    SSLEngine on
-    SSLProtocol all -SSLv2 -SSLv3
-    SSLHonorCipherOrder on
-    SSLCipherSuite HIGH:!aNULL:!MD5:!AECDH:!ADH
-    SSLCertificateFile /etc/pki/tls/certs/{leaf-cert}.cert
-    SSLCertificateKeyFile /etc/pki/tls/private/{leaf-key}.key
-    SSLCertificateChainFile /etc/pki/tls/certs/{cert-chain}.cert
+<span class="w">    </span>SSLEngine<span class="w"> </span>on
+<span class="w">    </span>SSLProtocol<span class="w"> </span>all<span class="w"> </span>-SSLv2<span class="w"> </span>-SSLv3
+<span class="w">    </span>SSLHonorCipherOrder<span class="w"> </span>on
+<span class="w">    </span>SSLCipherSuite<span class="w"> </span>HIGH:!aNULL:!MD5:!AECDH:!ADH
+<span class="w">    </span>SSLCertificateFile<span class="w"> </span>/etc/pki/tls/certs/{leaf-cert}.cert
+<span class="w">    </span>SSLCertificateKeyFile<span class="w"> </span>/etc/pki/tls/private/{leaf-key}.key
+<span class="w">    </span>SSLCertificateChainFile<span class="w"> </span>/etc/pki/tls/certs/{cert-chain}.cert
 
-    SetEnvIf User-Agent &quot;.*MSIE.*&quot; \
-        nokeepalive ssl-unclean-shutdown \
-        downgrade-1.0 force-response-1.0
+<span class="w">    </span>SetEnvIf<span class="w"> </span>User-Agent<span class="w"> </span>&quot;.*MSIE.*&quot;<span class="w"> </span>\
+<span class="w">        </span>nokeepalive<span class="w"> </span>ssl-unclean-shutdown<span class="w"> </span>\
+<span class="w">        </span>downgrade-1.0<span class="w"> </span>force-response-1.0
 
-    <span class="nt">&lt;Files</span> <span class="err">*.sso</span><span class="nt">&gt;</span>
-        SetHandler shib-handler
-    <span class="nt">&lt;/Files&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Files</span><span class="w"> </span><span class="err">*.sso</span><span class="nt">&gt;</span>
+<span class="w">        </span>SetHandler<span class="w"> </span>shib-handler
+<span class="w">    </span><span class="nt">&lt;/Files&gt;</span>
 
-    <span class="nt">&lt;Location</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-      <span class="nt">&lt;RequireAny&gt;</span>
+<span class="w">      </span><span class="nt">&lt;RequireAny&gt;</span>
 
-        # Optional subnet restriction
-        Require ip {restricted-subnet}
+<span class="w">        </span>#<span class="w"> </span>Optional<span class="w"> </span>subnet<span class="w"> </span>restriction
+<span class="w">        </span>Require<span class="w"> </span>ip<span class="w"> </span>{restricted-subnet}
 
-        # Authentication provider Setup
-        AuthType shibboleth
-        ShibRequireSession On
-        ShibUseHeaders On
-        Require shibboleth
+<span class="w">        </span>#<span class="w"> </span>Authentication<span class="w"> </span>provider<span class="w"> </span>Setup
+<span class="w">        </span>AuthType<span class="w"> </span>shibboleth
+<span class="w">        </span>ShibRequireSession<span class="w"> </span>On
+<span class="w">        </span>ShibUseHeaders<span class="w"> </span>On
+<span class="w">        </span>Require<span class="w"> </span>shibboleth
 
-        # optional users restriction, although this only determines access to the app, not a user&#39;s underlying authorization within the app
-        # cat /data/leaf/users.conf --&gt; leafusers: eppns...
-        AuthGroupFile /data/leaf/users.conf
-        require group leafusers
+<span class="w">        </span>#<span class="w"> </span>optional<span class="w"> </span>users<span class="w"> </span>restriction,<span class="w"> </span>although<span class="w"> </span>this<span class="w"> </span>only<span class="w"> </span>determines<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>app,<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>user&#39;s<span class="w"> </span>underlying<span class="w"> </span>authorization<span class="w"> </span>within<span class="w"> </span>the<span class="w"> </span>app
+<span class="w">        </span>#<span class="w"> </span>cat<span class="w"> </span>/data/leaf/users.conf<span class="w"> </span>--&gt;<span class="w"> </span>leafusers:<span class="w"> </span>eppns...
+<span class="w">        </span>AuthGroupFile<span class="w"> </span>/data/leaf/users.conf
+<span class="w">        </span>require<span class="w"> </span>group<span class="w"> </span>leafusers
 
-      <span class="nt">&lt;/RequireAny&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/RequireAny&gt;</span>
 
-    <span class="nt">&lt;/Location&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
 
-    # API proxy directive, overall api doesn&#39;t require user session
+<span class="w">    </span>#<span class="w"> </span>API<span class="w"> </span>proxy<span class="w"> </span>directive,<span class="w"> </span>overall<span class="w"> </span>api<span class="w"> </span>doesn&#39;t<span class="w"> </span>require<span class="w"> </span>user<span class="w"> </span>session
 
-    <span class="nt">&lt;Location</span> <span class="err">/api</span><span class="nt">&gt;</span>
-      ProxyPass         http://{node1-ip}:{node1-port}/api
-      ProxyPassReverse  http://{node1-ip}:{node1-port}/api
+<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/api</span><span class="nt">&gt;</span>
+<span class="w">      </span>ProxyPass<span class="w">         </span>http://{node1-ip}:{node1-port}/api
+<span class="w">      </span>ProxyPassReverse<span class="w">  </span>http://{node1-ip}:{node1-port}/api
 
-        <span class="nt">&lt;RequireAny&gt;</span>
-            AuthType shibboleth
-            ShibRequireSession Off 
-            Require shibboleth
-         <span class="nt">&lt;/RequireAny&gt;</span>
+<span class="w">        </span><span class="nt">&lt;RequireAny&gt;</span>
+<span class="w">            </span>AuthType<span class="w"> </span>shibboleth
+<span class="w">            </span>ShibRequireSession<span class="w"> </span>Off<span class="w"> </span>
+<span class="w">            </span>Require<span class="w"> </span>shibboleth
+<span class="w">         </span><span class="nt">&lt;/RequireAny&gt;</span>
 
-    <span class="nt">&lt;/Location&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
 
-  # /api/user does require user session
-    <span class="nt">&lt;Location</span> <span class="err">/api/user</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;RequireAny&gt;</span>
-               AuthType shibboleth
-               ShibRequireSession On
-               Require shibboleth
-         <span class="nt">&lt;/RequireAny&gt;</span>
- <span class="nt">&lt;/Location&gt;</span>
+<span class="w">  </span>#<span class="w"> </span>/api/user<span class="w"> </span>does<span class="w"> </span>require<span class="w"> </span>user<span class="w"> </span>session
+<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/api/user</span><span class="nt">&gt;</span>
+<span class="w">         </span><span class="nt">&lt;RequireAny&gt;</span>
+<span class="w">               </span>AuthType<span class="w"> </span>shibboleth
+<span class="w">               </span>ShibRequireSession<span class="w"> </span>On
+<span class="w">               </span>Require<span class="w"> </span>shibboleth
+<span class="w">         </span><span class="nt">&lt;/RequireAny&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/Location&gt;</span>
 
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
@@ -1102,14 +1102,14 @@ systemctl status leaf_api.service
 <p>If you have SELinux enabled on your system, you need to be aware of an additional set of controls specifically related to running Apache.</p>
 <p>By default with SELinux enabled httpd connections to other apps not located on localhost are regulated. If your API server is located on another host you will need to enable httpd to make outbound connections.</p>
 <p>To enable httpd connections to non-standard ports: </p>
-<div class="highlight"><pre><span></span><code>$ setsebool -P httpd_can_network_connect on
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>setsebool<span class="w"> </span>-P<span class="w"> </span>httpd_can_network_connect<span class="w"> </span>on
 </code></pre></div>
 <p>Depending on which ports you use for your API service you may need enable other booleans (ie httpd_can_network_connect_db, httpd_use_openstack). To see the complete list of variables on your system and their present status:</p>
-<div class="highlight"><pre><span></span><code>$ getsebool -a  <span class="p">|</span> grep httpd
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>getsebool<span class="w"> </span>-a<span class="w">  </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>httpd
 </code></pre></div>
 <p>If you decide to use non-standard directory to host your webapp you will also need to re-label the files in that directory so that httpd can properly access the webapp files. Using the location in the example above:</p>
-<div class="highlight"><pre><span></span><code>$ semanage fcontext -a -t httpd_sys_content_t <span class="s2">&quot;/data/www(/.*)?&quot;</span>
-$ restorecon -R -v /data/www
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>semanage<span class="w"> </span>fcontext<span class="w"> </span>-a<span class="w"> </span>-t<span class="w"> </span>httpd_sys_content_t<span class="w"> </span><span class="s2">&quot;/data/www(/.*)?&quot;</span>
+$<span class="w"> </span>restorecon<span class="w"> </span>-R<span class="w"> </span>-v<span class="w"> </span>/data/www
 </code></pre></div>
 <p><br>
 Next: <a href="../9_saml2">Step 9 - Configure Authentication with SAML2</a></p>
@@ -1198,7 +1198,7 @@ Next: <a href="../9_saml2">Step 9 - Configure Authentication with SAML2</a></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.7353b375.min.js"></script>

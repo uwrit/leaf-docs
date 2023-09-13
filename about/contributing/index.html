@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../../images/leaf.svg">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-7.1.1">
     
     
       
@@ -136,7 +136,7 @@
     
       <div class="md-header__source">
         
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -301,7 +301,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/uwrit/leaf/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/uwrit/leaf" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -1001,27 +1001,27 @@
 <p>Follow this process if you'd like your work considered for inclusion in the project: </p>
 <p>Fork the project, clone your fork, and configure the remotes: </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Clone your fork of the repo into the current directory </span>
-git clone https://github.com/&lt;your-username&gt;/leaf
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/leaf
 
 <span class="c1"># Navigate to the newly cloned directory </span>
-<span class="nb">cd</span> leaf 
+<span class="nb">cd</span><span class="w"> </span>leaf<span class="w"> </span>
 
 <span class="c1"># Assign the original repo to a remote called &quot;upstream&quot; </span>
-git remote add upstream https://github.com/uwrit/leaf
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/uwrit/leaf
 </code></pre></div>
 <p>If you cloned a while ago, get the latest changes from upstream: </p>
-<div class="highlight"><pre><span></span><code>git checkout &lt;dev-branch&gt;
-git pull upstream &lt;dev-branch&gt; 
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>&lt;dev-branch&gt;
+git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>&lt;dev-branch&gt;<span class="w"> </span>
 </code></pre></div>
 <p>Create a new topic branch (off the main project development branch) to contain your feature, change, or fix: </p>
-<div class="highlight"><pre><span></span><code>git checkout -b &lt;topic-branch-name&gt;
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;topic-branch-name&gt;
 </code></pre></div>
 <p>Commit your changes in logical chunks. Please adhere to these git commit message guidelines or your code is unlikely be merged into the main project. Use Git's interactive rebase feature to tidy up your commits before making them public. </p>
 <p>Locally merge (or rebase) the upstream development branch into your topic branch: </p>
-<div class="highlight"><pre><span></span><code>git pull <span class="o">[</span>--rebase<span class="o">]</span> upstream &lt;dev-branch&gt; 
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span><span class="o">[</span>--rebase<span class="o">]</span><span class="w"> </span>upstream<span class="w"> </span>&lt;dev-branch&gt;<span class="w"> </span>
 </code></pre></div>
 <p>Push your topic branch up to your fork: </p>
-<div class="highlight"><pre><span></span><code>git push origin &lt;topic-branch-name&gt;
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>&lt;topic-branch-name&gt;
 </code></pre></div>
 <p>Open a Pull Request with a clear title and description. </p>
 <p>IMPORTANT: By submitting a patch, you agree to allow us to license your work under the same license is that used by the project. </p>
@@ -1110,7 +1110,7 @@ git pull upstream &lt;dev-branch&gt;
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
