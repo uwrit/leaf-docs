@@ -34,7 +34,7 @@
 ## Getting Started
 * [Taking Leaf for a test drive](development_and_testing/testing)
 * [Installation](installation)
-* [How Leaf can help accomplish research](leaf_help_research)
+* [How Leaf can help accomplish research](leaf_help_research.md)
 * Learn more about Leaf's role in clinical informatics and background in the manuscript [Leaf: an open-source, model-agnostic, data-driven web application for cohort discovery and translational biomedical research](https://academic.oup.com/jamia/advance-article/doi/10.1093/jamia/ocz165/5583724)
 
 [![](images/youtube_screenshot.png)](http://www.youtube.com/watch?v=ZuKKC7B8mHI "")

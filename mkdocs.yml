@@ -25,6 +25,9 @@ extra_css:
 plugins:
   - search
   - awesome-pages
+  - redirects:
+      redirect_maps:
+        'leaf_help_research': 'about/leaf_help_research.md'
 markdown_extensions:
   - admonition
   - pymdownx.details
