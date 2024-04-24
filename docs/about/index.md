@@ -1,10 +1,10 @@
 # A Brief History
-Leaf was created by [Nic Dobbins](https://github.com/ndobb), PhD, the Principal Solutions Architect at UW Medicine Research IT. Leaf began as a simple experiment to recreate the power of cohort discovery tools like [i2b2](https://www.i2b2.org/), but with the ability to query any database structure, and with a friendly, intuitive user interface. 
+Leaf was created by [Nic Dobbins](https://github.com/ndobb), PhD, Assistant Professor of biomedical informatics & data science at Johns Hopkins University, and formerly the Principal Solutions Architect at UW Medicine Research IT. Leaf began as a simple experiment to recreate the power of cohort discovery tools like [i2b2](https://www.i2b2.org/), but with the ability to query any database structure, and with a friendly, intuitive user interface. 
 
 Since then, Leaf has grown into an institutionally-supported research tool integral to biomedical research at the University of Washington, and was released to the public domain as open-source software in spring 2019.
 
 # Team Members
-[Nic Dobbins](https://github.com/ndobb) continues to lead Leaf feature development at UW. Leaf was co-developed by [Cliff Spital](https://github.com/cspital), now at UW Web Services. [Sean Mooney](http://bime.uw.edu/faculty/sean-mooney/), Chief Research Information Officer of UW Medicine and Professor of Biomedical Informatics & Medical Education, serves as faculty champion.
+[Nic Dobbins](https://github.com/ndobb) maintains Leaf. Leaf was co-developed by [Cliff Spital](https://github.com/cspital), now at UW Web Services. [Sean Mooney](http://bime.uw.edu/faculty/sean-mooney/) former Chief Research Information Officer of UW Medicine and Professor of Biomedical Informatics & Medical Education, was Leaf's faculty champion.
 
 At UW, Leaf has been a successful cohort discovery tool with hundreds of active users. We believe Leaf is a strong component to an ongoing culture change in research computing.
 
