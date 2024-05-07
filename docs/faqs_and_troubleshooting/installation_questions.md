@@ -18,8 +18,10 @@
 
     **Note that the Leaf *App* DB must be deployed using SQL Server, however**.
 
-#### View Leaf installation videos
-    
+#### Do you have Leaf installation videos?
+!!! tldr "Answer"
+      Links to installation videos:
+
     - [Leaf Overview](https://uwmedicine.mediasite.com/mediasite/Play/ff0cd75fbf7a4cab90928a1e406c31b11d)
     - [Installing Leaf](https://uwmedicine.mediasite.com/mediasite/Play/8ee792181ff74e06be90b41956f0aaa41d)
     - [Configuring Leaf](https://uwmedicine.mediasite.com/mediasite/Play/e18d3d9989574f5eba38ef09a69cc1391d)
